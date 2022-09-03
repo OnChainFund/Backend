@@ -9,6 +9,7 @@ from contract.contracts.deployment.others.PangolinFactory import PangolinFactory
 from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
 from contract.contracts.deployment.others.PangolinPair import PangolinPair
 from contract.contracts.deployment.others.Addresses import Addresses
+from contract.contracts.deployment.others.ERC20 import ERC20
 
 
 def get_price_from_ftx(ftx_trading_pair: str) -> int:
@@ -35,6 +36,8 @@ def manage_liquidity(
     pangolin_router = w3.eth.contract(
         Addresses["pangolin"]["Router"], abi=PangolinRouter
     )
+    target_asset_contract = w3.eth.contract(target_asset, abi=ERC20)
+    denominated_asset_contract = w3.eth.contract(denominated_asset, abi=ERC20)
 
     pair = pangolin_factory.functions.getPair(target_asset, denominated_asset).call()
     print(pair)
@@ -45,8 +48,16 @@ def manage_liquidity(
         reserve1,
         blockTimestampLast,
     ) = pangolin_pair.functions.getReserves().call()
+    print("===================")
+    print("reserve")
     print(reserve0)
     print(reserve1)
+    print("===================")
+    print("ERC20 balance")
+    print(target_asset_contract.functions.balanceOf(pair).call())
+    print(denominated_asset_contract.functions.balanceOf(pair).call())
+    print("===================")
+    print("")
     token0 = pangolin_pair.functions.token0().call()
     token1 = pangolin_pair.functions.token1().call()
     # 計算出價格
@@ -63,6 +74,8 @@ def manage_liquidity(
         reserve_target_asset = reserve1
         reserve_denominated_asset = reserve0
         # pangolin_price = pangolin_pair.functions.price1CumulativeLast().call()
+    print("===================")
+    print("pangolin price")
     print(pangolin_price)
 
     if pangolin_price <= ftx_price:
@@ -83,22 +96,22 @@ def manage_liquidity(
     print(int(amount))
     private_key = config("PRIVATE_KEY")
 
-    txn = pangolin_router.functions.swapExactTokensForTokens(
-        int(amount),
-        1,
-        path,
-        Addresses["user_1"],
-        1758392484,
-    ).buildTransaction(
-        {
-            "chainId": 43113,
-            "gas": 7900000,
-            "maxFeePerGas": w3.toWei("30", "gwei"),
-            "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
-            "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
-        }
-    )
-    signed_txn = w3.eth.account.sign_transaction(txn, private_key=private_key)
+    # txn = pangolin_router.functions.swapExactTokensForTokens(
+    #    int(amount),
+    #    1,
+    #    path,
+    #    Addresses["user_1"],
+    #    1758392484,
+    # ).buildTransaction(
+    #    {
+    #        "chainId": 43113,
+    #        "gas": 7900000,
+    #        "maxFeePerGas": w3.toWei("30", "gwei"),
+    #        "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
+    #        "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
+    #    }
+    # )
+    # signed_txn = w3.eth.account.sign_transaction(txn, private_key=private_key)
     # w3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 
