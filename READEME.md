@@ -75,3 +75,19 @@ mutation deleteMutation{
   }
 }
 ```
+
+## Run scripts
+```
+```
+
+## Developement
+```
+# run 
+python manage.py runserver
+
+# run Django Q cluster
+python manage.py qcluster
+
+# run scripts
+./manage.py shell < management/tasks.py
+```
