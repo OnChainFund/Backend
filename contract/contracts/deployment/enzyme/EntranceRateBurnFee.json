@@ -1,0 +1,483 @@
+{
+  "address": "0x989F918FB0b0202b8284a4c16397E185cb867898",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_feeManager",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "comptrollerProxy",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "rate",
+          "type": "uint256"
+        }
+      ],
+      "name": "FundSettingsAdded",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "comptrollerProxy",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "payer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "uint256",
+          "name": "sharesQuantity",
+          "type": "uint256"
+        }
+      ],
+      "name": "Settled",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "activateForFund",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_comptrollerProxy",
+          "type": "address"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_settingsData",
+          "type": "bytes"
+        }
+      ],
+      "name": "addFundSettings",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getFeeManager",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "feeManager_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_comptrollerProxy",
+          "type": "address"
+        }
+      ],
+      "name": "getRateForFund",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "rate_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "getRecipientForFund",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "recipient_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getSettlementType",
+      "outputs": [
+        {
+          "internalType": "enum IFeeManager.SettlementType",
+          "name": "settlementType_",
+          "type": "uint8"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "name": "payout",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_comptrollerProxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "enum IFeeManager.FeeHook",
+          "name": "",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes",
+          "name": "_settlementData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "settle",
+      "outputs": [
+        {
+          "internalType": "enum IFeeManager.SettlementType",
+          "name": "settlementType_",
+          "type": "uint8"
+        },
+        {
+          "internalType": "address",
+          "name": "payer_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "sharesDue_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "enum IFeeManager.FeeHook",
+          "name": "_hook",
+          "type": "uint8"
+        }
+      ],
+      "name": "settlesOnHook",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "settles_",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "usesGav_",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        },
+        {
+          "internalType": "enum IFeeManager.FeeHook",
+          "name": "",
+          "type": "uint8"
+        },
+        {
+          "internalType": "bytes",
+          "name": "",
+          "type": "bytes"
+        },
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "name": "update",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "enum IFeeManager.FeeHook",
+          "name": "",
+          "type": "uint8"
+        }
+      ],
+      "name": "updatesOnHook",
+      "outputs": [
+        {
+          "internalType": "bool",
+          "name": "updates_",
+          "type": "bool"
+        },
+        {
+          "internalType": "bool",
+          "name": "usesGav_",
+          "type": "bool"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xcec8df38987d24123dc5ed794661f3131a7364ccad03fae0067c5d2b64068606",
+  "receipt": {
+    "to": null,
+    "from": "0xA3579C4c2057b58244DBc7DF5411C79d5F63a8A7",
+    "contractAddress": "0x989F918FB0b0202b8284a4c16397E185cb867898",
+    "transactionIndex": 1,
+    "gasUsed": "564476",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x6d27310ac57d0c4d122afb9c04e42d53e588c5f38c4c51df381ba6742378b5e0",
+    "transactionHash": "0xcec8df38987d24123dc5ed794661f3131a7364ccad03fae0067c5d2b64068606",
+    "logs": [],
+    "blockNumber": 11761540,
+    "cumulativeGasUsed": "601041",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x382a93d8A1714F5972cDbC918350370A20Ac34F3"
+  ],
+  "numDeployments": 1,
+  "linkedData": {
+    "type": "FEE"
+  },
+  "solcInputHash": "ddc5045fde4ce39a48d0eb052f9d6752",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_feeManager\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"comptrollerProxy\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"rate\",\"type\":\"uint256\"}],\"name\":\"FundSettingsAdded\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"comptrollerProxy\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"payer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"uint256\",\"name\":\"sharesQuantity\",\"type\":\"uint256\"}],\"name\":\"Settled\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"activateForFund\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_comptrollerProxy\",\"type\":\"address\"},{\"internalType\":\"bytes\",\"name\":\"_settingsData\",\"type\":\"bytes\"}],\"name\":\"addFundSettings\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getFeeManager\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"feeManager_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_comptrollerProxy\",\"type\":\"address\"}],\"name\":\"getRateForFund\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"rate_\",\"type\":\"uint256\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"getRecipientForFund\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"recipient_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getSettlementType\",\"outputs\":[{\"internalType\":\"enum IFeeManager.SettlementType\",\"name\":\"settlementType_\",\"type\":\"uint8\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"name\":\"payout\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_comptrollerProxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"enum IFeeManager.FeeHook\",\"name\":\"\",\"type\":\"uint8\"},{\"internalType\":\"bytes\",\"name\":\"_settlementData\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"settle\",\"outputs\":[{\"internalType\":\"enum IFeeManager.SettlementType\",\"name\":\"settlementType_\",\"type\":\"uint8\"},{\"internalType\":\"address\",\"name\":\"payer_\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"sharesDue_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"enum IFeeManager.FeeHook\",\"name\":\"_hook\",\"type\":\"uint8\"}],\"name\":\"settlesOnHook\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"settles_\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"usesGav_\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"enum IFeeManager.FeeHook\",\"name\":\"\",\"type\":\"uint8\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"},{\"internalType\":\"uint256\",\"name\":\"\",\"type\":\"uint256\"}],\"name\":\"update\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"enum IFeeManager.FeeHook\",\"name\":\"\",\"type\":\"uint8\"}],\"name\":\"updatesOnHook\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"updates_\",\"type\":\"bool\"},{\"internalType\":\"bool\",\"name\":\"usesGav_\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Enzyme Council <security@enzyme.finance>\",\"kind\":\"dev\",\"methods\":{\"activateForFund(address,address)\":{\"details\":\"Unimplemented by default, may be overrode.\"},\"addFundSettings(address,bytes)\":{\"params\":{\"_comptrollerProxy\":\"The ComptrollerProxy of the fund\",\"_settingsData\":\"Encoded settings to apply to the fee for a fund\"}},\"getFeeManager()\":{\"returns\":{\"feeManager_\":\"The `FEE_MANAGER` variable value\"}},\"getRateForFund(address)\":{\"params\":{\"_comptrollerProxy\":\"The ComptrollerProxy contract for the fund\"},\"returns\":{\"rate_\":\"The `rate` variable value\"}},\"getRecipientForFund(address)\":{\"details\":\"address(0) signifies the VaultProxy owner. Returns address(0) by default, can be overridden by fee.\"},\"getSettlementType()\":{\"returns\":{\"settlementType_\":\"The `SETTLEMENT_TYPE` variable value\"}},\"payout(address,address)\":{\"details\":\"Returns false by default, can be overridden by fee\"},\"settle(address,address,uint8,bytes,uint256)\":{\"params\":{\"_comptrollerProxy\":\"The ComptrollerProxy of the fund\",\"_settlementData\":\"Encoded args to use in calculating the settlement\"},\"returns\":{\"payer_\":\"The payer of shares due\",\"settlementType_\":\"The type of settlement\",\"sharesDue_\":\"The amount of shares due\"}},\"settlesOnHook(uint8)\":{\"params\":{\"_hook\":\"The FeeHook\"},\"returns\":{\"settles_\":\"True if the fee settles on the _hook\",\"usesGav_\":\"True if the fee uses GAV during settle() for the _hook\"}},\"update(address,address,uint8,bytes,uint256)\":{\"details\":\"Unimplemented by default, can be overridden by fee\"},\"updatesOnHook(uint8)\":{\"details\":\"Returns false values by default, can be overridden by fee\",\"returns\":{\"updates_\":\"True if the fee updates on the _hook\",\"usesGav_\":\"True if the fee uses GAV during update() for the _hook\"}}},\"title\":\"EntranceRateBurnFee Contract\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"activateForFund(address,address)\":{\"notice\":\"Allows Fee to run logic during fund activation\"},\"addFundSettings(address,bytes)\":{\"notice\":\"Add the initial fee settings for a fund\"},\"getFeeManager()\":{\"notice\":\"Gets the `FEE_MANAGER` variable\"},\"getRateForFund(address)\":{\"notice\":\"Gets the `rate` variable for a fund\"},\"getRecipientForFund(address)\":{\"notice\":\"Gets the recipient of the fee for a given fund\"},\"getSettlementType()\":{\"notice\":\"Gets the `SETTLEMENT_TYPE` variable\"},\"payout(address,address)\":{\"notice\":\"Runs payout logic for a fee that utilizes shares outstanding as its settlement type\"},\"settle(address,address,uint8,bytes,uint256)\":{\"notice\":\"Settles the fee\"},\"settlesOnHook(uint8)\":{\"notice\":\"Gets whether the fee settles and requires GAV on a particular hook\"},\"update(address,address,uint8,bytes,uint256)\":{\"notice\":\"Update fee state after all settlement has occurred during a given fee hook\"},\"updatesOnHook(uint8)\":{\"notice\":\"Gets whether the fee updates and requires GAV on a particular hook\"}},\"notice\":\"An EntranceRateFee that burns the fee shares\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/release/extensions/fee-manager/fees/EntranceRateBurnFee.sol\":\"EntranceRateBurnFee\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"details\":{\"constantOptimizer\":true,\"cse\":true,\"deduplicate\":true,\"jumpdestRemover\":true,\"orderLiterals\":true,\"peephole\":true,\"yul\":false},\"runs\":200},\"remappings\":[]},\"sources\":{\"@openzeppelin/contracts/math/SafeMath.sol\":{\"content\":\"// SPDX-License-Identifier: MIT\\n\\npragma solidity >=0.6.0 <0.8.0;\\n\\n/**\\n * @dev Wrappers over Solidity's arithmetic operations with added overflow\\n * checks.\\n *\\n * Arithmetic operations in Solidity wrap on overflow. This can easily result\\n * in bugs, because programmers usually assume that an overflow raises an\\n * error, which is the standard behavior in high level programming languages.\\n * `SafeMath` restores this intuition by reverting the transaction when an\\n * operation overflows.\\n *\\n * Using this library instead of the unchecked operations eliminates an entire\\n * class of bugs, so it's recommended to use it always.\\n */\\nlibrary SafeMath {\\n    /**\\n     * @dev Returns the addition of two unsigned integers, with an overflow flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function tryAdd(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        uint256 c = a + b;\\n        if (c < a) return (false, 0);\\n        return (true, c);\\n    }\\n\\n    /**\\n     * @dev Returns the substraction of two unsigned integers, with an overflow flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function trySub(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        if (b > a) return (false, 0);\\n        return (true, a - b);\\n    }\\n\\n    /**\\n     * @dev Returns the multiplication of two unsigned integers, with an overflow flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function tryMul(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        // Gas optimization: this is cheaper than requiring 'a' not being zero, but the\\n        // benefit is lost if 'b' is also tested.\\n        // See: https://github.com/OpenZeppelin/openzeppelin-contracts/pull/522\\n        if (a == 0) return (true, 0);\\n        uint256 c = a * b;\\n        if (c / a != b) return (false, 0);\\n        return (true, c);\\n    }\\n\\n    /**\\n     * @dev Returns the division of two unsigned integers, with a division by zero flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function tryDiv(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        if (b == 0) return (false, 0);\\n        return (true, a / b);\\n    }\\n\\n    /**\\n     * @dev Returns the remainder of dividing two unsigned integers, with a division by zero flag.\\n     *\\n     * _Available since v3.4._\\n     */\\n    function tryMod(uint256 a, uint256 b) internal pure returns (bool, uint256) {\\n        if (b == 0) return (false, 0);\\n        return (true, a % b);\\n    }\\n\\n    /**\\n     * @dev Returns the addition of two unsigned integers, reverting on\\n     * overflow.\\n     *\\n     * Counterpart to Solidity's `+` operator.\\n     *\\n     * Requirements:\\n     *\\n     * - Addition cannot overflow.\\n     */\\n    function add(uint256 a, uint256 b) internal pure returns (uint256) {\\n        uint256 c = a + b;\\n        require(c >= a, \\\"SafeMath: addition overflow\\\");\\n        return c;\\n    }\\n\\n    /**\\n     * @dev Returns the subtraction of two unsigned integers, reverting on\\n     * overflow (when the result is negative).\\n     *\\n     * Counterpart to Solidity's `-` operator.\\n     *\\n     * Requirements:\\n     *\\n     * - Subtraction cannot overflow.\\n     */\\n    function sub(uint256 a, uint256 b) internal pure returns (uint256) {\\n        require(b <= a, \\\"SafeMath: subtraction overflow\\\");\\n        return a - b;\\n    }\\n\\n    /**\\n     * @dev Returns the multiplication of two unsigned integers, reverting on\\n     * overflow.\\n     *\\n     * Counterpart to Solidity's `*` operator.\\n     *\\n     * Requirements:\\n     *\\n     * - Multiplication cannot overflow.\\n     */\\n    function mul(uint256 a, uint256 b) internal pure returns (uint256) {\\n        if (a == 0) return 0;\\n        uint256 c = a * b;\\n        require(c / a == b, \\\"SafeMath: multiplication overflow\\\");\\n        return c;\\n    }\\n\\n    /**\\n     * @dev Returns the integer division of two unsigned integers, reverting on\\n     * division by zero. The result is rounded towards zero.\\n     *\\n     * Counterpart to Solidity's `/` operator. Note: this function uses a\\n     * `revert` opcode (which leaves remaining gas untouched) while Solidity\\n     * uses an invalid opcode to revert (consuming all remaining gas).\\n     *\\n     * Requirements:\\n     *\\n     * - The divisor cannot be zero.\\n     */\\n    function div(uint256 a, uint256 b) internal pure returns (uint256) {\\n        require(b > 0, \\\"SafeMath: division by zero\\\");\\n        return a / b;\\n    }\\n\\n    /**\\n     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\\n     * reverting when dividing by zero.\\n     *\\n     * Counterpart to Solidity's `%` operator. This function uses a `revert`\\n     * opcode (which leaves remaining gas untouched) while Solidity uses an\\n     * invalid opcode to revert (consuming all remaining gas).\\n     *\\n     * Requirements:\\n     *\\n     * - The divisor cannot be zero.\\n     */\\n    function mod(uint256 a, uint256 b) internal pure returns (uint256) {\\n        require(b > 0, \\\"SafeMath: modulo by zero\\\");\\n        return a % b;\\n    }\\n\\n    /**\\n     * @dev Returns the subtraction of two unsigned integers, reverting with custom message on\\n     * overflow (when the result is negative).\\n     *\\n     * CAUTION: This function is deprecated because it requires allocating memory for the error\\n     * message unnecessarily. For custom revert reasons use {trySub}.\\n     *\\n     * Counterpart to Solidity's `-` operator.\\n     *\\n     * Requirements:\\n     *\\n     * - Subtraction cannot overflow.\\n     */\\n    function sub(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\\n        require(b <= a, errorMessage);\\n        return a - b;\\n    }\\n\\n    /**\\n     * @dev Returns the integer division of two unsigned integers, reverting with custom message on\\n     * division by zero. The result is rounded towards zero.\\n     *\\n     * CAUTION: This function is deprecated because it requires allocating memory for the error\\n     * message unnecessarily. For custom revert reasons use {tryDiv}.\\n     *\\n     * Counterpart to Solidity's `/` operator. Note: this function uses a\\n     * `revert` opcode (which leaves remaining gas untouched) while Solidity\\n     * uses an invalid opcode to revert (consuming all remaining gas).\\n     *\\n     * Requirements:\\n     *\\n     * - The divisor cannot be zero.\\n     */\\n    function div(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\\n        require(b > 0, errorMessage);\\n        return a / b;\\n    }\\n\\n    /**\\n     * @dev Returns the remainder of dividing two unsigned integers. (unsigned integer modulo),\\n     * reverting with custom message when dividing by zero.\\n     *\\n     * CAUTION: This function is deprecated because it requires allocating memory for the error\\n     * message unnecessarily. For custom revert reasons use {tryMod}.\\n     *\\n     * Counterpart to Solidity's `%` operator. This function uses a `revert`\\n     * opcode (which leaves remaining gas untouched) while Solidity uses an\\n     * invalid opcode to revert (consuming all remaining gas).\\n     *\\n     * Requirements:\\n     *\\n     * - The divisor cannot be zero.\\n     */\\n    function mod(uint256 a, uint256 b, string memory errorMessage) internal pure returns (uint256) {\\n        require(b > 0, errorMessage);\\n        return a % b;\\n    }\\n}\\n\",\"keccak256\":\"0xcc78a17dd88fa5a2edc60c8489e2f405c0913b377216a5b26b35656b2d0dab52\",\"license\":\"MIT\"},\"contracts/release/extensions/fee-manager/IFee.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"./IFeeManager.sol\\\";\\n\\n/// @title Fee Interface\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice Interface for all fees\\ninterface IFee {\\n    function activateForFund(address _comptrollerProxy, address _vaultProxy) external;\\n\\n    function addFundSettings(address _comptrollerProxy, bytes calldata _settingsData) external;\\n\\n    function payout(address _comptrollerProxy, address _vaultProxy)\\n        external\\n        returns (bool isPayable_);\\n\\n    function getRecipientForFund(address _comptrollerProxy)\\n        external\\n        view\\n        returns (address recipient_);\\n\\n    function settle(\\n        address _comptrollerProxy,\\n        address _vaultProxy,\\n        IFeeManager.FeeHook _hook,\\n        bytes calldata _settlementData,\\n        uint256 _gav\\n    )\\n        external\\n        returns (\\n            IFeeManager.SettlementType settlementType_,\\n            address payer_,\\n            uint256 sharesDue_\\n        );\\n\\n    function settlesOnHook(IFeeManager.FeeHook _hook)\\n        external\\n        view\\n        returns (bool settles_, bool usesGav_);\\n\\n    function update(\\n        address _comptrollerProxy,\\n        address _vaultProxy,\\n        IFeeManager.FeeHook _hook,\\n        bytes calldata _settlementData,\\n        uint256 _gav\\n    ) external;\\n\\n    function updatesOnHook(IFeeManager.FeeHook _hook)\\n        external\\n        view\\n        returns (bool updates_, bool usesGav_);\\n}\\n\",\"keccak256\":\"0x38e3f324c67f3205e38197165586ea82ca226069902f34214bcde76cf905fcff\",\"license\":\"GPL-3.0\"},\"contracts/release/extensions/fee-manager/IFeeManager.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\npragma experimental ABIEncoderV2;\\n\\n/// @title FeeManager Interface\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice Interface for the FeeManager\\ninterface IFeeManager {\\n    // No fees for the current release are implemented post-redeemShares\\n    enum FeeHook {Continuous, PreBuyShares, PostBuyShares, PreRedeemShares}\\n    enum SettlementType {None, Direct, Mint, Burn, MintSharesOutstanding, BurnSharesOutstanding}\\n\\n    function invokeHook(\\n        FeeHook,\\n        bytes calldata,\\n        uint256\\n    ) external;\\n}\\n\",\"keccak256\":\"0xa0cfee013a2a0f8891ee558dec4568dd6e76e3f033a214cbe5e74e93e8f68fd2\",\"license\":\"GPL-3.0\"},\"contracts/release/extensions/fee-manager/fees/EntranceRateBurnFee.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"./utils/EntranceRateFeeBase.sol\\\";\\n\\n/// @title EntranceRateBurnFee Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice An EntranceRateFee that burns the fee shares\\ncontract EntranceRateBurnFee is EntranceRateFeeBase {\\n    constructor(address _feeManager)\\n        public\\n        EntranceRateFeeBase(_feeManager, IFeeManager.SettlementType.Burn)\\n    {}\\n}\\n\",\"keccak256\":\"0x6e662db86d34fb44976689f10475c414d15b29b2f207cec10204e080b64efd87\",\"license\":\"GPL-3.0\"},\"contracts/release/extensions/fee-manager/fees/utils/EntranceRateFeeBase.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"@openzeppelin/contracts/math/SafeMath.sol\\\";\\nimport \\\"./FeeBase.sol\\\";\\n\\n/// @title EntranceRateFeeBase Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice Calculates a fee based on a rate to be charged to an investor upon entering a fund\\nabstract contract EntranceRateFeeBase is FeeBase {\\n    using SafeMath for uint256;\\n\\n    event FundSettingsAdded(address indexed comptrollerProxy, uint256 rate);\\n\\n    event Settled(address indexed comptrollerProxy, address indexed payer, uint256 sharesQuantity);\\n\\n    uint256 private constant ONE_HUNDRED_PERCENT = 10000;\\n    IFeeManager.SettlementType private immutable SETTLEMENT_TYPE;\\n\\n    mapping(address => uint256) private comptrollerProxyToRate;\\n\\n    constructor(address _feeManager, IFeeManager.SettlementType _settlementType)\\n        public\\n        FeeBase(_feeManager)\\n    {\\n        require(\\n            _settlementType == IFeeManager.SettlementType.Burn ||\\n                _settlementType == IFeeManager.SettlementType.Direct,\\n            \\\"constructor: Invalid _settlementType\\\"\\n        );\\n        SETTLEMENT_TYPE = _settlementType;\\n    }\\n\\n    // EXTERNAL FUNCTIONS\\n\\n    /// @notice Add the initial fee settings for a fund\\n    /// @param _comptrollerProxy The ComptrollerProxy of the fund\\n    /// @param _settingsData Encoded settings to apply to the fee for a fund\\n    function addFundSettings(address _comptrollerProxy, bytes calldata _settingsData)\\n        public\\n        virtual\\n        override\\n        onlyFeeManager\\n    {\\n        uint256 rate = abi.decode(_settingsData, (uint256));\\n        require(rate > 0, \\\"addFundSettings: Fee rate must be >0\\\");\\n        require(rate < ONE_HUNDRED_PERCENT, \\\"addFundSettings: Fee rate max exceeded\\\");\\n\\n        comptrollerProxyToRate[_comptrollerProxy] = rate;\\n\\n        emit FundSettingsAdded(_comptrollerProxy, rate);\\n    }\\n\\n    /// @notice Settles the fee\\n    /// @param _comptrollerProxy The ComptrollerProxy of the fund\\n    /// @param _settlementData Encoded args to use in calculating the settlement\\n    /// @return settlementType_ The type of settlement\\n    /// @return payer_ The payer of shares due\\n    /// @return sharesDue_ The amount of shares due\\n    function settle(\\n        address _comptrollerProxy,\\n        address,\\n        IFeeManager.FeeHook,\\n        bytes calldata _settlementData,\\n        uint256\\n    )\\n        external\\n        override\\n        onlyFeeManager\\n        returns (\\n            IFeeManager.SettlementType settlementType_,\\n            address payer_,\\n            uint256 sharesDue_\\n        )\\n    {\\n        uint256 sharesBought;\\n        (payer_, , sharesBought) = __decodePostBuySharesSettlementData(_settlementData);\\n\\n        uint256 rate = comptrollerProxyToRate[_comptrollerProxy];\\n        sharesDue_ = sharesBought.mul(rate).div(ONE_HUNDRED_PERCENT);\\n\\n        if (sharesDue_ == 0) {\\n            return (IFeeManager.SettlementType.None, address(0), 0);\\n        }\\n\\n        emit Settled(_comptrollerProxy, payer_, sharesDue_);\\n\\n        return (SETTLEMENT_TYPE, payer_, sharesDue_);\\n    }\\n\\n    /// @notice Gets whether the fee settles and requires GAV on a particular hook\\n    /// @param _hook The FeeHook\\n    /// @return settles_ True if the fee settles on the _hook\\n    /// @return usesGav_ True if the fee uses GAV during settle() for the _hook\\n    function settlesOnHook(IFeeManager.FeeHook _hook)\\n        external\\n        view\\n        override\\n        returns (bool settles_, bool usesGav_)\\n    {\\n        if (_hook == IFeeManager.FeeHook.PostBuyShares) {\\n            return (true, false);\\n        }\\n\\n        return (false, false);\\n    }\\n\\n    ///////////////////\\n    // STATE GETTERS //\\n    ///////////////////\\n\\n    /// @notice Gets the `rate` variable for a fund\\n    /// @param _comptrollerProxy The ComptrollerProxy contract for the fund\\n    /// @return rate_ The `rate` variable value\\n    function getRateForFund(address _comptrollerProxy) external view returns (uint256 rate_) {\\n        return comptrollerProxyToRate[_comptrollerProxy];\\n    }\\n\\n    /// @notice Gets the `SETTLEMENT_TYPE` variable\\n    /// @return settlementType_ The `SETTLEMENT_TYPE` variable value\\n    function getSettlementType()\\n        external\\n        view\\n        returns (IFeeManager.SettlementType settlementType_)\\n    {\\n        return SETTLEMENT_TYPE;\\n    }\\n}\\n\",\"keccak256\":\"0xf12110b2c9f9763f15185fc7939d6e581f30a99b1f55c84d727838add42d262a\",\"license\":\"GPL-3.0\"},\"contracts/release/extensions/fee-manager/fees/utils/FeeBase.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"../../IFee.sol\\\";\\n\\n/// @title FeeBase Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice Abstract base contract for all fees\\nabstract contract FeeBase is IFee {\\n    address internal immutable FEE_MANAGER;\\n\\n    modifier onlyFeeManager {\\n        require(msg.sender == FEE_MANAGER, \\\"Only the FeeManger can make this call\\\");\\n        _;\\n    }\\n\\n    constructor(address _feeManager) public {\\n        FEE_MANAGER = _feeManager;\\n    }\\n\\n    /// @notice Allows Fee to run logic during fund activation\\n    /// @dev Unimplemented by default, may be overrode.\\n    function activateForFund(address, address) external virtual override {\\n        return;\\n    }\\n\\n    /// @notice Gets the recipient of the fee for a given fund\\n    /// @dev address(0) signifies the VaultProxy owner.\\n    /// Returns address(0) by default, can be overridden by fee.\\n    function getRecipientForFund(address)\\n        external\\n        view\\n        virtual\\n        override\\n        returns (address recipient_)\\n    {\\n        return address(0);\\n    }\\n\\n    /// @notice Runs payout logic for a fee that utilizes shares outstanding as its settlement type\\n    /// @dev Returns false by default, can be overridden by fee\\n    function payout(address, address) external virtual override returns (bool) {\\n        return false;\\n    }\\n\\n    /// @notice Update fee state after all settlement has occurred during a given fee hook\\n    /// @dev Unimplemented by default, can be overridden by fee\\n    function update(\\n        address,\\n        address,\\n        IFeeManager.FeeHook,\\n        bytes calldata,\\n        uint256\\n    ) external virtual override {\\n        return;\\n    }\\n\\n    /// @notice Gets whether the fee updates and requires GAV on a particular hook\\n    /// @return updates_ True if the fee updates on the _hook\\n    /// @return usesGav_ True if the fee uses GAV during update() for the _hook\\n    /// @dev Returns false values by default, can be overridden by fee\\n    function updatesOnHook(IFeeManager.FeeHook)\\n        external\\n        view\\n        virtual\\n        override\\n        returns (bool updates_, bool usesGav_)\\n    {\\n        return (false, false);\\n    }\\n\\n    /// @notice Helper to parse settlement arguments from encoded data for PreBuyShares fee hook\\n    function __decodePreBuySharesSettlementData(bytes memory _settlementData)\\n        internal\\n        pure\\n        returns (address buyer_, uint256 investmentAmount_)\\n    {\\n        return abi.decode(_settlementData, (address, uint256));\\n    }\\n\\n    /// @notice Helper to parse settlement arguments from encoded data for PreRedeemShares fee hook\\n    function __decodePreRedeemSharesSettlementData(bytes memory _settlementData)\\n        internal\\n        pure\\n        returns (\\n            address redeemer_,\\n            uint256 sharesQuantity_,\\n            bool forSpecificAssets_\\n        )\\n    {\\n        return abi.decode(_settlementData, (address, uint256, bool));\\n    }\\n\\n    /// @notice Helper to parse settlement arguments from encoded data for PostBuyShares fee hook\\n    function __decodePostBuySharesSettlementData(bytes memory _settlementData)\\n        internal\\n        pure\\n        returns (\\n            address buyer_,\\n            uint256 investmentAmount_,\\n            uint256 sharesIssued_\\n        )\\n    {\\n        return abi.decode(_settlementData, (address, uint256, uint256));\\n    }\\n\\n    ///////////////////\\n    // STATE GETTERS //\\n    ///////////////////\\n\\n    /// @notice Gets the `FEE_MANAGER` variable\\n    /// @return feeManager_ The `FEE_MANAGER` variable value\\n    function getFeeManager() external view returns (address feeManager_) {\\n        return FEE_MANAGER;\\n    }\\n}\\n\",\"keccak256\":\"0x73bd381de7da4bd7e8bdb9adac4bdf5be2af13b758f16c5d64c709b158b1927a\",\"license\":\"GPL-3.0\"}},\"version\":1}",
+  "bytecode": "0x60c060405234801561001057600080fd5b506040516109c53803806109c58339818101604052602081101561003357600080fd5b50516001600160601b0319606082901b16608052600360f81b60a0526001600160a01b0316600361093f610086600039806106ef528061072752508061040f52806105b6528061075c525061093f6000f3fe608060405234801561001057600080fd5b50600436106100a95760003560e01c806341892d7e1161007157806341892d7e1461026457806362780b3c1461032f5780637bdd5b1d14610371578063b78b48131461039a578063e337a91f146103dc578063f2d63826146103fc576100a9565b80630f5f6b4f146100ae578063233faf5f146101305780633146d058146101c3578063320f0ddd146101f15780633eecc2bf1461022c575b600080fd5b61012e600480360360408110156100c457600080fd5b6001600160a01b0382351691908101906040810160208201356401000000008111156100ef57600080fd5b82018360208201111561010157600080fd5b8035906020019184600183028401116401000000008311171561012357600080fd5b509092509050610404565b005b61012e600480360360a081101561014657600080fd5b6001600160a01b03823581169260208101359091169160ff604083013516919081019060808101606082013564010000000081111561018457600080fd5b82018360208201111561019657600080fd5b803590602001918460018302840111640100000000831117156101b857600080fd5b919350915035610551565b61012e600480360360408110156101d957600080fd5b506001600160a01b0381358116916020013516610559565b6102116004803603602081101561020757600080fd5b503560ff1661055d565b60408051921515835290151560208301528051918290030190f35b6102526004803603602081101561024257600080fd5b50356001600160a01b031661058c565b60408051918252519081900360200190f35b6102f7600480360360a081101561027a57600080fd5b6001600160a01b03823581169260208101359091169160ff60408301351691908101906080810160608201356401000000008111156102b857600080fd5b8201836020820111156102ca57600080fd5b803590602001918460018302840111640100000000831117156102ec57600080fd5b9193509150356105a7565b6040518084600581111561030757fe5b8152602001836001600160a01b03168152602001828152602001935050505060405180910390f35b6103556004803603602081101561034557600080fd5b50356001600160a01b031661071f565b604080516001600160a01b039092168252519081900360200190f35b610379610725565b6040518082600581111561038957fe5b815260200191505060405180910390f35b6103c8600480360360408110156103b057600080fd5b506001600160a01b0381358116916020013516610749565b604080519115158252519081900360200190f35b610211600480360360208110156103f257600080fd5b503560ff16610752565b61035561075a565b336001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000161461046b5760405162461bcd60e51b815260040180806020018281038252602581526020018061087a6025913960400191505060405180910390fd5b60008282602081101561047d57600080fd5b50359050806104bd5760405162461bcd60e51b81526004018080602001828103825260248152602001806108e66024913960400191505060405180910390fd5b61271081106104fd5760405162461bcd60e51b81526004018080602001828103825260268152602001806108c06026913960400191505060405180910390fd5b6001600160a01b03841660008181526020818152604091829020849055815184815291517f90b7d1516011c1da1279f3ae0ed052b1416e7c373d4ec40cf515aa53c5f839df9281900390910190a250505050565b505050505050565b5050565b600080600283600381111561056e57fe5b14156105805750600190506000610587565b5060009050805b915091565b6001600160a01b031660009081526020819052604090205490565b60008080336001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016146106125760405162461bcd60e51b815260040180806020018281038252602581526020018061087a6025913960400191505060405180910390fd5b600061065387878080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061077e92505050565b6001600160a01b038d166000908152602081905260409020549295509250610689905061271061068384846107b2565b90610812565b9250826106a25760008060009450945094505050610713565b836001600160a01b03168b6001600160a01b03167f7e79a2206061184e05985ae0578dec52f817756a441996f984cdc817efc25a68856040518082815260200191505060405180910390a37f0000000000000000000000000000000000000000000000000000000000000000945050505b96509650969350505050565b50600090565b7f000000000000000000000000000000000000000000000000000000000000000090565b60005b92915050565b600080915091565b7f000000000000000000000000000000000000000000000000000000000000000090565b600080600083806020019051606081101561079857600080fd5b508051602082015160409092015190969195509350915050565b6000826107c15750600061074c565b828202828482816107ce57fe5b041461080b5760405162461bcd60e51b815260040180806020018281038252602181526020018061089f6021913960400191505060405180910390fd5b9392505050565b6000808211610868576040805162461bcd60e51b815260206004820152601a60248201527f536166654d6174683a206469766973696f6e206279207a65726f000000000000604482015290519081900360640190fd5b81838161087157fe5b04939250505056fe4f6e6c7920746865204665654d616e6765722063616e206d616b6520746869732063616c6c536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f7761646446756e6453657474696e67733a204665652072617465206d617820657863656564656461646446756e6453657474696e67733a204665652072617465206d757374206265203e30a2646970667358221220003c199e0f8b751ad47510b741a5215defd0b3718f10418469b3e92653fd9d7264736f6c634300060c0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100a95760003560e01c806341892d7e1161007157806341892d7e1461026457806362780b3c1461032f5780637bdd5b1d14610371578063b78b48131461039a578063e337a91f146103dc578063f2d63826146103fc576100a9565b80630f5f6b4f146100ae578063233faf5f146101305780633146d058146101c3578063320f0ddd146101f15780633eecc2bf1461022c575b600080fd5b61012e600480360360408110156100c457600080fd5b6001600160a01b0382351691908101906040810160208201356401000000008111156100ef57600080fd5b82018360208201111561010157600080fd5b8035906020019184600183028401116401000000008311171561012357600080fd5b509092509050610404565b005b61012e600480360360a081101561014657600080fd5b6001600160a01b03823581169260208101359091169160ff604083013516919081019060808101606082013564010000000081111561018457600080fd5b82018360208201111561019657600080fd5b803590602001918460018302840111640100000000831117156101b857600080fd5b919350915035610551565b61012e600480360360408110156101d957600080fd5b506001600160a01b0381358116916020013516610559565b6102116004803603602081101561020757600080fd5b503560ff1661055d565b60408051921515835290151560208301528051918290030190f35b6102526004803603602081101561024257600080fd5b50356001600160a01b031661058c565b60408051918252519081900360200190f35b6102f7600480360360a081101561027a57600080fd5b6001600160a01b03823581169260208101359091169160ff60408301351691908101906080810160608201356401000000008111156102b857600080fd5b8201836020820111156102ca57600080fd5b803590602001918460018302840111640100000000831117156102ec57600080fd5b9193509150356105a7565b6040518084600581111561030757fe5b8152602001836001600160a01b03168152602001828152602001935050505060405180910390f35b6103556004803603602081101561034557600080fd5b50356001600160a01b031661071f565b604080516001600160a01b039092168252519081900360200190f35b610379610725565b6040518082600581111561038957fe5b815260200191505060405180910390f35b6103c8600480360360408110156103b057600080fd5b506001600160a01b0381358116916020013516610749565b604080519115158252519081900360200190f35b610211600480360360208110156103f257600080fd5b503560ff16610752565b61035561075a565b336001600160a01b037f0000000000000000000000000000000000000000000000000000000000000000161461046b5760405162461bcd60e51b815260040180806020018281038252602581526020018061087a6025913960400191505060405180910390fd5b60008282602081101561047d57600080fd5b50359050806104bd5760405162461bcd60e51b81526004018080602001828103825260248152602001806108e66024913960400191505060405180910390fd5b61271081106104fd5760405162461bcd60e51b81526004018080602001828103825260268152602001806108c06026913960400191505060405180910390fd5b6001600160a01b03841660008181526020818152604091829020849055815184815291517f90b7d1516011c1da1279f3ae0ed052b1416e7c373d4ec40cf515aa53c5f839df9281900390910190a250505050565b505050505050565b5050565b600080600283600381111561056e57fe5b14156105805750600190506000610587565b5060009050805b915091565b6001600160a01b031660009081526020819052604090205490565b60008080336001600160a01b037f000000000000000000000000000000000000000000000000000000000000000016146106125760405162461bcd60e51b815260040180806020018281038252602581526020018061087a6025913960400191505060405180910390fd5b600061065387878080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525061077e92505050565b6001600160a01b038d166000908152602081905260409020549295509250610689905061271061068384846107b2565b90610812565b9250826106a25760008060009450945094505050610713565b836001600160a01b03168b6001600160a01b03167f7e79a2206061184e05985ae0578dec52f817756a441996f984cdc817efc25a68856040518082815260200191505060405180910390a37f0000000000000000000000000000000000000000000000000000000000000000945050505b96509650969350505050565b50600090565b7f000000000000000000000000000000000000000000000000000000000000000090565b60005b92915050565b600080915091565b7f000000000000000000000000000000000000000000000000000000000000000090565b600080600083806020019051606081101561079857600080fd5b508051602082015160409092015190969195509350915050565b6000826107c15750600061074c565b828202828482816107ce57fe5b041461080b5760405162461bcd60e51b815260040180806020018281038252602181526020018061089f6021913960400191505060405180910390fd5b9392505050565b6000808211610868576040805162461bcd60e51b815260206004820152601a60248201527f536166654d6174683a206469766973696f6e206279207a65726f000000000000604482015290519081900360640190fd5b81838161087157fe5b04939250505056fe4f6e6c7920746865204665654d616e6765722063616e206d616b6520746869732063616c6c536166654d6174683a206d756c7469706c69636174696f6e206f766572666c6f7761646446756e6453657474696e67733a204665652072617465206d617820657863656564656461646446756e6453657474696e67733a204665652072617465206d757374206265203e30a2646970667358221220003c199e0f8b751ad47510b741a5215defd0b3718f10418469b3e92653fd9d7264736f6c634300060c0033",
+  "devdoc": {
+    "author": "Enzyme Council <security@enzyme.finance>",
+    "kind": "dev",
+    "methods": {
+      "activateForFund(address,address)": {
+        "details": "Unimplemented by default, may be overrode."
+      },
+      "addFundSettings(address,bytes)": {
+        "params": {
+          "_comptrollerProxy": "The ComptrollerProxy of the fund",
+          "_settingsData": "Encoded settings to apply to the fee for a fund"
+        }
+      },
+      "getFeeManager()": {
+        "returns": {
+          "feeManager_": "The `FEE_MANAGER` variable value"
+        }
+      },
+      "getRateForFund(address)": {
+        "params": {
+          "_comptrollerProxy": "The ComptrollerProxy contract for the fund"
+        },
+        "returns": {
+          "rate_": "The `rate` variable value"
+        }
+      },
+      "getRecipientForFund(address)": {
+        "details": "address(0) signifies the VaultProxy owner. Returns address(0) by default, can be overridden by fee."
+      },
+      "getSettlementType()": {
+        "returns": {
+          "settlementType_": "The `SETTLEMENT_TYPE` variable value"
+        }
+      },
+      "payout(address,address)": {
+        "details": "Returns false by default, can be overridden by fee"
+      },
+      "settle(address,address,uint8,bytes,uint256)": {
+        "params": {
+          "_comptrollerProxy": "The ComptrollerProxy of the fund",
+          "_settlementData": "Encoded args to use in calculating the settlement"
+        },
+        "returns": {
+          "payer_": "The payer of shares due",
+          "settlementType_": "The type of settlement",
+          "sharesDue_": "The amount of shares due"
+        }
+      },
+      "settlesOnHook(uint8)": {
+        "params": {
+          "_hook": "The FeeHook"
+        },
+        "returns": {
+          "settles_": "True if the fee settles on the _hook",
+          "usesGav_": "True if the fee uses GAV during settle() for the _hook"
+        }
+      },
+      "update(address,address,uint8,bytes,uint256)": {
+        "details": "Unimplemented by default, can be overridden by fee"
+      },
+      "updatesOnHook(uint8)": {
+        "details": "Returns false values by default, can be overridden by fee",
+        "returns": {
+          "updates_": "True if the fee updates on the _hook",
+          "usesGav_": "True if the fee uses GAV during update() for the _hook"
+        }
+      }
+    },
+    "title": "EntranceRateBurnFee Contract",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "activateForFund(address,address)": {
+        "notice": "Allows Fee to run logic during fund activation"
+      },
+      "addFundSettings(address,bytes)": {
+        "notice": "Add the initial fee settings for a fund"
+      },
+      "getFeeManager()": {
+        "notice": "Gets the `FEE_MANAGER` variable"
+      },
+      "getRateForFund(address)": {
+        "notice": "Gets the `rate` variable for a fund"
+      },
+      "getRecipientForFund(address)": {
+        "notice": "Gets the recipient of the fee for a given fund"
+      },
+      "getSettlementType()": {
+        "notice": "Gets the `SETTLEMENT_TYPE` variable"
+      },
+      "payout(address,address)": {
+        "notice": "Runs payout logic for a fee that utilizes shares outstanding as its settlement type"
+      },
+      "settle(address,address,uint8,bytes,uint256)": {
+        "notice": "Settles the fee"
+      },
+      "settlesOnHook(uint8)": {
+        "notice": "Gets whether the fee settles and requires GAV on a particular hook"
+      },
+      "update(address,address,uint8,bytes,uint256)": {
+        "notice": "Update fee state after all settlement has occurred during a given fee hook"
+      },
+      "updatesOnHook(uint8)": {
+        "notice": "Gets whether the fee updates and requires GAV on a particular hook"
+      }
+    },
+    "notice": "An EntranceRateFee that burns the fee shares",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 25590,
+        "contract": "contracts/release/extensions/fee-manager/fees/EntranceRateBurnFee.sol:EntranceRateBurnFee",
+        "label": "comptrollerProxyToRate",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_uint256)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_uint256)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => uint256)",
+        "numberOfBytes": "32",
+        "value": "t_uint256"
+      },
+      "t_uint256": {
+        "encoding": "inplace",
+        "label": "uint256",
+        "numberOfBytes": "32"
+      }
+    }
+  }
+}

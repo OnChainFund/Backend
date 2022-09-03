@@ -1,0 +1,81 @@
+{
+  "address": "0x4080f0Ca3bf4cBeB4fF57A60120EC7A7Ad2C30c0",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_constructData",
+          "type": "bytes"
+        },
+        {
+          "internalType": "address",
+          "name": "_globalConfigLib",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "stateMutability": "payable",
+      "type": "fallback"
+    }
+  ],
+  "transactionHash": "0x15ef405678cfffe8dbff8260da48864a1400bd6e991c810dbb8f5e7f6235d7f7",
+  "receipt": {
+    "to": null,
+    "from": "0xA3579C4c2057b58244DBc7DF5411C79d5F63a8A7",
+    "contractAddress": "0x4080f0Ca3bf4cBeB4fF57A60120EC7A7Ad2C30c0",
+    "transactionIndex": 0,
+    "gasUsed": "145850",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000020000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000008000000000000000001040000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0x24ac395a0c00be79c2971861f170b7a227efcf86f66f3cc8c2ff041fcdebbc24",
+    "transactionHash": "0x15ef405678cfffe8dbff8260da48864a1400bd6e991c810dbb8f5e7f6235d7f7",
+    "logs": [
+      {
+        "transactionIndex": 0,
+        "blockNumber": 11761476,
+        "transactionHash": "0x15ef405678cfffe8dbff8260da48864a1400bd6e991c810dbb8f5e7f6235d7f7",
+        "address": "0x4080f0Ca3bf4cBeB4fF57A60120EC7A7Ad2C30c0",
+        "topics": [
+          "0xce6de52b779ce41beea76a6e7a997211f0006af21ed2e2924caa5bdc92dac318"
+        ],
+        "data": "0x000000000000000000000000f596546a917dced4f186811e21fc7296c99c4e1c",
+        "logIndex": 0,
+        "blockHash": "0x24ac395a0c00be79c2971861f170b7a227efcf86f66f3cc8c2ff041fcdebbc24"
+      }
+    ],
+    "blockNumber": 11761476,
+    "cumulativeGasUsed": "145850",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0x19ab453c000000000000000000000000e1bb58c02740446c36ba62bea67f444ea15e9933",
+    "0xF596546a917dCED4f186811e21FC7296c99c4e1C"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "ddc5045fde4ce39a48d0eb052f9d6752",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_constructData\",\"type\":\"bytes\"},{\"internalType\":\"address\",\"name\":\"_globalConfigLib\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"stateMutability\":\"payable\",\"type\":\"fallback\"}],\"devdoc\":{\"author\":\"Enzyme Council <security@enzyme.finance>\",\"details\":\"Adapted from the recommended implementation of a Proxy in EIP-1822, updated for solc 0.6.12, and using the EIP-1967 storage slot for the proxiable implementation. See: https://eips.ethereum.org/EIPS/eip-1822 See: https://eips.ethereum.org/EIPS/eip-1967\",\"kind\":\"dev\",\"methods\":{},\"title\":\"GlobalConfigProxy Contract\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"notice\":\"A proxy contract for global configuration, slightly modified from EIP-1822\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/persistent/global-config/GlobalConfigProxy.sol\":\"GlobalConfigProxy\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"details\":{\"constantOptimizer\":true,\"cse\":true,\"deduplicate\":true,\"jumpdestRemover\":true,\"orderLiterals\":true,\"peephole\":true,\"yul\":false},\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/persistent/global-config/GlobalConfigProxy.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n    (c) Enzyme Council <council@enzyme.finance>\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"./utils/GlobalConfigProxyConstants.sol\\\";\\nimport \\\"./utils/ProxiableGlobalConfigLib.sol\\\";\\n\\n/// @title GlobalConfigProxy Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice A proxy contract for global configuration, slightly modified from EIP-1822\\n/// @dev Adapted from the recommended implementation of a Proxy in EIP-1822, updated for solc 0.6.12,\\n/// and using the EIP-1967 storage slot for the proxiable implementation.\\n/// See: https://eips.ethereum.org/EIPS/eip-1822\\n/// See: https://eips.ethereum.org/EIPS/eip-1967\\ncontract GlobalConfigProxy is GlobalConfigProxyConstants {\\n    constructor(bytes memory _constructData, address _globalConfigLib) public {\\n        // Validate constants\\n        require(\\n            EIP_1822_PROXIABLE_UUID == bytes32(keccak256(\\\"mln.proxiable.globalConfigLib\\\")),\\n            \\\"constructor: Invalid EIP_1822_PROXIABLE_UUID\\\"\\n        );\\n        require(\\n            EIP_1967_SLOT == bytes32(uint256(keccak256(\\\"eip1967.proxy.implementation\\\")) - 1),\\n            \\\"constructor: Invalid EIP_1967_SLOT\\\"\\n        );\\n\\n        require(\\n            ProxiableGlobalConfigLib(_globalConfigLib).proxiableUUID() == EIP_1822_PROXIABLE_UUID,\\n            \\\"constructor: _globalConfigLib not compatible\\\"\\n        );\\n\\n        assembly {\\n            sstore(EIP_1967_SLOT, _globalConfigLib)\\n        }\\n\\n        (bool success, bytes memory returnData) = _globalConfigLib.delegatecall(_constructData);\\n        require(success, string(returnData));\\n    }\\n\\n    fallback() external payable {\\n        assembly {\\n            let contractLogic := sload(EIP_1967_SLOT)\\n            calldatacopy(0x0, 0x0, calldatasize())\\n            let success := delegatecall(\\n                sub(gas(), 10000),\\n                contractLogic,\\n                0x0,\\n                calldatasize(),\\n                0,\\n                0\\n            )\\n            let retSz := returndatasize()\\n            returndatacopy(0, 0, retSz)\\n            switch success\\n                case 0 {\\n                    revert(0, retSz)\\n                }\\n                default {\\n                    return(0, retSz)\\n                }\\n        }\\n    }\\n}\\n\",\"keccak256\":\"0x85bb7872ad1de5a903bbcb9d4d1e20a7288dc5ce233f9cd654f0b34a7ca79175\",\"license\":\"GPL-3.0\"},\"contracts/persistent/global-config/utils/GlobalConfigProxyConstants.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\n/// @title GlobalConfigProxyConstants Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice Constant values used in GlobalConfig proxy-related contracts\\nabstract contract GlobalConfigProxyConstants {\\n    // `bytes32(keccak256('mln.proxiable.globalConfigLib'))`\\n    bytes32\\n        internal constant EIP_1822_PROXIABLE_UUID = 0xf25d88d51901d7fabc9924b03f4c2fe4300e6fe1aae4b5134c0a90b68cd8e81c;\\n    // `bytes32(uint256(keccak256('eip1967.proxy.implementation')) - 1)`\\n    bytes32\\n        internal constant EIP_1967_SLOT = 0x360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc;\\n}\\n\",\"keccak256\":\"0x3972ac12c916298b6d33d8cf82c8fcfa96fd808599364e7ca4eff8bce774bbce\",\"license\":\"GPL-3.0\"},\"contracts/persistent/global-config/utils/ProxiableGlobalConfigLib.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n    (c) Enzyme Council <council@enzyme.finance>\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"./GlobalConfigProxyConstants.sol\\\";\\n\\n/// @title ProxiableGlobalConfigLib Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice A contract that defines the upgrade behavior for GlobalConfigLib instances\\n/// @dev The recommended implementation of the target of a proxy according to EIP-1822 and EIP-1967\\n/// See: https://eips.ethereum.org/EIPS/eip-1822\\n/// See: https://eips.ethereum.org/EIPS/eip-1967\\nabstract contract ProxiableGlobalConfigLib is GlobalConfigProxyConstants {\\n    /// @dev Updates the target of the proxy to be the contract at _nextGlobalConfigLib\\n    function __updateCodeAddress(address _nextGlobalConfigLib) internal {\\n        require(\\n            ProxiableGlobalConfigLib(_nextGlobalConfigLib).proxiableUUID() ==\\n                bytes32(EIP_1822_PROXIABLE_UUID),\\n            \\\"__updateCodeAddress: _nextGlobalConfigLib not compatible\\\"\\n        );\\n        assembly {\\n            sstore(EIP_1967_SLOT, _nextGlobalConfigLib)\\n        }\\n    }\\n\\n    /// @notice Returns a unique bytes32 hash for GlobalConfigLib instances\\n    /// @return uuid_ The bytes32 hash representing the UUID\\n    function proxiableUUID() public pure returns (bytes32 uuid_) {\\n        return EIP_1822_PROXIABLE_UUID;\\n    }\\n}\\n\",\"keccak256\":\"0x41386d6e4b676c73f461c12bef0bb01267a44b28bf8d8591269589c9a763daeb\",\"license\":\"GPL-3.0\"}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b506040516103cb3803806103cb8339818101604052604081101561003357600080fd5b810190808051604051939291908464010000000082111561005357600080fd5b90830190602082018581111561006857600080fd5b825164010000000081118282018810171561008257600080fd5b82525081516020918201929091019080838360005b838110156100af578181015183820152602001610097565b50505050905090810190601f1680156100dc5780820380516001836020036101000a031916815260200191505b506040526020015191506100ed9050565b7ff25d88d51901d7fabc9924b03f4c2fe4300e6fe1aae4b5134c0a90b68cd8e81c60001b816001600160a01b03166352d1902d6040518163ffffffff1660e01b815260040160206040518083038186803b15801561014a57600080fd5b505afa15801561015e573d6000803e3d6000fd5b505050506040513d602081101561017457600080fd5b5051146101b25760405162461bcd60e51b815260040180806020018281038252602c81526020018061039f602c913960400191505060405180910390fd5b807f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc5560006060826001600160a01b0316846040518082805190602001908083835b602083106102135780518252601f1990920191602091820191016101f4565b6001836020036101000a038019825116818451168082178552505050505050905001915050600060405180830381855af49150503d8060008114610273576040519150601f19603f3d011682016040523d82523d6000602084013e610278565b606091505b50915091508181906103085760405162461bcd60e51b81526004018080602001828103825283818151815260200191508051906020019080838360005b838110156102cd5781810151838201526020016102b5565b50505050905090810190601f1680156102fa5780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b505050505060848061031b6000396000f3fe60806040527f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc543660008037600080366000846127105a03f43d806000803e818015604957816000f35b816000fdfea2646970667358221220a6eaaecc389f6868f95c29a6bbddd0b5a80e8410a0685776509d6ec27ae9046164736f6c634300060c0033636f6e7374727563746f723a205f676c6f62616c436f6e6669674c6962206e6f7420636f6d70617469626c65",
+  "deployedBytecode": "0x60806040527f360894a13ba1a3210667c828492db98dca3e2076cc3735a920a3ca505d382bbc543660008037600080366000846127105a03f43d806000803e818015604957816000f35b816000fdfea2646970667358221220a6eaaecc389f6868f95c29a6bbddd0b5a80e8410a0685776509d6ec27ae9046164736f6c634300060c0033",
+  "devdoc": {
+    "author": "Enzyme Council <security@enzyme.finance>",
+    "details": "Adapted from the recommended implementation of a Proxy in EIP-1822, updated for solc 0.6.12, and using the EIP-1967 storage slot for the proxiable implementation. See: https://eips.ethereum.org/EIPS/eip-1822 See: https://eips.ethereum.org/EIPS/eip-1967",
+    "kind": "dev",
+    "methods": {},
+    "title": "GlobalConfigProxy Contract",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "notice": "A proxy contract for global configuration, slightly modified from EIP-1822",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [],
+    "types": null
+  }
+}

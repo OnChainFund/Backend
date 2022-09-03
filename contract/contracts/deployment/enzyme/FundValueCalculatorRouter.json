@@ -1,0 +1,593 @@
+{
+  "address": "0xF2F81C87A634cd8E2847b04743240e069b38031B",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_dispatcher",
+          "type": "address"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_fundDeployers",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_fundValueCalculators",
+          "type": "address[]"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "fundDeployer",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "fundValueCalculator",
+          "type": "address"
+        }
+      ],
+      "name": "FundValueCalculatorUpdated",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        }
+      ],
+      "name": "calcGav",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "denominationAsset_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "gav_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_quoteAsset",
+          "type": "address"
+        }
+      ],
+      "name": "calcGavInAsset",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "gav_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        }
+      ],
+      "name": "calcGrossShareValue",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "denominationAsset_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "grossShareValue_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_quoteAsset",
+          "type": "address"
+        }
+      ],
+      "name": "calcGrossShareValueInAsset",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "grossShareValue_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        }
+      ],
+      "name": "calcNav",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "denominationAsset_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "nav_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_quoteAsset",
+          "type": "address"
+        }
+      ],
+      "name": "calcNavInAsset",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "nav_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        }
+      ],
+      "name": "calcNetShareValue",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "denominationAsset_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "netShareValue_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_quoteAsset",
+          "type": "address"
+        }
+      ],
+      "name": "calcNetShareValueInAsset",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "netShareValue_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_sharesHolder",
+          "type": "address"
+        }
+      ],
+      "name": "calcNetValueForSharesHolder",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "denominationAsset_",
+          "type": "address"
+        },
+        {
+          "internalType": "uint256",
+          "name": "netValue_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_sharesHolder",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_quoteAsset",
+          "type": "address"
+        }
+      ],
+      "name": "calcNetValueForSharesHolderInAsset",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "netValue_",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDispatcher",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "dispatcher_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_fundDeployer",
+          "type": "address"
+        }
+      ],
+      "name": "getFundValueCalculatorForFundDeployer",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "fundValueCalculator_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_vaultProxy",
+          "type": "address"
+        }
+      ],
+      "name": "getFundValueCalculatorForVault",
+      "outputs": [
+        {
+          "internalType": "contract IFundValueCalculator",
+          "name": "fundValueCalculatorContract_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address[]",
+          "name": "_fundDeployers",
+          "type": "address[]"
+        },
+        {
+          "internalType": "address[]",
+          "name": "_fundValueCalculators",
+          "type": "address[]"
+        }
+      ],
+      "name": "setFundValueCalculators",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0xf72f22898c2a00fb2352d37fe08564a2e5ce25e88a7e105fb0fd8f35923f90d3",
+  "receipt": {
+    "to": null,
+    "from": "0xA3579C4c2057b58244DBc7DF5411C79d5F63a8A7",
+    "contractAddress": "0xF2F81C87A634cd8E2847b04743240e069b38031B",
+    "transactionIndex": 0,
+    "gasUsed": "822339",
+    "logsBloom": "0x00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000",
+    "blockHash": "0xc79db33ddabe6c8169cf42887c4455adcd32d999e5736143396788ecbc6e065a",
+    "transactionHash": "0xf72f22898c2a00fb2352d37fe08564a2e5ce25e88a7e105fb0fd8f35923f90d3",
+    "logs": [],
+    "blockNumber": 11761482,
+    "cumulativeGasUsed": "822339",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xe1bB58c02740446c36ba62BEA67F444EA15e9933",
+    [],
+    []
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "ddc5045fde4ce39a48d0eb052f9d6752",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_dispatcher\",\"type\":\"address\"},{\"internalType\":\"address[]\",\"name\":\"_fundDeployers\",\"type\":\"address[]\"},{\"internalType\":\"address[]\",\"name\":\"_fundValueCalculators\",\"type\":\"address[]\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"fundDeployer\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"fundValueCalculator\",\"type\":\"address\"}],\"name\":\"FundValueCalculatorUpdated\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"}],\"name\":\"calcGav\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"denominationAsset_\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"gav_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_quoteAsset\",\"type\":\"address\"}],\"name\":\"calcGavInAsset\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"gav_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"}],\"name\":\"calcGrossShareValue\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"denominationAsset_\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"grossShareValue_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_quoteAsset\",\"type\":\"address\"}],\"name\":\"calcGrossShareValueInAsset\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"grossShareValue_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"}],\"name\":\"calcNav\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"denominationAsset_\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"nav_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_quoteAsset\",\"type\":\"address\"}],\"name\":\"calcNavInAsset\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"nav_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"}],\"name\":\"calcNetShareValue\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"denominationAsset_\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"netShareValue_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_quoteAsset\",\"type\":\"address\"}],\"name\":\"calcNetShareValueInAsset\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"netShareValue_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_sharesHolder\",\"type\":\"address\"}],\"name\":\"calcNetValueForSharesHolder\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"denominationAsset_\",\"type\":\"address\"},{\"internalType\":\"uint256\",\"name\":\"netValue_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_sharesHolder\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_quoteAsset\",\"type\":\"address\"}],\"name\":\"calcNetValueForSharesHolderInAsset\",\"outputs\":[{\"internalType\":\"uint256\",\"name\":\"netValue_\",\"type\":\"uint256\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getDispatcher\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"dispatcher_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_fundDeployer\",\"type\":\"address\"}],\"name\":\"getFundValueCalculatorForFundDeployer\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"fundValueCalculator_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_vaultProxy\",\"type\":\"address\"}],\"name\":\"getFundValueCalculatorForVault\",\"outputs\":[{\"internalType\":\"contract IFundValueCalculator\",\"name\":\"fundValueCalculatorContract_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address[]\",\"name\":\"_fundDeployers\",\"type\":\"address[]\"},{\"internalType\":\"address[]\",\"name\":\"_fundValueCalculators\",\"type\":\"address[]\"}],\"name\":\"setFundValueCalculators\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Enzyme Council <security@enzyme.finance>\",\"details\":\"These values should generally only be consumed from off-chain, unless you understand how each release interprets each calculation\",\"kind\":\"dev\",\"methods\":{\"calcGav(address)\":{\"params\":{\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"denominationAsset_\":\"The denomination asset of the fund\",\"gav_\":\"The GAV quoted in the denomination asset\"}},\"calcGavInAsset(address,address)\":{\"params\":{\"_quoteAsset\":\"The quote asset\",\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"gav_\":\"The GAV quoted in _quoteAsset\"}},\"calcGrossShareValue(address)\":{\"params\":{\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"denominationAsset_\":\"The denomination asset of the fund\",\"grossShareValue_\":\"The gross share value quoted in the denomination asset\"}},\"calcGrossShareValueInAsset(address,address)\":{\"params\":{\"_quoteAsset\":\"The quote asset\",\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"grossShareValue_\":\"The gross share value quoted in _quoteAsset\"}},\"calcNav(address)\":{\"params\":{\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"denominationAsset_\":\"The denomination asset of the fund\",\"nav_\":\"The NAV quoted in the denomination asset\"}},\"calcNavInAsset(address,address)\":{\"params\":{\"_quoteAsset\":\"The quote asset\",\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"nav_\":\"The NAV quoted in _quoteAsset\"}},\"calcNetShareValue(address)\":{\"params\":{\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"denominationAsset_\":\"The denomination asset of the fund\",\"netShareValue_\":\"The net share value quoted in the denomination asset\"}},\"calcNetShareValueInAsset(address,address)\":{\"params\":{\"_quoteAsset\":\"The quote asset\",\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"netShareValue_\":\"The net share value quoted in _quoteAsset\"}},\"calcNetValueForSharesHolder(address,address)\":{\"params\":{\"_sharesHolder\":\"The account holding shares\",\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"denominationAsset_\":\"The denomination asset of the fund\",\"netValue_\":\"The net value of all shares held by _sharesHolder\"}},\"calcNetValueForSharesHolderInAsset(address,address,address)\":{\"params\":{\"_quoteAsset\":\"The quote asset\",\"_sharesHolder\":\"The account holding shares\",\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"netValue_\":\"The net value of all shares held by _sharesHolder quoted in _quoteAsset\"}},\"getDispatcher()\":{\"returns\":{\"dispatcher_\":\"The `DISPATCHER` variable value\"}},\"getFundValueCalculatorForFundDeployer(address)\":{\"params\":{\"_fundDeployer\":\"The FundDeployer for which to get the FundValueCalculator address\"},\"returns\":{\"fundValueCalculator_\":\"The FundValueCalculator address\"}},\"getFundValueCalculatorForVault(address)\":{\"params\":{\"_vaultProxy\":\"The VaultProxy of the fund\"},\"returns\":{\"fundValueCalculatorContract_\":\"The FundValueCalculator instance\"}},\"setFundValueCalculators(address[],address[])\":{\"params\":{\"_fundDeployers\":\"The FundDeployer instances\",\"_fundValueCalculators\":\"The FundValueCalculator instances corresponding to each instance in _fundDeployers\"}}},\"title\":\"FundValueCalculatorRouter Contract\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"calcGav(address)\":{\"notice\":\"Calculates the GAV for a given fund\"},\"calcGavInAsset(address,address)\":{\"notice\":\"Calculates the GAV for a given fund, quoted in a given asset\"},\"calcGrossShareValue(address)\":{\"notice\":\"Calculates the gross value of one shares unit (10 ** 18) for a given fund\"},\"calcGrossShareValueInAsset(address,address)\":{\"notice\":\"Calculates the gross value of one shares unit (10 ** 18) for a given fund, quoted in a given asset\"},\"calcNav(address)\":{\"notice\":\"Calculates the NAV for a given fund\"},\"calcNavInAsset(address,address)\":{\"notice\":\"Calculates the NAV for a given fund, quoted in a given asset\"},\"calcNetShareValue(address)\":{\"notice\":\"Calculates the net value of one shares unit (10 ** 18) for a given fund\"},\"calcNetShareValueInAsset(address,address)\":{\"notice\":\"Calculates the net value of one shares unit (10 ** 18) for a given fund, quoted in a given asset\"},\"calcNetValueForSharesHolder(address,address)\":{\"notice\":\"Calculates the net value of all shares held by a specified account\"},\"calcNetValueForSharesHolderInAsset(address,address,address)\":{\"notice\":\"Calculates the net value of all shares held by a specified account, quoted in a given asset\"},\"getDispatcher()\":{\"notice\":\"Gets the `DISPATCHER` variable\"},\"getFundValueCalculatorForFundDeployer(address)\":{\"notice\":\"Gets the FundValueCalculator address for a given FundDeployer\"},\"getFundValueCalculatorForVault(address)\":{\"notice\":\"Gets the FundValueCalculator instance to use for a given fund\"},\"setFundValueCalculators(address[],address[])\":{\"notice\":\"Sets FundValueCalculator instances for a list of FundDeployer instances\"}},\"notice\":\"A peripheral contract for routing value calculation requests to the correct FundValueCalculator instance for a particular release\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/persistent/off-chain/fund-value-calculator/FundValueCalculatorRouter.sol\":\"FundValueCalculatorRouter\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"details\":{\"constantOptimizer\":true,\"cse\":true,\"deduplicate\":true,\"jumpdestRemover\":true,\"orderLiterals\":true,\"peephole\":true,\"yul\":false},\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/persistent/dispatcher/IDispatcher.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\n/// @title IDispatcher Interface\\n/// @author Enzyme Council <security@enzyme.finance>\\ninterface IDispatcher {\\n    function cancelMigration(address _vaultProxy, bool _bypassFailure) external;\\n\\n    function claimOwnership() external;\\n\\n    function deployVaultProxy(\\n        address _vaultLib,\\n        address _owner,\\n        address _vaultAccessor,\\n        string calldata _fundName\\n    ) external returns (address vaultProxy_);\\n\\n    function executeMigration(address _vaultProxy, bool _bypassFailure) external;\\n\\n    function getCurrentFundDeployer() external view returns (address currentFundDeployer_);\\n\\n    function getFundDeployerForVaultProxy(address _vaultProxy)\\n        external\\n        view\\n        returns (address fundDeployer_);\\n\\n    function getMigrationRequestDetailsForVaultProxy(address _vaultProxy)\\n        external\\n        view\\n        returns (\\n            address nextFundDeployer_,\\n            address nextVaultAccessor_,\\n            address nextVaultLib_,\\n            uint256 executableTimestamp_\\n        );\\n\\n    function getMigrationTimelock() external view returns (uint256 migrationTimelock_);\\n\\n    function getNominatedOwner() external view returns (address nominatedOwner_);\\n\\n    function getOwner() external view returns (address owner_);\\n\\n    function getSharesTokenSymbol() external view returns (string memory sharesTokenSymbol_);\\n\\n    function getTimelockRemainingForMigrationRequest(address _vaultProxy)\\n        external\\n        view\\n        returns (uint256 secondsRemaining_);\\n\\n    function hasExecutableMigrationRequest(address _vaultProxy)\\n        external\\n        view\\n        returns (bool hasExecutableRequest_);\\n\\n    function hasMigrationRequest(address _vaultProxy)\\n        external\\n        view\\n        returns (bool hasMigrationRequest_);\\n\\n    function removeNominatedOwner() external;\\n\\n    function setCurrentFundDeployer(address _nextFundDeployer) external;\\n\\n    function setMigrationTimelock(uint256 _nextTimelock) external;\\n\\n    function setNominatedOwner(address _nextNominatedOwner) external;\\n\\n    function setSharesTokenSymbol(string calldata _nextSymbol) external;\\n\\n    function signalMigration(\\n        address _vaultProxy,\\n        address _nextVaultAccessor,\\n        address _nextVaultLib,\\n        bool _bypassFailure\\n    ) external;\\n}\\n\",\"keccak256\":\"0x0e6b0e6cf325d4f6332b8eb2b3c446b2ef3ca8456bdf0d12318d0fd9e90aeb30\",\"license\":\"GPL-3.0\"},\"contracts/persistent/off-chain/fund-value-calculator/FundValueCalculatorRouter.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"../../dispatcher/IDispatcher.sol\\\";\\nimport \\\"./IFundValueCalculator.sol\\\";\\n\\n/// @title FundValueCalculatorRouter Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice A peripheral contract for routing value calculation requests\\n/// to the correct FundValueCalculator instance for a particular release\\n/// @dev These values should generally only be consumed from off-chain,\\n/// unless you understand how each release interprets each calculation\\ncontract FundValueCalculatorRouter {\\n    event FundValueCalculatorUpdated(address indexed fundDeployer, address fundValueCalculator);\\n\\n    address private immutable DISPATCHER;\\n\\n    mapping(address => address) private fundDeployerToFundValueCalculator;\\n\\n    constructor(\\n        address _dispatcher,\\n        address[] memory _fundDeployers,\\n        address[] memory _fundValueCalculators\\n    ) public {\\n        DISPATCHER = _dispatcher;\\n\\n        __setFundValueCalculators(_fundDeployers, _fundValueCalculators);\\n    }\\n\\n    // EXTERNAL FUNCTIONS\\n\\n    /// @notice Calculates the GAV for a given fund\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @return denominationAsset_ The denomination asset of the fund\\n    /// @return gav_ The GAV quoted in the denomination asset\\n    function calcGav(address _vaultProxy)\\n        external\\n        returns (address denominationAsset_, uint256 gav_)\\n    {\\n        return getFundValueCalculatorForVault(_vaultProxy).calcGav(_vaultProxy);\\n    }\\n\\n    /// @notice Calculates the GAV for a given fund, quoted in a given asset\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @param _quoteAsset The quote asset\\n    /// @return gav_ The GAV quoted in _quoteAsset\\n    function calcGavInAsset(address _vaultProxy, address _quoteAsset)\\n        external\\n        returns (uint256 gav_)\\n    {\\n        return\\n            getFundValueCalculatorForVault(_vaultProxy).calcGavInAsset(_vaultProxy, _quoteAsset);\\n    }\\n\\n    /// @notice Calculates the gross value of one shares unit (10 ** 18) for a given fund\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @return denominationAsset_ The denomination asset of the fund\\n    /// @return grossShareValue_ The gross share value quoted in the denomination asset\\n    function calcGrossShareValue(address _vaultProxy)\\n        external\\n        returns (address denominationAsset_, uint256 grossShareValue_)\\n    {\\n        return getFundValueCalculatorForVault(_vaultProxy).calcGrossShareValue(_vaultProxy);\\n    }\\n\\n    /// @notice Calculates the gross value of one shares unit (10 ** 18) for a given fund, quoted in a given asset\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @param _quoteAsset The quote asset\\n    /// @return grossShareValue_ The gross share value quoted in _quoteAsset\\n    function calcGrossShareValueInAsset(address _vaultProxy, address _quoteAsset)\\n        external\\n        returns (uint256 grossShareValue_)\\n    {\\n        return\\n            getFundValueCalculatorForVault(_vaultProxy).calcGrossShareValueInAsset(\\n                _vaultProxy,\\n                _quoteAsset\\n            );\\n    }\\n\\n    /// @notice Calculates the NAV for a given fund\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @return denominationAsset_ The denomination asset of the fund\\n    /// @return nav_ The NAV quoted in the denomination asset\\n    function calcNav(address _vaultProxy)\\n        external\\n        returns (address denominationAsset_, uint256 nav_)\\n    {\\n        return getFundValueCalculatorForVault(_vaultProxy).calcNav(_vaultProxy);\\n    }\\n\\n    /// @notice Calculates the NAV for a given fund, quoted in a given asset\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @param _quoteAsset The quote asset\\n    /// @return nav_ The NAV quoted in _quoteAsset\\n    function calcNavInAsset(address _vaultProxy, address _quoteAsset)\\n        external\\n        returns (uint256 nav_)\\n    {\\n        return\\n            getFundValueCalculatorForVault(_vaultProxy).calcNavInAsset(_vaultProxy, _quoteAsset);\\n    }\\n\\n    /// @notice Calculates the net value of one shares unit (10 ** 18) for a given fund\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @return denominationAsset_ The denomination asset of the fund\\n    /// @return netShareValue_ The net share value quoted in the denomination asset\\n    function calcNetShareValue(address _vaultProxy)\\n        external\\n        returns (address denominationAsset_, uint256 netShareValue_)\\n    {\\n        return getFundValueCalculatorForVault(_vaultProxy).calcNetShareValue(_vaultProxy);\\n    }\\n\\n    /// @notice Calculates the net value of one shares unit (10 ** 18) for a given fund, quoted in a given asset\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @param _quoteAsset The quote asset\\n    /// @return netShareValue_ The net share value quoted in _quoteAsset\\n    function calcNetShareValueInAsset(address _vaultProxy, address _quoteAsset)\\n        external\\n        returns (uint256 netShareValue_)\\n    {\\n        return\\n            getFundValueCalculatorForVault(_vaultProxy).calcNetShareValueInAsset(\\n                _vaultProxy,\\n                _quoteAsset\\n            );\\n    }\\n\\n    /// @notice Calculates the net value of all shares held by a specified account\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @param _sharesHolder The account holding shares\\n    /// @return denominationAsset_ The denomination asset of the fund\\n    /// @return netValue_ The net value of all shares held by _sharesHolder\\n    function calcNetValueForSharesHolder(address _vaultProxy, address _sharesHolder)\\n        external\\n        returns (address denominationAsset_, uint256 netValue_)\\n    {\\n        return\\n            getFundValueCalculatorForVault(_vaultProxy).calcNetValueForSharesHolder(\\n                _vaultProxy,\\n                _sharesHolder\\n            );\\n    }\\n\\n    /// @notice Calculates the net value of all shares held by a specified account, quoted in a given asset\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @param _sharesHolder The account holding shares\\n    /// @param _quoteAsset The quote asset\\n    /// @return netValue_ The net value of all shares held by _sharesHolder quoted in _quoteAsset\\n    function calcNetValueForSharesHolderInAsset(\\n        address _vaultProxy,\\n        address _sharesHolder,\\n        address _quoteAsset\\n    ) external returns (uint256 netValue_) {\\n        return\\n            getFundValueCalculatorForVault(_vaultProxy).calcNetValueForSharesHolderInAsset(\\n                _vaultProxy,\\n                _sharesHolder,\\n                _quoteAsset\\n            );\\n    }\\n\\n    // PUBLIC FUNCTIONS\\n\\n    /// @notice Gets the FundValueCalculator instance to use for a given fund\\n    /// @param _vaultProxy The VaultProxy of the fund\\n    /// @return fundValueCalculatorContract_ The FundValueCalculator instance\\n    function getFundValueCalculatorForVault(address _vaultProxy)\\n        public\\n        view\\n        returns (IFundValueCalculator fundValueCalculatorContract_)\\n    {\\n        address fundDeployer = IDispatcher(DISPATCHER).getFundDeployerForVaultProxy(_vaultProxy);\\n        require(fundDeployer != address(0), \\\"getFundValueCalculatorForVault: Invalid _vaultProxy\\\");\\n\\n        address fundValueCalculator = getFundValueCalculatorForFundDeployer(fundDeployer);\\n        require(\\n            fundValueCalculator != address(0),\\n            \\\"getFundValueCalculatorForVault: No FundValueCalculator set\\\"\\n        );\\n\\n        return IFundValueCalculator(fundValueCalculator);\\n    }\\n\\n    ////////////////////////////\\n    // FUND VALUE CALCULATORS //\\n    ////////////////////////////\\n\\n    /// @notice Sets FundValueCalculator instances for a list of FundDeployer instances\\n    /// @param _fundDeployers The FundDeployer instances\\n    /// @param _fundValueCalculators The FundValueCalculator instances corresponding\\n    /// to each instance in _fundDeployers\\n    function setFundValueCalculators(\\n        address[] memory _fundDeployers,\\n        address[] memory _fundValueCalculators\\n    ) external {\\n        require(\\n            msg.sender == IDispatcher(getDispatcher()).getOwner(),\\n            \\\"Only the Dispatcher owner can call this function\\\"\\n        );\\n\\n        __setFundValueCalculators(_fundDeployers, _fundValueCalculators);\\n    }\\n\\n    /// @dev Helper to set FundValueCalculator addresses respectively for given FundDeployers\\n    function __setFundValueCalculators(\\n        address[] memory _fundDeployers,\\n        address[] memory _fundValueCalculators\\n    ) private {\\n        require(\\n            _fundDeployers.length == _fundValueCalculators.length,\\n            \\\"__setFundValueCalculators: Unequal array lengths\\\"\\n        );\\n\\n        for (uint256 i; i < _fundDeployers.length; i++) {\\n            fundDeployerToFundValueCalculator[_fundDeployers[i]] = _fundValueCalculators[i];\\n\\n            emit FundValueCalculatorUpdated(_fundDeployers[i], _fundValueCalculators[i]);\\n        }\\n    }\\n\\n    ///////////////////\\n    // STATE GETTERS //\\n    ///////////////////\\n\\n    /// @notice Gets the `DISPATCHER` variable\\n    /// @return dispatcher_ The `DISPATCHER` variable value\\n    function getDispatcher() public view returns (address dispatcher_) {\\n        return DISPATCHER;\\n    }\\n\\n    /// @notice Gets the FundValueCalculator address for a given FundDeployer\\n    /// @param _fundDeployer The FundDeployer for which to get the FundValueCalculator address\\n    /// @return fundValueCalculator_ The FundValueCalculator address\\n    function getFundValueCalculatorForFundDeployer(address _fundDeployer)\\n        public\\n        view\\n        returns (address fundValueCalculator_)\\n    {\\n        return fundDeployerToFundValueCalculator[_fundDeployer];\\n    }\\n}\\n\",\"keccak256\":\"0x313dcaccdb58e7e24854243cfe7286285dd385a1cbaa7836f9fe3beaa8c9b94c\",\"license\":\"GPL-3.0\"},\"contracts/persistent/off-chain/fund-value-calculator/IFundValueCalculator.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\n/// @title IFundValueCalculator interface\\n/// @author Enzyme Council <security@enzyme.finance>\\ninterface IFundValueCalculator {\\n    function calcGav(address _vaultProxy)\\n        external\\n        returns (address denominationAsset_, uint256 gav_);\\n\\n    function calcGavInAsset(address _vaultProxy, address _quoteAsset)\\n        external\\n        returns (uint256 gav_);\\n\\n    function calcGrossShareValue(address _vaultProxy)\\n        external\\n        returns (address denominationAsset_, uint256 grossShareValue_);\\n\\n    function calcGrossShareValueInAsset(address _vaultProxy, address _quoteAsset)\\n        external\\n        returns (uint256 grossShareValue_);\\n\\n    function calcNav(address _vaultProxy)\\n        external\\n        returns (address denominationAsset_, uint256 nav_);\\n\\n    function calcNavInAsset(address _vaultProxy, address _quoteAsset)\\n        external\\n        returns (uint256 nav_);\\n\\n    function calcNetShareValue(address _vaultProxy)\\n        external\\n        returns (address denominationAsset_, uint256 netShareValue_);\\n\\n    function calcNetShareValueInAsset(address _vaultProxy, address _quoteAsset)\\n        external\\n        returns (uint256 netShareValue_);\\n\\n    function calcNetValueForSharesHolder(address _vaultProxy, address _sharesHolder)\\n        external\\n        returns (address denominationAsset_, uint256 netValue_);\\n\\n    function calcNetValueForSharesHolderInAsset(\\n        address _vaultProxy,\\n        address _sharesHolder,\\n        address _quoteAsset\\n    ) external returns (uint256 netValue_);\\n}\\n\",\"keccak256\":\"0x993e11b879d6ad85f5ecf5f8e1880989c010bdf03de2079b39f66a953844de2d\",\"license\":\"GPL-3.0\"}},\"version\":1}",
+  "bytecode": "0x60a06040523480156200001157600080fd5b50604051620010c9380380620010c9833981810160405260608110156200003757600080fd5b8151602083018051604051929492938301929190846401000000008211156200005f57600080fd5b9083019060208201858111156200007557600080fd5b82518660208202830111640100000000821117156200009357600080fd5b82525081516020918201928201910280838360005b83811015620000c2578181015183820152602001620000a8565b5050505090500160405260200180516040519392919084640100000000821115620000ec57600080fd5b9083019060208201858111156200010257600080fd5b82518660208202830111640100000000821117156200012057600080fd5b82525081516020918201928201910280838360005b838110156200014f57818101518382015260200162000135565b50505050919091016040525050506001600160601b0319606085901b16608052506200017c828262000185565b505050620002c5565b8051825114620001c75760405162461bcd60e51b8152600401808060200182810382526030815260200180620010996030913960400191505060405180910390fd5b60005b8251811015620002c057818181518110620001e157fe5b6020026020010151600080858481518110620001f957fe5b60200260200101516001600160a01b03166001600160a01b0316815260200190815260200160002060006101000a8154816001600160a01b0302191690836001600160a01b031602179055508281815181106200025257fe5b60200260200101516001600160a01b03167fb1d29f6ea94d91c5d37a117188a5b71f514ff0f0e0347c76232fbad7242ef97b8383815181106200029157fe5b602002602001015160405180826001600160a01b0316815260200191505060405180910390a2600101620001ca565b505050565b60805160601c610db1620002e86000398061050e5280610a805250610db16000f3fe608060405234801561001057600080fd5b50600436106100ea5760003560e01c806381dfa95b1161008c578063c65988ff11610066578063c65988ff146103e1578063ebb3d5891461040f578063eefcb1b314610417578063faf6eeef14610445576100ea565b806381dfa95b14610264578063826e85e414610292578063c3552663146103bb576100ea565b80633ba6b851116100c85780633ba6b851146101a05780634807ccbd146101c657806351ac29c71461021057806353d467f31461023e576100ea565b8063037276c1146100ef578063360a91d8146101385780633b35b9a81461017a575b600080fd5b6101156004803603602081101561010557600080fd5b50356001600160a01b0316610473565b604080516001600160a01b03909316835260208301919091528051918290030190f35b61015e6004803603602081101561014e57600080fd5b50356001600160a01b0316610509565b604080516001600160a01b039092168252519081900360200190f35b61015e6004803603602081101561019057600080fd5b50356001600160a01b0316610645565b610115600480360360208110156101b657600080fd5b50356001600160a01b0316610663565b6101fe600480360360608110156101dc57600080fd5b506001600160a01b0381358116916020810135821691604090910135166106bc565b60408051918252519081900360200190f35b6101fe6004803603604081101561022657600080fd5b506001600160a01b038135811691602001351661076b565b6101156004803603602081101561025457600080fd5b50356001600160a01b0316610808565b6101156004803603604081101561027a57600080fd5b506001600160a01b0381358116916020013516610861565b6103b9600480360360408110156102a857600080fd5b8101906020810181356401000000008111156102c357600080fd5b8201836020820111156102d557600080fd5b803590602001918460208302840111640100000000831117156102f757600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600092019190915250929594936020810193503591505064010000000081111561034757600080fd5b82018360208201111561035957600080fd5b8035906020019184602083028401116401000000008311171561037b57600080fd5b9190808060200260200160405190810160405280939291908181526020018383602002808284376000920191909152509295506108fb945050505050565b005b610115600480360360208110156103d157600080fd5b50356001600160a01b03166109bb565b6101fe600480360360408110156103f757600080fd5b506001600160a01b0381358116916020013516610a14565b61015e610a7e565b6101fe6004803603604081101561042d57600080fd5b506001600160a01b0381358116916020013516610aa2565b6101fe6004803603604081101561045b57600080fd5b506001600160a01b0381358116916020013516610b0c565b60008061047f83610509565b6001600160a01b031663037276c1846040518263ffffffff1660e01b815260040180826001600160a01b031681526020019150506040805180830381600087803b1580156104cc57600080fd5b505af11580156104e0573d6000803e3d6000fd5b505050506040513d60408110156104f657600080fd5b5080516020909101519092509050915091565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316633d7c74f8846040518263ffffffff1660e01b815260040180826001600160a01b0316815260200191505060206040518083038186803b15801561057957600080fd5b505afa15801561058d573d6000803e3d6000fd5b505050506040513d60208110156105a357600080fd5b505190506001600160a01b0381166105ec5760405162461bcd60e51b8152600401808060200182810382526033815260200180610caf6033913960400191505060405180910390fd5b60006105f782610645565b90506001600160a01b03811661063e5760405162461bcd60e51b815260040180806020018281038252603a815260200180610ce2603a913960400191505060405180910390fd5b9392505050565b6001600160a01b039081166000908152602081905260409020541690565b60008061066f83610509565b6001600160a01b0316633ba6b851846040518263ffffffff1660e01b815260040180826001600160a01b031681526020019150506040805180830381600087803b1580156104cc57600080fd5b60006106c784610509565b6001600160a01b0316634807ccbd8585856040518463ffffffff1660e01b815260040180846001600160a01b03168152602001836001600160a01b03168152602001826001600160a01b031681526020019350505050602060405180830381600087803b15801561073757600080fd5b505af115801561074b573d6000803e3d6000fd5b505050506040513d602081101561076157600080fd5b5051949350505050565b600061077683610509565b6001600160a01b03166351ac29c784846040518363ffffffff1660e01b815260040180836001600160a01b03168152602001826001600160a01b0316815260200192505050602060405180830381600087803b1580156107d557600080fd5b505af11580156107e9573d6000803e3d6000fd5b505050506040513d60208110156107ff57600080fd5b50519392505050565b60008061081483610509565b6001600160a01b03166353d467f3846040518263ffffffff1660e01b815260040180826001600160a01b031681526020019150506040805180830381600087803b1580156104cc57600080fd5b60008061086d84610509565b604080516381dfa95b60e01b81526001600160a01b038781166004830152868116602483015282519316926381dfa95b926044808401939192918290030181600087803b1580156108bd57600080fd5b505af11580156108d1573d6000803e3d6000fd5b505050506040513d60408110156108e757600080fd5b508051602090910151909590945092505050565b610903610a7e565b6001600160a01b031663893d20e86040518163ffffffff1660e01b815260040160206040518083038186803b15801561093b57600080fd5b505afa15801561094f573d6000803e3d6000fd5b505050506040513d602081101561096557600080fd5b50516001600160a01b031633146109ad5760405162461bcd60e51b8152600401808060200182810382526030815260200180610d1c6030913960400191505060405180910390fd5b6109b78282610b76565b5050565b6000806109c783610509565b6001600160a01b031663c3552663846040518263ffffffff1660e01b815260040180826001600160a01b031681526020019150506040805180830381600087803b1580156104cc57600080fd5b6000610a1f83610509565b6001600160a01b031663c65988ff84846040518363ffffffff1660e01b815260040180836001600160a01b03168152602001826001600160a01b0316815260200192505050602060405180830381600087803b1580156107d557600080fd5b7f000000000000000000000000000000000000000000000000000000000000000090565b6000610aad83610509565b6001600160a01b031663eefcb1b384846040518363ffffffff1660e01b815260040180836001600160a01b03168152602001826001600160a01b0316815260200192505050602060405180830381600087803b1580156107d557600080fd5b6000610b1783610509565b6001600160a01b031663faf6eeef84846040518363ffffffff1660e01b815260040180836001600160a01b03168152602001826001600160a01b0316815260200192505050602060405180830381600087803b1580156107d557600080fd5b8051825114610bb65760405162461bcd60e51b8152600401808060200182810382526030815260200180610d4c6030913960400191505060405180910390fd5b60005b8251811015610ca957818181518110610bce57fe5b6020026020010151600080858481518110610be557fe5b60200260200101516001600160a01b03166001600160a01b0316815260200190815260200160002060006101000a8154816001600160a01b0302191690836001600160a01b03160217905550828181518110610c3d57fe5b60200260200101516001600160a01b03167fb1d29f6ea94d91c5d37a117188a5b71f514ff0f0e0347c76232fbad7242ef97b838381518110610c7b57fe5b602002602001015160405180826001600160a01b0316815260200191505060405180910390a2600101610bb9565b50505056fe67657446756e6456616c756543616c63756c61746f72466f725661756c743a20496e76616c6964205f7661756c7450726f787967657446756e6456616c756543616c63756c61746f72466f725661756c743a204e6f2046756e6456616c756543616c63756c61746f72207365744f6e6c79207468652044697370617463686572206f776e65722063616e2063616c6c20746869732066756e6374696f6e5f5f73657446756e6456616c756543616c63756c61746f72733a20556e657175616c206172726179206c656e67746873a26469706673582212202b2e2d8048041eab9d4adf23d97f6690585ba4e378f8f21085c3eb74350ce96e64736f6c634300060c00335f5f73657446756e6456616c756543616c63756c61746f72733a20556e657175616c206172726179206c656e67746873",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100ea5760003560e01c806381dfa95b1161008c578063c65988ff11610066578063c65988ff146103e1578063ebb3d5891461040f578063eefcb1b314610417578063faf6eeef14610445576100ea565b806381dfa95b14610264578063826e85e414610292578063c3552663146103bb576100ea565b80633ba6b851116100c85780633ba6b851146101a05780634807ccbd146101c657806351ac29c71461021057806353d467f31461023e576100ea565b8063037276c1146100ef578063360a91d8146101385780633b35b9a81461017a575b600080fd5b6101156004803603602081101561010557600080fd5b50356001600160a01b0316610473565b604080516001600160a01b03909316835260208301919091528051918290030190f35b61015e6004803603602081101561014e57600080fd5b50356001600160a01b0316610509565b604080516001600160a01b039092168252519081900360200190f35b61015e6004803603602081101561019057600080fd5b50356001600160a01b0316610645565b610115600480360360208110156101b657600080fd5b50356001600160a01b0316610663565b6101fe600480360360608110156101dc57600080fd5b506001600160a01b0381358116916020810135821691604090910135166106bc565b60408051918252519081900360200190f35b6101fe6004803603604081101561022657600080fd5b506001600160a01b038135811691602001351661076b565b6101156004803603602081101561025457600080fd5b50356001600160a01b0316610808565b6101156004803603604081101561027a57600080fd5b506001600160a01b0381358116916020013516610861565b6103b9600480360360408110156102a857600080fd5b8101906020810181356401000000008111156102c357600080fd5b8201836020820111156102d557600080fd5b803590602001918460208302840111640100000000831117156102f757600080fd5b919080806020026020016040519081016040528093929190818152602001838360200280828437600092019190915250929594936020810193503591505064010000000081111561034757600080fd5b82018360208201111561035957600080fd5b8035906020019184602083028401116401000000008311171561037b57600080fd5b9190808060200260200160405190810160405280939291908181526020018383602002808284376000920191909152509295506108fb945050505050565b005b610115600480360360208110156103d157600080fd5b50356001600160a01b03166109bb565b6101fe600480360360408110156103f757600080fd5b506001600160a01b0381358116916020013516610a14565b61015e610a7e565b6101fe6004803603604081101561042d57600080fd5b506001600160a01b0381358116916020013516610aa2565b6101fe6004803603604081101561045b57600080fd5b506001600160a01b0381358116916020013516610b0c565b60008061047f83610509565b6001600160a01b031663037276c1846040518263ffffffff1660e01b815260040180826001600160a01b031681526020019150506040805180830381600087803b1580156104cc57600080fd5b505af11580156104e0573d6000803e3d6000fd5b505050506040513d60408110156104f657600080fd5b5080516020909101519092509050915091565b6000807f00000000000000000000000000000000000000000000000000000000000000006001600160a01b0316633d7c74f8846040518263ffffffff1660e01b815260040180826001600160a01b0316815260200191505060206040518083038186803b15801561057957600080fd5b505afa15801561058d573d6000803e3d6000fd5b505050506040513d60208110156105a357600080fd5b505190506001600160a01b0381166105ec5760405162461bcd60e51b8152600401808060200182810382526033815260200180610caf6033913960400191505060405180910390fd5b60006105f782610645565b90506001600160a01b03811661063e5760405162461bcd60e51b815260040180806020018281038252603a815260200180610ce2603a913960400191505060405180910390fd5b9392505050565b6001600160a01b039081166000908152602081905260409020541690565b60008061066f83610509565b6001600160a01b0316633ba6b851846040518263ffffffff1660e01b815260040180826001600160a01b031681526020019150506040805180830381600087803b1580156104cc57600080fd5b60006106c784610509565b6001600160a01b0316634807ccbd8585856040518463ffffffff1660e01b815260040180846001600160a01b03168152602001836001600160a01b03168152602001826001600160a01b031681526020019350505050602060405180830381600087803b15801561073757600080fd5b505af115801561074b573d6000803e3d6000fd5b505050506040513d602081101561076157600080fd5b5051949350505050565b600061077683610509565b6001600160a01b03166351ac29c784846040518363ffffffff1660e01b815260040180836001600160a01b03168152602001826001600160a01b0316815260200192505050602060405180830381600087803b1580156107d557600080fd5b505af11580156107e9573d6000803e3d6000fd5b505050506040513d60208110156107ff57600080fd5b50519392505050565b60008061081483610509565b6001600160a01b03166353d467f3846040518263ffffffff1660e01b815260040180826001600160a01b031681526020019150506040805180830381600087803b1580156104cc57600080fd5b60008061086d84610509565b604080516381dfa95b60e01b81526001600160a01b038781166004830152868116602483015282519316926381dfa95b926044808401939192918290030181600087803b1580156108bd57600080fd5b505af11580156108d1573d6000803e3d6000fd5b505050506040513d60408110156108e757600080fd5b508051602090910151909590945092505050565b610903610a7e565b6001600160a01b031663893d20e86040518163ffffffff1660e01b815260040160206040518083038186803b15801561093b57600080fd5b505afa15801561094f573d6000803e3d6000fd5b505050506040513d602081101561096557600080fd5b50516001600160a01b031633146109ad5760405162461bcd60e51b8152600401808060200182810382526030815260200180610d1c6030913960400191505060405180910390fd5b6109b78282610b76565b5050565b6000806109c783610509565b6001600160a01b031663c3552663846040518263ffffffff1660e01b815260040180826001600160a01b031681526020019150506040805180830381600087803b1580156104cc57600080fd5b6000610a1f83610509565b6001600160a01b031663c65988ff84846040518363ffffffff1660e01b815260040180836001600160a01b03168152602001826001600160a01b0316815260200192505050602060405180830381600087803b1580156107d557600080fd5b7f000000000000000000000000000000000000000000000000000000000000000090565b6000610aad83610509565b6001600160a01b031663eefcb1b384846040518363ffffffff1660e01b815260040180836001600160a01b03168152602001826001600160a01b0316815260200192505050602060405180830381600087803b1580156107d557600080fd5b6000610b1783610509565b6001600160a01b031663faf6eeef84846040518363ffffffff1660e01b815260040180836001600160a01b03168152602001826001600160a01b0316815260200192505050602060405180830381600087803b1580156107d557600080fd5b8051825114610bb65760405162461bcd60e51b8152600401808060200182810382526030815260200180610d4c6030913960400191505060405180910390fd5b60005b8251811015610ca957818181518110610bce57fe5b6020026020010151600080858481518110610be557fe5b60200260200101516001600160a01b03166001600160a01b0316815260200190815260200160002060006101000a8154816001600160a01b0302191690836001600160a01b03160217905550828181518110610c3d57fe5b60200260200101516001600160a01b03167fb1d29f6ea94d91c5d37a117188a5b71f514ff0f0e0347c76232fbad7242ef97b838381518110610c7b57fe5b602002602001015160405180826001600160a01b0316815260200191505060405180910390a2600101610bb9565b50505056fe67657446756e6456616c756543616c63756c61746f72466f725661756c743a20496e76616c6964205f7661756c7450726f787967657446756e6456616c756543616c63756c61746f72466f725661756c743a204e6f2046756e6456616c756543616c63756c61746f72207365744f6e6c79207468652044697370617463686572206f776e65722063616e2063616c6c20746869732066756e6374696f6e5f5f73657446756e6456616c756543616c63756c61746f72733a20556e657175616c206172726179206c656e67746873a26469706673582212202b2e2d8048041eab9d4adf23d97f6690585ba4e378f8f21085c3eb74350ce96e64736f6c634300060c0033",
+  "devdoc": {
+    "author": "Enzyme Council <security@enzyme.finance>",
+    "details": "These values should generally only be consumed from off-chain, unless you understand how each release interprets each calculation",
+    "kind": "dev",
+    "methods": {
+      "calcGav(address)": {
+        "params": {
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "denominationAsset_": "The denomination asset of the fund",
+          "gav_": "The GAV quoted in the denomination asset"
+        }
+      },
+      "calcGavInAsset(address,address)": {
+        "params": {
+          "_quoteAsset": "The quote asset",
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "gav_": "The GAV quoted in _quoteAsset"
+        }
+      },
+      "calcGrossShareValue(address)": {
+        "params": {
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "denominationAsset_": "The denomination asset of the fund",
+          "grossShareValue_": "The gross share value quoted in the denomination asset"
+        }
+      },
+      "calcGrossShareValueInAsset(address,address)": {
+        "params": {
+          "_quoteAsset": "The quote asset",
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "grossShareValue_": "The gross share value quoted in _quoteAsset"
+        }
+      },
+      "calcNav(address)": {
+        "params": {
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "denominationAsset_": "The denomination asset of the fund",
+          "nav_": "The NAV quoted in the denomination asset"
+        }
+      },
+      "calcNavInAsset(address,address)": {
+        "params": {
+          "_quoteAsset": "The quote asset",
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "nav_": "The NAV quoted in _quoteAsset"
+        }
+      },
+      "calcNetShareValue(address)": {
+        "params": {
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "denominationAsset_": "The denomination asset of the fund",
+          "netShareValue_": "The net share value quoted in the denomination asset"
+        }
+      },
+      "calcNetShareValueInAsset(address,address)": {
+        "params": {
+          "_quoteAsset": "The quote asset",
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "netShareValue_": "The net share value quoted in _quoteAsset"
+        }
+      },
+      "calcNetValueForSharesHolder(address,address)": {
+        "params": {
+          "_sharesHolder": "The account holding shares",
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "denominationAsset_": "The denomination asset of the fund",
+          "netValue_": "The net value of all shares held by _sharesHolder"
+        }
+      },
+      "calcNetValueForSharesHolderInAsset(address,address,address)": {
+        "params": {
+          "_quoteAsset": "The quote asset",
+          "_sharesHolder": "The account holding shares",
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "netValue_": "The net value of all shares held by _sharesHolder quoted in _quoteAsset"
+        }
+      },
+      "getDispatcher()": {
+        "returns": {
+          "dispatcher_": "The `DISPATCHER` variable value"
+        }
+      },
+      "getFundValueCalculatorForFundDeployer(address)": {
+        "params": {
+          "_fundDeployer": "The FundDeployer for which to get the FundValueCalculator address"
+        },
+        "returns": {
+          "fundValueCalculator_": "The FundValueCalculator address"
+        }
+      },
+      "getFundValueCalculatorForVault(address)": {
+        "params": {
+          "_vaultProxy": "The VaultProxy of the fund"
+        },
+        "returns": {
+          "fundValueCalculatorContract_": "The FundValueCalculator instance"
+        }
+      },
+      "setFundValueCalculators(address[],address[])": {
+        "params": {
+          "_fundDeployers": "The FundDeployer instances",
+          "_fundValueCalculators": "The FundValueCalculator instances corresponding to each instance in _fundDeployers"
+        }
+      }
+    },
+    "title": "FundValueCalculatorRouter Contract",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "calcGav(address)": {
+        "notice": "Calculates the GAV for a given fund"
+      },
+      "calcGavInAsset(address,address)": {
+        "notice": "Calculates the GAV for a given fund, quoted in a given asset"
+      },
+      "calcGrossShareValue(address)": {
+        "notice": "Calculates the gross value of one shares unit (10 ** 18) for a given fund"
+      },
+      "calcGrossShareValueInAsset(address,address)": {
+        "notice": "Calculates the gross value of one shares unit (10 ** 18) for a given fund, quoted in a given asset"
+      },
+      "calcNav(address)": {
+        "notice": "Calculates the NAV for a given fund"
+      },
+      "calcNavInAsset(address,address)": {
+        "notice": "Calculates the NAV for a given fund, quoted in a given asset"
+      },
+      "calcNetShareValue(address)": {
+        "notice": "Calculates the net value of one shares unit (10 ** 18) for a given fund"
+      },
+      "calcNetShareValueInAsset(address,address)": {
+        "notice": "Calculates the net value of one shares unit (10 ** 18) for a given fund, quoted in a given asset"
+      },
+      "calcNetValueForSharesHolder(address,address)": {
+        "notice": "Calculates the net value of all shares held by a specified account"
+      },
+      "calcNetValueForSharesHolderInAsset(address,address,address)": {
+        "notice": "Calculates the net value of all shares held by a specified account, quoted in a given asset"
+      },
+      "getDispatcher()": {
+        "notice": "Gets the `DISPATCHER` variable"
+      },
+      "getFundValueCalculatorForFundDeployer(address)": {
+        "notice": "Gets the FundValueCalculator address for a given FundDeployer"
+      },
+      "getFundValueCalculatorForVault(address)": {
+        "notice": "Gets the FundValueCalculator instance to use for a given fund"
+      },
+      "setFundValueCalculators(address[],address[])": {
+        "notice": "Sets FundValueCalculator instances for a list of FundDeployer instances"
+      }
+    },
+    "notice": "A peripheral contract for routing value calculation requests to the correct FundValueCalculator instance for a particular release",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 6854,
+        "contract": "contracts/persistent/off-chain/fund-value-calculator/FundValueCalculatorRouter.sol:FundValueCalculatorRouter",
+        "label": "fundDeployerToFundValueCalculator",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_mapping(t_address,t_address)"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      },
+      "t_mapping(t_address,t_address)": {
+        "encoding": "mapping",
+        "key": "t_address",
+        "label": "mapping(address => address)",
+        "numberOfBytes": "32",
+        "value": "t_address"
+      }
+    }
+  }
+}

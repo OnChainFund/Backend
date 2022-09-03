@@ -1,0 +1,245 @@
+{
+  "address": "0x796De763AFc2e26010E28eDdC2B8eA26B268Dcb1",
+  "abi": [
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_dispatcher",
+          "type": "address"
+        },
+        {
+          "internalType": "address",
+          "name": "_paymasterLib",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "nextCanonicalLib",
+          "type": "address"
+        }
+      ],
+      "name": "CanonicalLibSet",
+      "type": "event"
+    },
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "caller",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "address",
+          "name": "proxy",
+          "type": "address"
+        },
+        {
+          "indexed": false,
+          "internalType": "bytes",
+          "name": "constructData",
+          "type": "bytes"
+        }
+      ],
+      "name": "ProxyDeployed",
+      "type": "event"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "bytes",
+          "name": "_constructData",
+          "type": "bytes"
+        }
+      ],
+      "name": "deployProxy",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "proxy_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getCanonicalLib",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "canonicalLib_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getDispatcher",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "dispatcher_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [],
+      "name": "getOwner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "owner_",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "_nextCanonicalLib",
+          "type": "address"
+        }
+      ],
+      "name": "setCanonicalLib",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "transactionHash": "0x9132e2f0a6f39d2c3f69c200a41fa7f4ea15d58dd995b6502ea41eb72f5e2811",
+  "receipt": {
+    "to": null,
+    "from": "0xA3579C4c2057b58244DBc7DF5411C79d5F63a8A7",
+    "contractAddress": "0x796De763AFc2e26010E28eDdC2B8eA26B268Dcb1",
+    "transactionIndex": 1,
+    "gasUsed": "534876",
+    "logsBloom": "0x00000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000080000000000000000000000000000000000000040000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000040000000000000000",
+    "blockHash": "0x17c7da745f0714eacb481d5593e82e3afd7b5ad84b11c6695135cafe4e0a9077",
+    "transactionHash": "0x9132e2f0a6f39d2c3f69c200a41fa7f4ea15d58dd995b6502ea41eb72f5e2811",
+    "logs": [
+      {
+        "transactionIndex": 1,
+        "blockNumber": 11761467,
+        "transactionHash": "0x9132e2f0a6f39d2c3f69c200a41fa7f4ea15d58dd995b6502ea41eb72f5e2811",
+        "address": "0x796De763AFc2e26010E28eDdC2B8eA26B268Dcb1",
+        "topics": [
+          "0x9007c6c0b3b1622c381c19563620e3ce8b824e958af3020495bd6654e8a0310a"
+        ],
+        "data": "0x000000000000000000000000d7fb3e484909b5c45caa07a4c982e73cb3b62c84",
+        "logIndex": 3,
+        "blockHash": "0x17c7da745f0714eacb481d5593e82e3afd7b5ad84b11c6695135cafe4e0a9077"
+      }
+    ],
+    "blockNumber": 11761467,
+    "cumulativeGasUsed": "683213",
+    "status": 1,
+    "byzantium": true
+  },
+  "args": [
+    "0xe1bB58c02740446c36ba62BEA67F444EA15e9933",
+    "0xd7fB3E484909B5c45caa07a4C982e73CB3B62c84"
+  ],
+  "numDeployments": 1,
+  "solcInputHash": "ddc5045fde4ce39a48d0eb052f9d6752",
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_dispatcher\",\"type\":\"address\"},{\"internalType\":\"address\",\"name\":\"_paymasterLib\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":false,\"internalType\":\"address\",\"name\":\"nextCanonicalLib\",\"type\":\"address\"}],\"name\":\"CanonicalLibSet\",\"type\":\"event\"},{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"caller\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"address\",\"name\":\"proxy\",\"type\":\"address\"},{\"indexed\":false,\"internalType\":\"bytes\",\"name\":\"constructData\",\"type\":\"bytes\"}],\"name\":\"ProxyDeployed\",\"type\":\"event\"},{\"inputs\":[{\"internalType\":\"bytes\",\"name\":\"_constructData\",\"type\":\"bytes\"}],\"name\":\"deployProxy\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"proxy_\",\"type\":\"address\"}],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getCanonicalLib\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"canonicalLib_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getDispatcher\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"dispatcher_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"getOwner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"owner_\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"_nextCanonicalLib\",\"type\":\"address\"}],\"name\":\"setCanonicalLib\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"author\":\"Enzyme Council <security@enzyme.finance>\",\"kind\":\"dev\",\"methods\":{\"deployProxy(bytes)\":{\"params\":{\"_constructData\":\"The constructor data with which to call `init()` on the deployed proxy\"},\"returns\":{\"proxy_\":\"The proxy address\"}},\"getCanonicalLib()\":{\"returns\":{\"canonicalLib_\":\"The canonical lib\"}},\"getDispatcher()\":{\"returns\":{\"dispatcher_\":\"The `DISPATCHER` variable value\"}},\"getOwner()\":{\"returns\":{\"owner_\":\"The contract owner\"}},\"setCanonicalLib(address)\":{\"params\":{\"_nextCanonicalLib\":\"The next canonical lib\"}}},\"title\":\"GasRelayPaymasterFactory Contract\",\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{\"deployProxy(bytes)\":{\"notice\":\"Deploys a new proxy instance\"},\"getCanonicalLib()\":{\"notice\":\"Gets the canonical lib used by all proxies\"},\"getDispatcher()\":{\"notice\":\"Gets the `DISPATCHER` variable\"},\"getOwner()\":{\"notice\":\"Gets the contract owner\"},\"setCanonicalLib(address)\":{\"notice\":\"Sets the next canonical lib used by all proxies\"}},\"notice\":\"Factory contract that deploys paymaster proxies for gas relaying\",\"version\":1}},\"settings\":{\"compilationTarget\":{\"contracts/release/infrastructure/gas-relayer/GasRelayPaymasterFactory.sol\":\"GasRelayPaymasterFactory\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\",\"useLiteralContent\":true},\"optimizer\":{\"details\":{\"constantOptimizer\":true,\"cse\":true,\"deduplicate\":true,\"jumpdestRemover\":true,\"orderLiterals\":true,\"peephole\":true,\"yul\":false},\"runs\":200},\"remappings\":[]},\"sources\":{\"contracts/persistent/dispatcher/IDispatcher.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\n/// @title IDispatcher Interface\\n/// @author Enzyme Council <security@enzyme.finance>\\ninterface IDispatcher {\\n    function cancelMigration(address _vaultProxy, bool _bypassFailure) external;\\n\\n    function claimOwnership() external;\\n\\n    function deployVaultProxy(\\n        address _vaultLib,\\n        address _owner,\\n        address _vaultAccessor,\\n        string calldata _fundName\\n    ) external returns (address vaultProxy_);\\n\\n    function executeMigration(address _vaultProxy, bool _bypassFailure) external;\\n\\n    function getCurrentFundDeployer() external view returns (address currentFundDeployer_);\\n\\n    function getFundDeployerForVaultProxy(address _vaultProxy)\\n        external\\n        view\\n        returns (address fundDeployer_);\\n\\n    function getMigrationRequestDetailsForVaultProxy(address _vaultProxy)\\n        external\\n        view\\n        returns (\\n            address nextFundDeployer_,\\n            address nextVaultAccessor_,\\n            address nextVaultLib_,\\n            uint256 executableTimestamp_\\n        );\\n\\n    function getMigrationTimelock() external view returns (uint256 migrationTimelock_);\\n\\n    function getNominatedOwner() external view returns (address nominatedOwner_);\\n\\n    function getOwner() external view returns (address owner_);\\n\\n    function getSharesTokenSymbol() external view returns (string memory sharesTokenSymbol_);\\n\\n    function getTimelockRemainingForMigrationRequest(address _vaultProxy)\\n        external\\n        view\\n        returns (uint256 secondsRemaining_);\\n\\n    function hasExecutableMigrationRequest(address _vaultProxy)\\n        external\\n        view\\n        returns (bool hasExecutableRequest_);\\n\\n    function hasMigrationRequest(address _vaultProxy)\\n        external\\n        view\\n        returns (bool hasMigrationRequest_);\\n\\n    function removeNominatedOwner() external;\\n\\n    function setCurrentFundDeployer(address _nextFundDeployer) external;\\n\\n    function setMigrationTimelock(uint256 _nextTimelock) external;\\n\\n    function setNominatedOwner(address _nextNominatedOwner) external;\\n\\n    function setSharesTokenSymbol(string calldata _nextSymbol) external;\\n\\n    function signalMigration(\\n        address _vaultProxy,\\n        address _nextVaultAccessor,\\n        address _nextVaultLib,\\n        bool _bypassFailure\\n    ) external;\\n}\\n\",\"keccak256\":\"0x0e6b0e6cf325d4f6332b8eb2b3c446b2ef3ca8456bdf0d12318d0fd9e90aeb30\",\"license\":\"GPL-3.0\"},\"contracts/release/infrastructure/gas-relayer/GasRelayPaymasterFactory.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"../../../persistent/dispatcher/IDispatcher.sol\\\";\\nimport \\\"../../utils/beacon-proxy/BeaconProxyFactory.sol\\\";\\n\\n/// @title GasRelayPaymasterFactory Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice Factory contract that deploys paymaster proxies for gas relaying\\ncontract GasRelayPaymasterFactory is BeaconProxyFactory {\\n    address private immutable DISPATCHER;\\n\\n    constructor(address _dispatcher, address _paymasterLib)\\n        public\\n        BeaconProxyFactory(_paymasterLib)\\n    {\\n        DISPATCHER = _dispatcher;\\n    }\\n\\n    /// @notice Gets the contract owner\\n    /// @return owner_ The contract owner\\n    function getOwner() public view override returns (address owner_) {\\n        return IDispatcher(getDispatcher()).getOwner();\\n    }\\n\\n    ///////////////////\\n    // STATE GETTERS //\\n    ///////////////////\\n\\n    /// @notice Gets the `DISPATCHER` variable\\n    /// @return dispatcher_ The `DISPATCHER` variable value\\n    function getDispatcher() public view returns (address dispatcher_) {\\n        return DISPATCHER;\\n    }\\n}\\n\",\"keccak256\":\"0x9fb602805e91d5cf5a8b1774217e3bd2ade58a92aa50f7836e0d4413460debf2\",\"license\":\"GPL-3.0\"},\"contracts/release/utils/beacon-proxy/BeaconProxy.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"./IBeacon.sol\\\";\\n\\n/// @title BeaconProxy Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice A proxy contract that uses the beacon pattern for instant upgrades\\ncontract BeaconProxy {\\n    address private immutable BEACON;\\n\\n    constructor(bytes memory _constructData, address _beacon) public {\\n        BEACON = _beacon;\\n\\n        (bool success, bytes memory returnData) = IBeacon(_beacon).getCanonicalLib().delegatecall(\\n            _constructData\\n        );\\n        require(success, string(returnData));\\n    }\\n\\n    // solhint-disable-next-line no-complex-fallback\\n    fallback() external payable {\\n        address contractLogic = IBeacon(BEACON).getCanonicalLib();\\n        assembly {\\n            calldatacopy(0x0, 0x0, calldatasize())\\n            let success := delegatecall(\\n                sub(gas(), 10000),\\n                contractLogic,\\n                0x0,\\n                calldatasize(),\\n                0,\\n                0\\n            )\\n            let retSz := returndatasize()\\n            returndatacopy(0, 0, retSz)\\n            switch success\\n                case 0 {\\n                    revert(0, retSz)\\n                }\\n                default {\\n                    return(0, retSz)\\n                }\\n        }\\n    }\\n\\n    receive() external payable {}\\n}\\n\",\"keccak256\":\"0xb68201d8d25642f0898fd1b20fdc2689cd0555714f2e0459caa5fe467fd53a4e\",\"license\":\"GPL-3.0\"},\"contracts/release/utils/beacon-proxy/BeaconProxyFactory.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\nimport \\\"./BeaconProxy.sol\\\";\\nimport \\\"./IBeaconProxyFactory.sol\\\";\\n\\n/// @title BeaconProxyFactory Contract\\n/// @author Enzyme Council <security@enzyme.finance>\\n/// @notice Factory contract that deploys beacon proxies\\nabstract contract BeaconProxyFactory is IBeaconProxyFactory {\\n    event CanonicalLibSet(address nextCanonicalLib);\\n\\n    event ProxyDeployed(address indexed caller, address proxy, bytes constructData);\\n\\n    address private canonicalLib;\\n\\n    constructor(address _canonicalLib) public {\\n        __setCanonicalLib(_canonicalLib);\\n    }\\n\\n    /// @notice Deploys a new proxy instance\\n    /// @param _constructData The constructor data with which to call `init()` on the deployed proxy\\n    /// @return proxy_ The proxy address\\n    function deployProxy(bytes memory _constructData) public override returns (address proxy_) {\\n        proxy_ = address(new BeaconProxy(_constructData, address(this)));\\n\\n        emit ProxyDeployed(msg.sender, proxy_, _constructData);\\n\\n        return proxy_;\\n    }\\n\\n    /// @notice Gets the canonical lib used by all proxies\\n    /// @return canonicalLib_ The canonical lib\\n    function getCanonicalLib() public view override returns (address canonicalLib_) {\\n        return canonicalLib;\\n    }\\n\\n    /// @notice Gets the contract owner\\n    /// @return owner_ The contract owner\\n    function getOwner() public view virtual returns (address owner_);\\n\\n    /// @notice Sets the next canonical lib used by all proxies\\n    /// @param _nextCanonicalLib The next canonical lib\\n    function setCanonicalLib(address _nextCanonicalLib) public override {\\n        require(\\n            msg.sender == getOwner(),\\n            \\\"setCanonicalLib: Only the owner can call this function\\\"\\n        );\\n\\n        __setCanonicalLib(_nextCanonicalLib);\\n    }\\n\\n    /// @dev Helper to set the next canonical lib\\n    function __setCanonicalLib(address _nextCanonicalLib) internal {\\n        canonicalLib = _nextCanonicalLib;\\n\\n        emit CanonicalLibSet(_nextCanonicalLib);\\n    }\\n}\\n\",\"keccak256\":\"0xd35fa5134e3a8694ed1dbbc8dcd4b4d5b459608c23097a95984e1b98af3e64d9\",\"license\":\"GPL-3.0\"},\"contracts/release/utils/beacon-proxy/IBeacon.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\npragma solidity 0.6.12;\\n\\n/// @title IBeacon interface\\n/// @author Enzyme Council <security@enzyme.finance>\\ninterface IBeacon {\\n    function getCanonicalLib() external view returns (address);\\n}\\n\",\"keccak256\":\"0x27a585523828a67a1a7c84eadd22b3056e8ffc51ab71992fd97c9ffb4239eeb2\",\"license\":\"GPL-3.0\"},\"contracts/release/utils/beacon-proxy/IBeaconProxyFactory.sol\":{\"content\":\"// SPDX-License-Identifier: GPL-3.0\\n\\n/*\\n    This file is part of the Enzyme Protocol.\\n\\n    (c) Enzyme Council <council@enzyme.finance>\\n\\n    For the full license information, please view the LICENSE\\n    file that was distributed with this source code.\\n*/\\n\\nimport \\\"./IBeacon.sol\\\";\\n\\npragma solidity 0.6.12;\\n\\n/// @title IBeaconProxyFactory interface\\n/// @author Enzyme Council <security@enzyme.finance>\\ninterface IBeaconProxyFactory is IBeacon {\\n    function deployProxy(bytes memory _constructData) external returns (address proxy_);\\n\\n    function setCanonicalLib(address _canonicalLib) external;\\n}\\n\",\"keccak256\":\"0x747e53725f5dbe419893ea447df4f33a3b25d99aae5b724aa1b9778cec1a26bc\",\"license\":\"GPL-3.0\"}},\"version\":1}",
+  "bytecode": "0x60a060405234801561001057600080fd5b5060405161090d38038061090d8339818101604052604081101561003357600080fd5b508051602090910151806100468161005d565b505060601b6001600160601b0319166080526100b1565b600080546001600160a01b0383166001600160a01b0319909116811790915560408051918252517f9007c6c0b3b1622c381c19563620e3ce8b824e958af3020495bd6654e8a0310a9181900360200190a150565b60805160601c61083f6100ce600039806103a9525061083f6000f3fe608060405234801561001057600080fd5b50600436106100575760003560e01c80630c0872f51461005c578063893d20e81461011e57806398a7c4c714610126578063d0ac1a8d1461012e578063ebb3d58914610156575b600080fd5b6101026004803603602081101561007257600080fd5b81019060208101813564010000000081111561008d57600080fd5b82018360208201111561009f57600080fd5b803590602001918460018302840111640100000000831117156100c157600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955061015e945050505050565b604080516001600160a01b039092168252519081900360200190f35b6101026102c2565b610102610335565b6101546004803603602081101561014457600080fd5b50356001600160a01b0316610344565b005b6101026103a7565b6000813060405161016e9061041f565b8080602001836001600160a01b03168152602001828103825284818151815260200191508051906020019080838360005b838110156101b757818101518382015260200161019f565b50505050905090810190601f1680156101e45780820380516001836020036101000a031916815260200191505b509350505050604051809103906000f080158015610206573d6000803e3d6000fd5b509050336001600160a01b03167f8f1eab90fee81d885732c2e07a3a9b9f6c32278756471123fa57486858c3f701828460405180836001600160a01b0316815260200180602001828103825283818151815260200191508051906020019080838360005b8381101561028257818101518382015260200161026a565b50505050905090810190601f1680156102af5780820380516001836020036101000a031916815260200191505b50935050505060405180910390a2919050565b60006102cc6103a7565b6001600160a01b031663893d20e86040518163ffffffff1660e01b815260040160206040518083038186803b15801561030457600080fd5b505afa158015610318573d6000803e3d6000fd5b505050506040513d602081101561032e57600080fd5b5051905090565b6000546001600160a01b031690565b61034c6102c2565b6001600160a01b0316336001600160a01b03161461039b5760405162461bcd60e51b81526004018080602001828103825260368152602001806107d46036913960400191505060405180910390fd5b6103a4816103cb565b50565b7f000000000000000000000000000000000000000000000000000000000000000090565b600080546001600160a01b0383166001600160a01b0319909116811790915560408051918252517f9007c6c0b3b1622c381c19563620e3ce8b824e958af3020495bd6654e8a0310a9181900360200190a150565b6103a78061042d8339019056fe60a060405234801561001057600080fd5b506040516103a73803806103a78339818101604052604081101561003357600080fd5b810190808051604051939291908464010000000082111561005357600080fd5b90830190602082018581111561006857600080fd5b825164010000000081118282018810171561008257600080fd5b82525081516020918201929091019080838360005b838110156100af578181015183820152602001610097565b50505050905090810190601f1680156100dc5780820380516001836020036101000a031916815260200191505b506040818152602092830151606081811b6001600160601b0319166080526398a7c4c760e01b845291519095506000945090926001600160a01b038616926398a7c4c79260048083019392829003018186803b15801561013b57600080fd5b505afa15801561014f573d6000803e3d6000fd5b505050506040513d602081101561016557600080fd5b505160405185516001600160a01b0390921691869190819060208401908083835b602083106101a55780518252601f199092019160209182019101610186565b6001836020036101000a038019825116818451168082178552505050505050905001915050600060405180830381855af49150503d8060008114610205576040519150601f19603f3d011682016040523d82523d6000602084013e61020a565b606091505b509150915081819061029a5760405162461bcd60e51b81526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561025f578181015183820152602001610247565b50505050905090810190601f16801561028c5780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b505050505060805160601c60ee6102b960003980600e525060ee6000f3fe608060405236600a57005b60007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03166398a7c4c76040518163ffffffff1660e01b815260040160206040518083038186803b158015606457600080fd5b505afa1580156077573d6000803e3d6000fd5b505050506040513d6020811015608c57600080fd5b505190503660008037600080366000846127105a03f43d806000803e81801560b357816000f35b816000fdfea26469706673582212209a2062a062ba495cf18ec0c812d8c737e96be9cba7dae39d1b5ab98efe85b85764736f6c634300060c003373657443616e6f6e6963616c4c69623a204f6e6c7920746865206f776e65722063616e2063616c6c20746869732066756e6374696f6ea2646970667358221220ba899060930ead09667d133ab09114c51f59a7a0c17c65daa36bbfd9aa0ad3ea64736f6c634300060c0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100575760003560e01c80630c0872f51461005c578063893d20e81461011e57806398a7c4c714610126578063d0ac1a8d1461012e578063ebb3d58914610156575b600080fd5b6101026004803603602081101561007257600080fd5b81019060208101813564010000000081111561008d57600080fd5b82018360208201111561009f57600080fd5b803590602001918460018302840111640100000000831117156100c157600080fd5b91908080601f01602080910402602001604051908101604052809392919081815260200183838082843760009201919091525092955061015e945050505050565b604080516001600160a01b039092168252519081900360200190f35b6101026102c2565b610102610335565b6101546004803603602081101561014457600080fd5b50356001600160a01b0316610344565b005b6101026103a7565b6000813060405161016e9061041f565b8080602001836001600160a01b03168152602001828103825284818151815260200191508051906020019080838360005b838110156101b757818101518382015260200161019f565b50505050905090810190601f1680156101e45780820380516001836020036101000a031916815260200191505b509350505050604051809103906000f080158015610206573d6000803e3d6000fd5b509050336001600160a01b03167f8f1eab90fee81d885732c2e07a3a9b9f6c32278756471123fa57486858c3f701828460405180836001600160a01b0316815260200180602001828103825283818151815260200191508051906020019080838360005b8381101561028257818101518382015260200161026a565b50505050905090810190601f1680156102af5780820380516001836020036101000a031916815260200191505b50935050505060405180910390a2919050565b60006102cc6103a7565b6001600160a01b031663893d20e86040518163ffffffff1660e01b815260040160206040518083038186803b15801561030457600080fd5b505afa158015610318573d6000803e3d6000fd5b505050506040513d602081101561032e57600080fd5b5051905090565b6000546001600160a01b031690565b61034c6102c2565b6001600160a01b0316336001600160a01b03161461039b5760405162461bcd60e51b81526004018080602001828103825260368152602001806107d46036913960400191505060405180910390fd5b6103a4816103cb565b50565b7f000000000000000000000000000000000000000000000000000000000000000090565b600080546001600160a01b0383166001600160a01b0319909116811790915560408051918252517f9007c6c0b3b1622c381c19563620e3ce8b824e958af3020495bd6654e8a0310a9181900360200190a150565b6103a78061042d8339019056fe60a060405234801561001057600080fd5b506040516103a73803806103a78339818101604052604081101561003357600080fd5b810190808051604051939291908464010000000082111561005357600080fd5b90830190602082018581111561006857600080fd5b825164010000000081118282018810171561008257600080fd5b82525081516020918201929091019080838360005b838110156100af578181015183820152602001610097565b50505050905090810190601f1680156100dc5780820380516001836020036101000a031916815260200191505b506040818152602092830151606081811b6001600160601b0319166080526398a7c4c760e01b845291519095506000945090926001600160a01b038616926398a7c4c79260048083019392829003018186803b15801561013b57600080fd5b505afa15801561014f573d6000803e3d6000fd5b505050506040513d602081101561016557600080fd5b505160405185516001600160a01b0390921691869190819060208401908083835b602083106101a55780518252601f199092019160209182019101610186565b6001836020036101000a038019825116818451168082178552505050505050905001915050600060405180830381855af49150503d8060008114610205576040519150601f19603f3d011682016040523d82523d6000602084013e61020a565b606091505b509150915081819061029a5760405162461bcd60e51b81526004018080602001828103825283818151815260200191508051906020019080838360005b8381101561025f578181015183820152602001610247565b50505050905090810190601f16801561028c5780820380516001836020036101000a031916815260200191505b509250505060405180910390fd5b505050505060805160601c60ee6102b960003980600e525060ee6000f3fe608060405236600a57005b60007f00000000000000000000000000000000000000000000000000000000000000006001600160a01b03166398a7c4c76040518163ffffffff1660e01b815260040160206040518083038186803b158015606457600080fd5b505afa1580156077573d6000803e3d6000fd5b505050506040513d6020811015608c57600080fd5b505190503660008037600080366000846127105a03f43d806000803e81801560b357816000f35b816000fdfea26469706673582212209a2062a062ba495cf18ec0c812d8c737e96be9cba7dae39d1b5ab98efe85b85764736f6c634300060c003373657443616e6f6e6963616c4c69623a204f6e6c7920746865206f776e65722063616e2063616c6c20746869732066756e6374696f6ea2646970667358221220ba899060930ead09667d133ab09114c51f59a7a0c17c65daa36bbfd9aa0ad3ea64736f6c634300060c0033",
+  "devdoc": {
+    "author": "Enzyme Council <security@enzyme.finance>",
+    "kind": "dev",
+    "methods": {
+      "deployProxy(bytes)": {
+        "params": {
+          "_constructData": "The constructor data with which to call `init()` on the deployed proxy"
+        },
+        "returns": {
+          "proxy_": "The proxy address"
+        }
+      },
+      "getCanonicalLib()": {
+        "returns": {
+          "canonicalLib_": "The canonical lib"
+        }
+      },
+      "getDispatcher()": {
+        "returns": {
+          "dispatcher_": "The `DISPATCHER` variable value"
+        }
+      },
+      "getOwner()": {
+        "returns": {
+          "owner_": "The contract owner"
+        }
+      },
+      "setCanonicalLib(address)": {
+        "params": {
+          "_nextCanonicalLib": "The next canonical lib"
+        }
+      }
+    },
+    "title": "GasRelayPaymasterFactory Contract",
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {
+      "deployProxy(bytes)": {
+        "notice": "Deploys a new proxy instance"
+      },
+      "getCanonicalLib()": {
+        "notice": "Gets the canonical lib used by all proxies"
+      },
+      "getDispatcher()": {
+        "notice": "Gets the `DISPATCHER` variable"
+      },
+      "getOwner()": {
+        "notice": "Gets the contract owner"
+      },
+      "setCanonicalLib(address)": {
+        "notice": "Sets the next canonical lib used by all proxies"
+      }
+    },
+    "notice": "Factory contract that deploys paymaster proxies for gas relaying",
+    "version": 1
+  },
+  "storageLayout": {
+    "storage": [
+      {
+        "astId": 54473,
+        "contract": "contracts/release/infrastructure/gas-relayer/GasRelayPaymasterFactory.sol:GasRelayPaymasterFactory",
+        "label": "canonicalLib",
+        "offset": 0,
+        "slot": "0",
+        "type": "t_address"
+      }
+    ],
+    "types": {
+      "t_address": {
+        "encoding": "inplace",
+        "label": "address",
+        "numberOfBytes": "20"
+      }
+    }
+  }
+}
