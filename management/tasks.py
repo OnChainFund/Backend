@@ -40,79 +40,61 @@ def manage_liquidity(
     denominated_asset_contract = w3.eth.contract(denominated_asset, abi=ERC20)
 
     pair = pangolin_factory.functions.getPair(target_asset, denominated_asset).call()
-    print(pair)
-    pangolin_pair = w3.eth.contract(pair, abi=PangolinPair)
     # 獲取流動性對的剩餘量
-    (
-        reserve0,
-        reserve1,
-        blockTimestampLast,
-    ) = pangolin_pair.functions.getReserves().call()
-    print("===================")
-    print("reserve")
-    print(reserve0)
-    print(reserve1)
-    print("===================")
-    print("ERC20 balance")
-    print(target_asset_contract.functions.balanceOf(pair).call())
-    print(denominated_asset_contract.functions.balanceOf(pair).call())
-    print("===================")
-    print("")
-    token0 = pangolin_pair.functions.token0().call()
-    token1 = pangolin_pair.functions.token1().call()
+
+    target_asset_reserve = target_asset_contract.functions.balanceOf(pair).call()
+    denominated_asset_reserve = denominated_asset_contract.functions.balanceOf(
+        pair
+    ).call()
+    print(target_asset_reserve)
+    print(denominated_asset_reserve)
+
     # 計算出價格
-    if target_asset == token0:
-        print("target = 0")
-        pangolin_price = reserve1 / reserve0
-        reserve_target_asset = reserve0
-        reserve_denominated_asset = reserve1
-        # pangolin_price = pangolin_pair.functions.price0CumulativeLast().call()
-
-    elif target_asset == token1:
-        print("target = 1")
-        pangolin_price = reserve0 / reserve1
-        reserve_target_asset = reserve1
-        reserve_denominated_asset = reserve0
-        # pangolin_price = pangolin_pair.functions.price1CumulativeLast().call()
-    print("===================")
-    print("pangolin price")
+    pangolin_price = denominated_asset_reserve / target_asset_reserve
     print(pangolin_price)
-
-    if pangolin_price <= ftx_price:
+    # 差距小於 1% 不調倉
+    if pangolin_price < ftx_price:
         print("buy target")
-        amount = reserve_target_asset - math.sqrt(
-            reserve_target_asset * reserve_denominated_asset * ftx_price
+        print(target_asset_reserve)
+        print(target_asset_reserve * denominated_asset_reserve * ftx_price)
+        print(math.sqrt(target_asset_reserve * denominated_asset_reserve * ftx_price))
+        amount = (
+            math.sqrt(target_asset_reserve * denominated_asset_reserve * ftx_price)
+            - denominated_asset_reserve
         )
         path = [denominated_asset, target_asset]
     else:
         print("sell target")
-        amount = (
-            math.sqrt(reserve_target_asset * reserve_denominated_asset * ftx_price)
-            - reserve_target_asset
+        print(math.sqrt(target_asset_reserve * denominated_asset_reserve * ftx_price))
+        print(target_asset_reserve)
+        amount = denominated_asset_reserve - math.sqrt(
+            target_asset_reserve * denominated_asset_reserve * ftx_price
         )
         path = [target_asset, denominated_asset]
+
     # 計算 swap input,output
     # swap
-    print(int(amount))
+    print(int(abs(amount)))
+    print(int((amount)))
     private_key = config("PRIVATE_KEY")
 
-    # txn = pangolin_router.functions.swapExactTokensForTokens(
-    #    int(amount),
-    #    1,
-    #    path,
-    #    Addresses["user_1"],
-    #    1758392484,
-    # ).buildTransaction(
-    #    {
-    #        "chainId": 43113,
-    #        "gas": 7900000,
-    #        "maxFeePerGas": w3.toWei("30", "gwei"),
-    #        "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
-    #        "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
-    #    }
-    # )
-    # signed_txn = w3.eth.account.sign_transaction(txn, private_key=private_key)
-    # w3.eth.sendRawTransaction(signed_txn.rawTransaction)
+    txn = pangolin_router.functions.swapExactTokensForTokens(
+        int(abs(amount)),
+        1,
+        path,
+        Addresses["user_1"],
+        1758392484,
+    ).buildTransaction(
+        {
+            "chainId": 43113,
+            "gas": 7900000,
+            "maxFeePerGas": w3.toWei("30", "gwei"),
+            "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
+            "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
+        }
+    )
+    signed_txn = w3.eth.account.sign_transaction(txn, private_key=private_key)
+    #w3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 
-manage_liquidity(Addresses["WAVAX"], Addresses["USDT"], "AVAX/USD", 1)
+manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD", 1)
