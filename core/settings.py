@@ -11,8 +11,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 DEBUG = True
-# ALLOWED_HOSTS = ["time-ledger.herokuapp.com"]
-# CSRF_TRUSTED_ORIGINS = ["https://time-ledger.herokuapp.com"]
+ALLOWED_HOSTS = ["ocf-backend.up.railway.app"]
+CSRF_TRUSTED_ORIGINS = ["https://ocf-backend.up.railway.app"]
 
 # Application definition
 
