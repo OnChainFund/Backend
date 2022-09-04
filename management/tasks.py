@@ -18,9 +18,7 @@ def get_price_from_ftx(ftx_trading_pair: str) -> int:
     return data
 
 
-def manage_liquidity(
-    target_asset: str, denominated_asset: str, ftx_trading_pair: str, price: int
-):
+def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair: str):
     print("managed liquidity")
     # 用 ftx api 獲取價格資料
     ftx_price = get_price_from_ftx(ftx_trading_pair)
@@ -46,18 +44,11 @@ def manage_liquidity(
     denominated_asset_reserve = denominated_asset_contract.functions.balanceOf(
         pair
     ).call()
-    print(target_asset_reserve)
-    print(denominated_asset_reserve)
 
     # 計算出價格
     pangolin_price = denominated_asset_reserve / target_asset_reserve
-    print(pangolin_price)
     # 差距小於 1% 不調倉
     if pangolin_price < ftx_price:
-        print("buy target")
-        print(target_asset_reserve)
-        print(target_asset_reserve * denominated_asset_reserve * ftx_price)
-        print(math.sqrt(target_asset_reserve * denominated_asset_reserve * ftx_price))
         amount = (
             math.sqrt(target_asset_reserve * denominated_asset_reserve * ftx_price)
             - denominated_asset_reserve
@@ -74,8 +65,6 @@ def manage_liquidity(
 
     # 計算 swap input,output
     # swap
-    print(int(abs(amount)))
-    print(int((amount)))
     private_key = config("PRIVATE_KEY")
 
     txn = pangolin_router.functions.swapExactTokensForTokens(
@@ -94,7 +83,7 @@ def manage_liquidity(
         }
     )
     signed_txn = w3.eth.account.sign_transaction(txn, private_key=private_key)
-    #w3.eth.sendRawTransaction(signed_txn.rawTransaction)
+    w3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 
 manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD", 1)

@@ -91,3 +91,11 @@ python manage.py qcluster
 # run scripts
 ./manage.py shell < management/tasks.py
 ```
+
+## Note
+### when
+#### 重啟
+##### Before
+- export:Liquidity managements
+##### After
+- import:Liquidity managements

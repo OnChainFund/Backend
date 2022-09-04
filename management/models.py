@@ -24,6 +24,7 @@ class LiquidityManagement(models.Model):
         null=False,
         related_name="denominated_asset",
     )
+    schedual = models.OneToOneField(Schedule, on_delete=models.CASCADE, null=True)
     # round_time = models.DurationField(null=True)
     round_time = CustomDurationField(null=True)
 
@@ -38,9 +39,11 @@ class LiquidityManagement(models.Model):
                 code="invalid",
                 params={"value": self.ftx_pair_name},
             )
-        Schedule.objects.create(
+        self.schedual = Schedule.objects.create(
             func="management.tasks.manage_liquidity",
+            name="LM:" + self.ftx_pair_name,
             repeats=-1,
+            args=[self.target_asset, self.denominated_asset, self.ftx_pair_name],
             schedule_type=Schedule.HOURLY,
         )
         super(LiquidityManagement, self).save(*args, **kwargs)

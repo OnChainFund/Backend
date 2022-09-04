@@ -6,7 +6,13 @@ from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 
 
 class LiquidityManagementAdmin(ImportExportModelAdmin):
-    list_display = ("ftx_pair_name", "target_asset", "denominated_asset", "round_time")
+    list_display = (
+        "ftx_pair_name",
+        "target_asset",
+        "denominated_asset",
+        "schedual",
+        "round_time",
+    )
     form = LiquidityManagementForm
 
 
