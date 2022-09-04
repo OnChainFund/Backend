@@ -38,6 +38,7 @@ graphene-django==2.15.0
 graphene==2.1.9
 graphql-core==2.3.2
 graphql-relay==2.0.1
+gunicorn==20.1.0; python_version >= "3.5"
 hexbytes==0.3.0; python_version >= "3.8" and python_version < "4"
 idna==3.3; python_version >= "3.8" and python_version < "4" and (python_full_version >= "3.6.2" and python_full_version < "3.7.0" and python_version >= "3.8" and python_version < "4" or python_full_version > "3.7.0" and python_full_version < "3.7.1" and python_version >= "3.8" and python_version < "4" or python_version >= "3.8" and python_version < "4" and python_full_version > "3.7.1")
 ipfshttpclient==0.8.0a2; python_full_version >= "3.6.2" and python_full_version < "3.7.0" and python_version >= "3.8" and python_version < "4" or python_full_version > "3.7.0" and python_full_version < "3.7.1" and python_version >= "3.8" and python_version < "4" or python_version >= "3.8" and python_version < "4" and python_full_version > "3.7.1"

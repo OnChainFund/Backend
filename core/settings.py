@@ -110,14 +110,12 @@ LANGUAGES = (("en", "English"), ("zh-Hant", "Traditional chinese"))
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.0/howto/static-files/
 
-STATIC_URL = "static/"
-STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
-
-
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# django-mdeditor
 X_FRAME_OPTIONS = "SAMEORIGIN"
+
+STATIC_URL = "static/"
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 MEDIA_ROOT = os.path.join(BASE_DIR, "uploads")
 MEDIA_URL = "/media/"
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
