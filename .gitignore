@@ -138,7 +138,5 @@ GitHub.sublime-settings
 
 static/
 wodl/
-migrations/
-!migrations/__init__.py
 staticfiles/
 temp/
