@@ -89,6 +89,11 @@ mutation deleteMutation{
 ## Developement
 ```
 # run 
+// local db
+DJANGO_SETTINGS_MODULE=core.settings_dev_local_db
+// product db
+DJANGO_SETTINGS_MODULE=core.settings_dev_product_db
+
 python manage.py runserver
 
 # run Django Q cluster

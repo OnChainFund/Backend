@@ -44,6 +44,6 @@ class LiquidityManagement(models.Model):
             name="LM:" + self.ftx_pair_name,
             repeats=-1,
             args=[self.target_asset, self.denominated_asset, self.ftx_pair_name],
-            schedule_type=Schedule.HOURLY,
+            schedule_type=Schedule.DAILY,
         )
         super(LiquidityManagement, self).save(*args, **kwargs)

@@ -10,7 +10,7 @@ class LiquidityManagementAdmin(ImportExportModelAdmin):
         "ftx_pair_name",
         "target_asset",
         "denominated_asset",
-        "schedual",
+        # "schedual",
         "round_time",
     )
     form = LiquidityManagementForm
