@@ -1,3 +1,9 @@
+## QuickStart
+```
+poetry 
+
+```
+
 ## 資料夾結構
 ```
 ├── core/ -> django 設定程式(.py)
@@ -99,3 +105,9 @@ python manage.py qcluster
 - export:Liquidity managements
 ##### After
 - import:Liquidity managements
+
+#### ReDeploy
+```
+poetry export --without-hashes --format=requirements.txt > requirements.txt
+// git add, commit & push
+```

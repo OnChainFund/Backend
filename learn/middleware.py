@@ -1,5 +1,4 @@
-from pprint import pprint
-from utils import read_json_file, get_provider
+from utils import get_provider
 from decouple import config
 from pprint import pprint
 

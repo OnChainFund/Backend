@@ -1,5 +1,6 @@
 import os
 from pathlib import Path
+from decouple import config
 import django
 from django.utils.encoding import force_str
 
@@ -7,7 +8,7 @@ django.utils.encoding.force_text = force_str
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SECRET_KEY = "django-insecure-==7(e(+-+px9hen^u!&+@2-q$@x^==6a7t06aa##_lplhsukwq"
+SECRET_KEY = config("SECRET_KEY")
 
 DEBUG = True
 # ALLOWED_HOSTS = ["time-ledger.herokuapp.com"]
