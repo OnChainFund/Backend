@@ -53,5 +53,10 @@
     "model": "fund.asset",
     "pk": "0xa0D0693047cC189D5742160941c1703857616889",
     "fields": { "name": "JPY" }
+  },
+  {
+    "model": "fund.asset",
+    "pk": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+    "fields": { "name": "TWTR" }
   }
 ]

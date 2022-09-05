@@ -6,7 +6,10 @@ from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 class AssetAdmin(ImportExportModelAdmin):
     list_display = (
         "name",
-        "address",
+        "comptroller_proxy",
+        "vault_proxy",
+        "creator",
+        "denominated_asset",
     )
 
 
