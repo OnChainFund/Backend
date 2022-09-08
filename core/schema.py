@@ -1,14 +1,15 @@
 import graphene
+from graphene import ObjectType, Schema
 
-from fund.schema import Query, Mutation
+from fund.schemas.schema import Query, Mutation
 
 
-class Query(Query, graphene.ObjectType):  # Add your Query objects here
+class Query(Query, ObjectType):  # Add your Query objects here
     pass
 
 
-class Mutation(Mutation, graphene.ObjectType):  # Add your Mutation objects here
+class Mutation(Mutation, ObjectType):  # Add your Mutation objects here
     pass
 
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = Schema(query=Query, mutation=Mutation)

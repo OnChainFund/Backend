@@ -1,38 +1,77 @@
-import graphene
+from graphene import (
+    relay,
+    ObjectType,
+    Field,
+    List,
+    String,
+    InputObjectType,
+    Schema,
+    Mutation,
+)
 from graphene_django import DjangoObjectType
-from .models import Fund
+from graphene_django.filter import DjangoFilterConnectionField
+from ..models import Asset, Fund
 
 
-class FundType(DjangoObjectType):
+class AssetNode(DjangoObjectType):
+    class Meta:
+        model = Asset
+        fields = "__all__"
+        # interfaces = (relay.Node,)
+
+
+class FundNode(DjangoObjectType):
     class Meta:
         model = Fund
-        fields = "__all__"
+        fields = (
+            "name",
+            "comptroller_proxy",
+            "vault_proxy",
+            "denominated_asset",
+            "creator",
+        )
+        # filter_fields = {
+        #     "name": ["istartswith"],
+        #     "comptroller_proxy": ["exact"],
+        #     "denominated_asset": ["exact"],
+        #     "creator": ["exact"],
+        # }
+        # interfaces = (relay.Node,)
 
 
-class Query(graphene.ObjectType):
-    all_funds = graphene.List(FundType)
-    fund = graphene.Field(FundType, comptroller_proxy=graphene.String())
+class Query(ObjectType):
+    # asset = relay.Node.Field(AssetNode)
+    asset = Field(AssetNode, address=String())
+    all_assets = List(AssetNode)
+    fund = Field(FundNode, comptroller_proxy=String())
+    all_funds = List(FundNode)
+
+    def resolve_all_assets(root, info):
+        return Asset.objects.all()
 
     def resolve_all_funds(root, info):
         return Fund.objects.all()
+
+    def resolve_asset(self, info, address):
+        return Asset.objects.get(address=address)
 
     def resolve_fund(self, info, comptroller_proxy):
         return Fund.objects.get(comptroller_proxy=comptroller_proxy)
 
 
-class FundInput(graphene.InputObjectType):
-    comptroller_proxy = graphene.String()
-    vault_proxy = graphene.String()
-    denominated_asset = graphene.String()
-    creator = graphene.String()
-    name = graphene.String()
+class FundInput(InputObjectType):
+    comptroller_proxy = String()
+    vault_proxy = String()
+    denominated_asset = String()
+    creator = String()
+    name = String()
 
 
-class CreateFund(graphene.Mutation):
+class CreateFund(Mutation):
     class Arguments:
         fund_data = FundInput(required=True)
 
-    fund = graphene.Field(FundType)
+    fund = Field(FundNode)
 
     @staticmethod
     def mutate(root, info, fund_data=None):
@@ -47,11 +86,11 @@ class CreateFund(graphene.Mutation):
         return CreateFund(fund=fund_instance)
 
 
-class UpdateFund(graphene.Mutation):
+class UpdateFund(Mutation):
     class Arguments:
         fund_data = FundInput(required=True)
 
-    fund = graphene.Field(FundType)
+    fund = Field(FundNode)
 
     @staticmethod
     def mutate(root, info, fund_data=None):
@@ -69,11 +108,11 @@ class UpdateFund(graphene.Mutation):
         return UpdateFund(fund=None)
 
 
-class DeleteFund(graphene.Mutation):
+class DeleteFund(Mutation):
     class Arguments:
-        comptroller_proxy = graphene.String()
+        comptroller_proxy = String()
 
-    fund = graphene.Field(FundType)
+    fund = Field(FundNode)
 
     @staticmethod
     def mutate(root, info, comptroller_proxy):
@@ -82,10 +121,10 @@ class DeleteFund(graphene.Mutation):
         return None
 
 
-class Mutation(graphene.ObjectType):
+class Mutation(ObjectType):
     create_fund = CreateFund.Field()
     update_fund = UpdateFund.Field()
     delete_fund = DeleteFund.Field()
 
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = Schema(query=Query, mutation=Mutation)

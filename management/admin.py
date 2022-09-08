@@ -13,6 +13,9 @@ class LiquidityManagementAdmin(ImportExportModelAdmin):
         # "schedual",
         "round_time",
     )
+    readonly_fields = [
+        "schedual",
+    ]
     form = LiquidityManagementForm
 
 

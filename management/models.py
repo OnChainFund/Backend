@@ -4,6 +4,7 @@ from django.utils.functional import lazy as _
 from django_q.models import Schedule
 from fund.models import Asset
 from utils.constants import FTX_TRADING_PAIR_LIST
+from utils.utils import args_to_string
 from .fields import CustomDurationField
 
 
@@ -43,7 +44,13 @@ class LiquidityManagement(models.Model):
             func="management.tasks.manage_liquidity",
             name="LM:" + self.ftx_pair_name,
             repeats=-1,
-            args=[self.target_asset, self.denominated_asset, self.ftx_pair_name],
-            schedule_type=Schedule.DAILY,
+            args=args_to_string(
+                [
+                    self.target_asset.address,
+                    self.denominated_asset.address,
+                    self.ftx_pair_name,
+                ]
+            ),
+            schedule_type=Schedule.MINUTES,
         )
         super(LiquidityManagement, self).save(*args, **kwargs)

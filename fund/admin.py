@@ -6,15 +6,18 @@ from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 class AssetAdmin(ImportExportModelAdmin):
     list_display = (
         "name",
-        "comptroller_proxy",
-        "vault_proxy",
-        "creator",
-        "denominated_asset",
+        "address",
     )
 
 
 class FundAdmin(ImportExportModelAdmin):
-    pass
+    list_display = (
+        "name",
+        "denominated_asset",
+        "comptroller_proxy",
+        "vault_proxy",
+        "creator",
+    )
 
 
 admin.site.register(Asset, AssetAdmin)

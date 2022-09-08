@@ -19,7 +19,6 @@ def get_price_from_ftx(ftx_trading_pair: str) -> int:
 
 
 def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair: str):
-    print("managed liquidity")
     # 用 ftx api 獲取價格資料
     ftx_price = get_price_from_ftx(ftx_trading_pair)
     print(ftx_price)
@@ -86,4 +85,4 @@ def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair
     w3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 
-manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD", 1)
+manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD")
