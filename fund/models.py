@@ -13,11 +13,17 @@ class Asset(models.Model):
 
 class Fund(models.Model):
     # id = models.CharField(_(""), max_length=50)
-    comptroller_proxy = models.CharField(
-        max_length=100, unique=True, verbose_name="控制器代理", primary_key=True
+    vault_proxy = models.CharField(
+        max_length=100, verbose_name="金庫代理", primary_key=True, unique=True
     )
-    vault_proxy = models.CharField(max_length=100, verbose_name="金庫代理", unique=True)
+    comptroller_proxy = models.CharField(
+        max_length=100, unique=True, verbose_name="控制器代理"
+    )
+
     name = models.CharField(max_length=100, null=True, verbose_name="基金名稱", blank=True)
+    description = models.CharField(
+        max_length=100, verbose_name="基金簡介", null=True, blank=True
+    )
     creator = models.CharField(
         max_length=100, null=True, verbose_name="創建者", blank=True
     )
@@ -35,7 +41,8 @@ class Fund(models.Model):
 
 
 class Price(models.Model):
-    date = models.DateField(auto_now_add=True)
+    date = models.DateField(default=timezone.now())
+    price = models.FloatField(default=0)
     fund = models.ForeignKey(
         to=Fund,
         verbose_name="基金",
@@ -45,4 +52,7 @@ class Price(models.Model):
     )
 
     def __str__(self):
-        return self.fund.name + ":" + self.date
+        return self.fund.name + ":" + str(self.date)
+
+    class Meta:
+        unique_together = (("date", "fund"),)

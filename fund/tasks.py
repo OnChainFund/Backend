@@ -1,10 +1,10 @@
 from utils.utils import get_provider
 from contract.contracts.deployment.others.FundValueCalculator import FundValueCalculator
 from contract.contracts.deployment.others.Addresses import Addresses
-from .models import Price
+from fund.models import Fund, Price
 
 
-def get_price(vault_proxy: str, quote_asset: str):
+def get_price(vault_proxy: str, quote_asset: str = Addresses["USDT"]):
     w3 = get_provider()
     fund_value_calculator_contract = w3.eth.contract(
         Addresses["ocf"]["FundValueCalculator"],
@@ -28,15 +28,20 @@ def get_price(vault_proxy: str, quote_asset: str):
     return int(tx.hex()[2:], 16) / 1e18
 
 
-def add_price_to_fund():
+def add_price_to_fund(vault_proxy: str):
     # get price
+    price = get_price(
+        vault_proxy,
+        Addresses["USDT"],
+    )
+    print(price)
     # write price in model
+    Price.objects.create(fund=Fund.objects.get(vault_proxy=vault_proxy), price=price)
     pass
 
 
 print(
-    get_price(
+    add_price_to_fund(
         "0x02b7a6d41F929a2d09D6dd8aF5537c1d1fe2E678",
-        Addresses["USDT"],
     )
 )

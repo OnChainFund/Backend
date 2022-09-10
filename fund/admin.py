@@ -22,10 +22,7 @@ class FundAdmin(ImportExportModelAdmin):
 
 
 class PriceAdmin(ImportExportModelAdmin):
-    list_display = (
-        "date",
-        "fund",
-    )
+    list_display = ("date", "fund", "price")
 
 
 admin.site.register(Asset, AssetAdmin)

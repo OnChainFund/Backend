@@ -10,7 +10,7 @@ from graphene import (
 )
 from graphene_django import DjangoObjectType
 from graphene_django.filter import DjangoFilterConnectionField
-from ..models import Asset, Fund
+from ..models import Asset, Fund, Price
 
 
 class AssetNode(DjangoObjectType):
@@ -18,6 +18,12 @@ class AssetNode(DjangoObjectType):
         model = Asset
         fields = "__all__"
         # interfaces = (relay.Node,)
+
+
+class PriceNode(DjangoObjectType):
+    class Meta:
+        model = Price
+        fields = "__all__"
 
 
 class FundNode(DjangoObjectType):
@@ -29,6 +35,8 @@ class FundNode(DjangoObjectType):
             "vault_proxy",
             "denominated_asset",
             "creator",
+            "price",
+            "depositors",
         )
         # filter_fields = {
         #     "name": ["istartswith"],
@@ -43,17 +51,25 @@ class Query(ObjectType):
     # asset = relay.Node.Field(AssetNode)
     asset = Field(AssetNode, address=String())
     all_assets = List(AssetNode)
+    price = Field(PriceNode, address=String())
+    all_prices = List(PriceNode)
     fund = Field(FundNode, comptroller_proxy=String())
     all_funds = List(FundNode)
 
     def resolve_all_assets(root, info):
         return Asset.objects.all()
 
-    def resolve_all_funds(root, info):
-        return Fund.objects.all()
-
     def resolve_asset(self, info, address):
         return Asset.objects.get(address=address)
+
+    def resolve_all_prices(root, info):
+        return Price.objects.all()
+
+    def resolve_price(self, info, address):
+        return Price.objects.get(address=address)
+
+    def resolve_all_funds(root, info):
+        return Fund.objects.all()
 
     def resolve_fund(self, info, comptroller_proxy):
         return Fund.objects.get(comptroller_proxy=comptroller_proxy)
