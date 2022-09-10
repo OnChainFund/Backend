@@ -21,7 +21,6 @@ def get_price_from_ftx(ftx_trading_pair: str) -> int:
 def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair: str):
     # 用 ftx api 獲取價格資料
     ftx_price = get_price_from_ftx(ftx_trading_pair)
-    print(ftx_price)
     # 從 pangolin swap 獲取流動性資料
     # 獲取 pair address(pangolinFactory.getPair)
     w3 = get_provider()
@@ -85,4 +84,4 @@ def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair
     w3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 
-manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD")
+#manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD")

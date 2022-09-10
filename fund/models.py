@@ -1,5 +1,6 @@
 # cookbook/ingredients/models.py
 from django.db import models
+from django.utils import timezone
 
 
 class Asset(models.Model):
@@ -27,6 +28,21 @@ class Fund(models.Model):
         null=False,
         related_name="funds",
     )
+    depositors = models.PositiveIntegerField(verbose_name="投資者", default=0)
 
     def __str__(self):
         return self.name
+
+
+class Price(models.Model):
+    date = models.DateField(auto_now_add=True)
+    fund = models.ForeignKey(
+        to=Fund,
+        verbose_name="基金",
+        on_delete=models.CASCADE,
+        null=False,
+        related_name="price",
+    )
+
+    def __str__(self):
+        return self.fund.name + ":" + self.date

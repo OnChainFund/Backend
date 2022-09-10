@@ -51,6 +51,6 @@ class LiquidityManagement(models.Model):
                     self.ftx_pair_name,
                 ]
             ),
-            schedule_type=Schedule.MINUTES,
+            schedule_type=Schedule.HOURLY,
         )
         super(LiquidityManagement, self).save(*args, **kwargs)
