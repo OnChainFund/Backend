@@ -53,7 +53,7 @@ class Query(ObjectType):
     all_assets = List(AssetNode)
     price = Field(PriceNode, address=String())
     all_prices = List(PriceNode)
-    fund = Field(FundNode, comptroller_proxy=String())
+    fund = Field(FundNode, vault_proxy=String())
     all_funds = List(FundNode)
 
     def resolve_all_assets(root, info):
@@ -71,8 +71,8 @@ class Query(ObjectType):
     def resolve_all_funds(root, info):
         return Fund.objects.all()
 
-    def resolve_fund(self, info, comptroller_proxy):
-        return Fund.objects.get(comptroller_proxy=comptroller_proxy)
+    def resolve_fund(self, info, vault_proxy):
+        return Fund.objects.get(vault_proxy=vault_proxy)
 
 
 class FundInput(InputObjectType):
