@@ -27,8 +27,6 @@ INSTALLED_APPS = [
     "corsheaders",
     "import_export",  # import export admin
     "django_q",
-    "graphene_django",
-    "ninja",
     "contract",
     "fund",
     "management",
