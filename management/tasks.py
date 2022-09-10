@@ -63,7 +63,6 @@ def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair
 
     # 計算 swap input,output
     # swap
-    private_key = config("PRIVATE_KEY")
 
     txn = pangolin_router.functions.swapExactTokensForTokens(
         int(abs(amount)),
@@ -80,8 +79,8 @@ def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair
             "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
         }
     )
-    signed_txn = w3.eth.account.sign_transaction(txn, private_key=private_key)
+    signed_txn = w3.eth.account.sign_transaction(txn, private_key=config("PRIVATE_KEY"))
     w3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 
-#manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD")
+# manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD")
