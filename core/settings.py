@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "corsheaders",
     "import_export",  # import export admin
+    "strawberry.django",
     "django_q",
     "contract",
     "fund",
@@ -138,4 +139,9 @@ Q_CLUSTER = {
     "cpu_affinity": 1,
     "label": "Django Q",
     "orm": "default",
+}
+
+STRAWBERRY_DJANGO = {
+    "FIELD_DESCRIPTION_FROM_HELP_TEXT": True,
+    "TYPE_DESCRIPTION_FROM_MODEL_DOCSTRING": True,
 }
