@@ -11,6 +11,7 @@ class PriceFilter:
     id: auto
     date: auto
     gav: auto
+    gav_per_share: auto
     fund: "Fund"
 
 
@@ -57,6 +58,7 @@ class Price:
     id: auto
     date: auto
     gav: auto
+    gav_per_share: auto
     fund: "Fund"
 
 
