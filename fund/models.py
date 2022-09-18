@@ -42,7 +42,7 @@ class Price(models.Model):
     date = models.DateField(default=timezone.now())
     # price = models.FloatField(default=0)
     gav = models.FloatField(default=0)
-    gav_per_share = models.FloatField(default=0)
+    nav_per_share = models.FloatField(default=0)
     fund = models.ForeignKey(
         to=Fund,
         verbose_name="基金",
