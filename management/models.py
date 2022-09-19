@@ -1,3 +1,4 @@
+from django.utils import timezone
 from django.db import models
 from django.forms import ValidationError
 from django.utils.functional import lazy as _
@@ -6,6 +7,9 @@ from fund.models import Asset
 from utils.constants import FTX_TRADING_PAIR_LIST
 from utils.utils import args_to_string
 from .fields import CustomDurationField
+from django.utils.translation import gettext_lazy as _
+from django_jsonform.models.fields import JSONField
+from users.models import User
 
 
 class LiquidityManagement(models.Model):
@@ -54,3 +58,40 @@ class LiquidityManagement(models.Model):
             schedule_type=Schedule.HOURLY,
         )
         super(LiquidityManagement, self).save(*args, **kwargs)
+
+
+class Strategy(models.Model):
+    class StrategyStatus(models.TextChoices):
+        RUNNING = "RUN", _("Running")
+        PAUSED = "PAUSE", _("Paused")
+
+    title = models.TextField(verbose_name="標題", null=True, blank=True)
+    description = models.TextField(verbose_name="簡介", null=True, blank=True)
+    creator = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True)
+    status = models.CharField(
+        max_length=10, choices=StrategyStatus.choices, default=StrategyStatus.PAUSED
+    )
+    assets = models.ManyToManyField(to=Asset)
+
+
+class Weight(models.Model):
+    time = models.DateTimeField(auto_now_add=True)
+    WEIGHTS_SCHEMA = {
+        "type": "array",
+        "weight": {
+            "asset": "integer",
+            "ratio": "integer",
+        },
+    }
+
+    weights = JSONField(schema=WEIGHTS_SCHEMA)
+    strategy = models.ForeignKey(
+        to=Strategy, related_name="weights", on_delete=models.CASCADE
+    )
+    buffer = models.IntegerField()
+
+    def __str__(self):
+        return self.strategy.title + ":" + str(self.time)
+
+    class Meta:
+        unique_together = (("time", "strategy"),)

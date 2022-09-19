@@ -30,6 +30,7 @@ INSTALLED_APPS = [
     "import_export",  # import export admin
     "strawberry.django",
     "django_q",
+    "django_jsonform",
     "contract",
     "fund",
     "management",
@@ -75,10 +76,9 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-DATABASE_URL = config("DATABASE_URL")
 
 DATABASES = {
-    "default": dj_database_url.config(default=DATABASE_URL, conn_max_age=1800),
+    "default": dj_database_url.config(default=config("DATABASE_URL"), conn_max_age=1800),
 }
 # DATABASES = {
 #    "default": {

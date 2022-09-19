@@ -84,3 +84,5 @@ def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair
 
 
 # manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD")
+def calculate_weight():
+    pass

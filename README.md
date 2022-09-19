@@ -90,9 +90,9 @@ mutation deleteMutation{
 ```
 # run 
 // local db
-export DJANGO_SETTINGS_MODULE=core.settings_dev_local_db
+export DJANGO_SETTINGS_MODULE=core.settings_dev
 // product db
-export DJANGO_SETTINGS_MODULE=core.settings_dev_product_db
+export DJANGO_SETTINGS_MODULE=core.settings
 
 python manage.py runserver
 

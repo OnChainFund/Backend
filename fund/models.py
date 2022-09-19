@@ -25,7 +25,10 @@ class Fund(models.Model):
     name = models.CharField(max_length=100, null=True, verbose_name="基金名稱", blank=True)
     description = models.TextField(verbose_name="基金簡介", null=True, blank=True)
     creator = models.ForeignKey(
-        to=User, related_name="created_funds", verbose_name="創建者", on_delete=models.CASCADE
+        to=User,
+        related_name="created_funds",
+        verbose_name="創建者",
+        on_delete=models.CASCADE,
     )
     denominated_asset = models.ForeignKey(
         to=Asset,
@@ -46,8 +49,7 @@ class Fund(models.Model):
 
 
 class Price(models.Model):
-    date = models.DateField(default=timezone.now())
-    # price = models.FloatField(default=0)
+    date = models.DateField(auto_now_add=True)
     gav = models.FloatField(default=0)
     nav_per_share = models.FloatField(default=0)
     fund = models.ForeignKey(

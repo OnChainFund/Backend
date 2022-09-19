@@ -1,3 +1,4 @@
+from math import floor
 import pandas as pd
 import requests
 from collections import OrderedDict
@@ -13,13 +14,13 @@ from model import *
 from datetime import datetime
 
 url = "https://ftx.com/api"
-out_layer = "origin"
-check_path = "./fund/asset_weight/checkpoints/model_weight.tar"
+out_layer = "softmax"
+check_path = "./management/asset_weight/checkpoints/model_weight.tar"
 out_path = "./Data/"
 target = [
     "BTC/USD",
     "ETH/USD",
-    "USDT/USD",
+    # "USDT/USD",
     "AAVE/USD",
     "AAPL/USD",
     "TWTR/USD",
@@ -61,7 +62,7 @@ def get_weights():
     ###weight_generation
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = CNNTransformer(
-        ".fund/asset_weight/checkpoints/",
+        ".management/asset_weight/checkpoints/",
         lookback=360,
         num_of_assets=len(target),
         out=out_layer,
@@ -145,4 +146,6 @@ def prep_dataloader(path, lookback=720, holding=120, batch_size=32):
 
 if __name__ == "__main__":
     weight = get_weights()
-    print(weight.iloc[-1, :].to_numpy())
+    weights = weight.iloc[-1, :].to_numpy()
+    for i in weights:
+        print(floor(i * 100000))
