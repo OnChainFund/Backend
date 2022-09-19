@@ -6,6 +6,11 @@
   },
   {
     "model": "fund.asset",
+    "pk": "0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4",
+    "fields": { "name": "USDT" }
+  },
+  {
+    "model": "fund.asset",
     "pk": "0xbC9052c594261Acc1a26271567bDb72A8A1Acac9",
     "fields": { "name": "WBTC" }
   },
