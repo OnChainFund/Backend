@@ -17,7 +17,7 @@ class FundAdmin(ImportExportModelAdmin):
         "comptroller_proxy",
         "vault_proxy",
         "creator",
-        "depositors",
+        # "depositors",
     )
 
 

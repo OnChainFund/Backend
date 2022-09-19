@@ -14,10 +14,9 @@ SECRET_KEY = config("SECRET_KEY")
 DEBUG = True
 ALLOWED_HOSTS = ["ocf-backend.up.railway.app"]
 CSRF_TRUSTED_ORIGINS = ["https://ocf-backend.up.railway.app"]
-CORS_ALLOWED_ORIGINS = [
-config("FRONTEND_DOMAIN")
-]
+CORS_ALLOWED_ORIGINS = [config("FRONTEND_DOMAIN")]
 
+AUTH_USER_MODEL = "users.User"
 # Application definition
 
 INSTALLED_APPS = [
@@ -34,8 +33,8 @@ INSTALLED_APPS = [
     "contract",
     "fund",
     "management",
-    "schedual",
     "try",
+    "users",
     "utils",
 ]
 

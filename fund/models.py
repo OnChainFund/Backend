@@ -1,6 +1,8 @@
 # cookbook/ingredients/models.py
+from tkinter import CASCADE
 from django.db import models
 from django.utils import timezone
+from users.models import User
 
 
 class Asset(models.Model):
@@ -22,8 +24,8 @@ class Fund(models.Model):
 
     name = models.CharField(max_length=100, null=True, verbose_name="基金名稱", blank=True)
     description = models.TextField(verbose_name="基金簡介", null=True, blank=True)
-    creator = models.CharField(
-        max_length=100, null=True, verbose_name="創建者", blank=True
+    creator = models.ForeignKey(
+        to=User, related_name="created_funds", verbose_name="創建者", on_delete=models.CASCADE
     )
     denominated_asset = models.ForeignKey(
         to=Asset,
@@ -32,7 +34,12 @@ class Fund(models.Model):
         null=False,
         related_name="funds",
     )
-    depositors = models.PositiveIntegerField(verbose_name="投資者", default=0)
+    depositors = models.ManyToManyField(
+        to=User, related_name="invested_funds", verbose_name="投資者"
+    )
+    # depositor = models.ForeignKey
+    class Meta:
+        get_latest_by = "name"
 
     def __str__(self):
         return self.name

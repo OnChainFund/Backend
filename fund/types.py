@@ -4,6 +4,7 @@ from typing import List
 from django.contrib.auth import get_user_model
 import strawberry_django
 from . import models
+from users import models as user_models
 
 # filters
 @strawberry_django.filters.filter(models.Price, lookups=True)
@@ -33,6 +34,14 @@ class AssetFilter:
     funds: FundFilter
 
 
+@strawberry_django.filters.filter(get_user_model(), lookups=True)
+class UserFilter:
+    username: auto
+    address: auto
+    email: auto
+    funds: FundFilter
+
+
 # order
 @strawberry_django.ordering.order(models.Price)
 class PriceOrder:
@@ -49,6 +58,14 @@ class FundOrder:
 @strawberry_django.ordering.order(models.Asset)
 class AssetOrder:
     name: auto
+    funds: FundOrder
+
+
+@strawberry_django.ordering.order(get_user_model())
+class UserOrder:
+    username: auto
+    address: auto
+    email: auto
     funds: FundOrder
 
 
@@ -85,8 +102,10 @@ class Asset:
 class User:
     id: auto
     username: auto
+    address: auto
     password: auto
     email: auto
+    funds: List["Fund"]
 
 
 # input types
@@ -110,6 +129,7 @@ class AssetInput:
 @strawberry_django.input(get_user_model())
 class UserInput:
     username: auto
+    address: auto
     password: auto
     email: auto
 

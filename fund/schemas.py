@@ -20,6 +20,8 @@ from .types import (
 
 @strawberry.type
 class Query:
+    user: User = strawberry_django.field()
+    users: List[User] = strawberry_django.field()
     fund: Fund = strawberry_django.field()
     funds: List[Fund] = strawberry_django.field()
     asset: Asset = strawberry_django.field()
