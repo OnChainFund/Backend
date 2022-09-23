@@ -5,6 +5,9 @@ import django
 from django.utils.encoding import force_str
 import dj_database_url
 
+# from siwe_auth.custom_groups.erc721 import ERC721OwnerManager
+# from siwe_auth.custom_groups.erc20 import ERC20OwnerManager
+
 django.utils.encoding.force_text = force_str
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -16,12 +19,13 @@ ALLOWED_HOSTS = ["ocf-backend.up.railway.app"]
 CSRF_TRUSTED_ORIGINS = ["https://ocf-backend.up.railway.app"]
 CORS_ALLOWED_ORIGINS = [config("FRONTEND_DOMAIN")]
 
-AUTH_USER_MODEL = "users.User"
+# AUTH_USER_MODEL = "users.User"
 # Application definition
 
 INSTALLED_APPS = [
     "admin_interface",
     "colorfield",
+    "siwe_auth.apps.SiweAuthConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -37,7 +41,7 @@ INSTALLED_APPS = [
     "fund",
     "management",
     "try",
-    "users",
+    # "users",
     "utils",
 ]
 
@@ -155,3 +159,35 @@ STRAWBERRY_DJANGO = {
     "FIELD_DESCRIPTION_FROM_HELP_TEXT": True,
     "TYPE_DESCRIPTION_FROM_MODEL_DOCSTRING": True,
 }
+
+
+# Django Sign-In with Ethereum Auth Settings
+AUTH_USER_MODEL = "siwe_auth.Wallet"
+AUTHENTICATION_BACKENDS = ["siwe_auth.backend.SiweBackend"]
+LOGIN_URL = "/"
+SESSION_COOKIE_AGE = 3 * 60 * 60
+CREATE_GROUPS_ON_AUTHN = False  # defaults to False
+CREATE_ENS_PROFILE_ON_AUTHN = True  # defaults to True
+CUSTOM_GROUPS = [
+    # (
+    #     "ens_owners",
+    #     ERC721OwnerManager(
+    #         config={"contract": "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85"}
+    #     ),
+    # ),
+    # (
+    #     "bayc_owners",
+    #     ERC721OwnerManager(
+    #         config={"contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"}
+    #     ),
+    # ),
+    # (
+    #     "shib_owners",
+    #     ERC20OwnerManager(
+    #         config={"contract": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce"}
+    #     ),
+    # ),
+]  # See "Group Plugins" section
+PROVIDER = os.environ.get(
+    "SIWE_AUTH_PROVIDER", "https://api.avax-test.network/ext/bc/C/rpc"
+)
