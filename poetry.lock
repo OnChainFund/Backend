@@ -408,21 +408,6 @@ optional = false
 python-versions = ">=3.4"
 
 [[package]]
-name = "django-siwe-auth"
-version = "0.3.2"
-description = "Custom Django authentication backend using Sign-In with Ethereum (EIP-4361) with a custom wallet user model."
-category = "main"
-optional = false
-python-versions = ">=3.8,<4.0"
-
-[package.dependencies]
-Django = ">=4.0.1,<5.0.0"
-django-ratelimit = ">=3.0.1,<4.0.0"
-pytz = ">=2021.3,<2022.0"
-siwe = ">=1.0.0,<2.0.0"
-web3 = ">=5.26.0,<6.0.0"
-
-[[package]]
 name = "djangorestframework"
 version = "3.13.1"
 description = "Web APIs for Django, made easy."
@@ -1323,7 +1308,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "665915b5ccbfd1d9d1d52af980627e630ff69fa4f73a48ea284a9d06f4cef4b4"
+content-hash = "08b7d37cf45a3d6737176a34df4df8f61ee0379c8d89c18b483db2053ae849a8"
 
 [metadata.files]
 abnf = [
@@ -1633,10 +1618,6 @@ django-q = [
 django-ratelimit = [
     {file = "django-ratelimit-3.0.1.tar.gz", hash = "sha256:73223d860abd5c5d7b9a807fabb39a6220068129b514be8d78044b52607ab154"},
     {file = "django_ratelimit-3.0.1-py2.py3-none-any.whl", hash = "sha256:857e797f23de948b204a31dba9d88aea3ce731b7a5d926d0240c772e19b5486f"},
-]
-django-siwe-auth = [
-    {file = "django-siwe-auth-0.3.2.tar.gz", hash = "sha256:e1529a8f51f52d521d9c2f751981a2f4c6f9fc741c43b310b473e842b6dfd444"},
-    {file = "django_siwe_auth-0.3.2-py3-none-any.whl", hash = "sha256:6b473ed5c452c59a85b3062185f4d6e62b4c1f0f6eb2c0bee30569dda26e01e0"},
 ]
 djangorestframework = [
     {file = "djangorestframework-3.13.1-py3-none-any.whl", hash = "sha256:24c4bf58ed7e85d1fe4ba250ab2da926d263cd57d64b03e8dcef0ac683f8b1aa"},
