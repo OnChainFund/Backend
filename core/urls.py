@@ -3,7 +3,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path
 from strawberry.django.views import AsyncGraphQLView
-from fund.schemas import schema
+from .schemas import schema
 
 urlpatterns = [
     # path("api/", api.urls),

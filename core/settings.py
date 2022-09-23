@@ -20,6 +20,8 @@ AUTH_USER_MODEL = "users.User"
 # Application definition
 
 INSTALLED_APPS = [
+    "admin_interface",
+    "colorfield",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -76,9 +78,10 @@ WSGI_APPLICATION = "core.wsgi.application"
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 
-
 DATABASES = {
-    "default": dj_database_url.config(default=config("DATABASE_URL"), conn_max_age=1800),
+    "default": dj_database_url.config(
+        default=config("DATABASE_URL"), conn_max_age=1800
+    ),
 }
 # DATABASES = {
 #    "default": {
@@ -123,13 +126,17 @@ LANGUAGES = (("en", "English"), ("zh-Hant", "Traditional chinese"))
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
+# admin interface
 X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 STATIC_URL = "static/"
 STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+MEDIA_URL = "media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 Q_CLUSTER = {
     "name": "ocf_backend",

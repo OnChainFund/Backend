@@ -11,6 +11,9 @@ DATABASES = {
         default=config("DEV_DATABASE_URL"), conn_max_age=1800
     ),
 }
+
+INSTALLED_APPS.append("test_app")
+
 CORS_ALLOWED_ORIGINS = [
     "https://example.com",
     "https://sub.example.com",

@@ -72,6 +72,7 @@ class Strategy(models.Model):
         max_length=10, choices=StrategyStatus.choices, default=StrategyStatus.PAUSED
     )
     assets = models.ManyToManyField(to=Asset)
+    model = models.FileField()
 
 
 class Weight(models.Model):

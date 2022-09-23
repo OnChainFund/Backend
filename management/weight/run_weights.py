@@ -1,22 +1,22 @@
 from math import floor
+import os
+from django.conf import settings
 import pandas as pd
+from psycopg2 import Timestamp
 import requests
 from collections import OrderedDict
-
+from pathlib import Path
+from django.core.files import File
 import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader
-
-# from preprocess import *
-# from torch_dataset import *
 from tqdm import tqdm
-from model import *
+from management.weight.model import *
 from datetime import datetime
 
 url = "https://ftx.com/api"
 out_layer = "origin"
-check_path = "./management/asset_weight/checkpoints/model_weight.tar"
-out_path = "./Data/"
+check_path = os.path.join(settings.MEDIA_ROOT, "checkpoints/model_weight.tar")
 target = [
     "BTC/USD",
     "ETH/USD",
@@ -34,7 +34,7 @@ resolution = 3600  # per hour
 
 ## Start time
 ####
-def get_weights():
+def get_weights(time: Timestamp, resolution: int) -> list:
     now = pd.Timestamp.now().round("60min").to_pydatetime()
 
     now = int(datetime.timestamp(now))
@@ -62,7 +62,7 @@ def get_weights():
     ###weight_generation
     device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
     model = CNNTransformer(
-        ".management/asset_weight/checkpoints/",
+        os.path.join(settings.MEDIA_ROOT, "checkpoints/"),
         lookback=360,
         num_of_assets=len(target),
         out=out_layer,
@@ -144,8 +144,10 @@ def prep_dataloader(path, lookback=720, holding=120, batch_size=32):
     return dataloader
 
 
-if __name__ == "__main__":
-    weight = get_weights()
-    weights = weight.iloc[-1, :].to_numpy()
-    for i in weights:
-        print(floor(i * 100000))
+now = pd.Timestamp.now().round("60min").to_pydatetime()
+now = int(datetime.timestamp(now))
+print(now)
+weight = get_weights(now, 3600)
+weights = weight.iloc[-1, :].to_numpy()
+for i in weights:
+    print(floor(i * 100000))
