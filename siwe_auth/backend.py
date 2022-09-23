@@ -19,9 +19,8 @@ from siwe.siwe import (
     InvalidSignature,
 )
 
-from siwe_auth.custom_groups.group_manager import GroupManager
-from .models import Wallet
-from siwe_auth.models import Nonce
+from .custom_groups.group_manager import GroupManager
+from .models import Wallet, Nonce
 
 
 def _nonce_is_valid(nonce: str) -> bool:
@@ -73,9 +72,8 @@ class SiweBackend(BaseBackend):
         if getattr(settings, "CREATE_ENS_PROFILE_ON_AUTHN", True):
             ens_profile = ENSProfile(ethereum_address=siwe_message.address, w3=w3)
         else:
-            ens_profile = ENSProfile.__new__(
-                ENSProfile
-            )  # blank ENSProfile, skipping __init__ constructor
+            ens_profile = ENSProfile.__new__(ENSProfile) # blank ENSProfile, skipping __init__ constructor
+
 
         # Message and nonce has been validated. Authentication complete. Continue with authorization/other.
         now = datetime.datetime.now(tz=pytz.UTC)

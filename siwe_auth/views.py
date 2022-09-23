@@ -16,12 +16,11 @@ from django.views.decorators.http import require_http_methods
 from ratelimit.decorators import ratelimit
 from siwe.siwe import SiweMessage
 
-from siwe_auth.custom_groups.group_manager import GroupManager
-from siwe_auth.models import Nonce
-from .models import Wallet
+from .custom_groups.group_manager import GroupManager
+from .models import Nonce, Wallet
 
 
-@ratelimit(key="ip", rate="5/m")
+@ratelimit(key='ip', rate='5/m')
 @require_http_methods(["POST"])
 def login(request):
     body = json.loads(request.body)
@@ -29,7 +28,7 @@ def login(request):
         "siwe_message": SiweMessage(
             message=_dict_camel_case_to_snake_case(body["message"])
         ),
-        "signature": body["signature"],
+        "signature": body["signature"]
     }
     wallet = authenticate(request, **auth_kwargs)
     if wallet is not None:
@@ -54,14 +53,14 @@ def _check_groups(wallet: Wallet):
             wallet.groups.remove(name)
 
 
-@ratelimit(key="ip", rate="5/m")
+@ratelimit(key='ip', rate='5/m')
 @require_http_methods(["POST"])
 def logout(request):
     auth_logout(request)
     return redirect("/")
 
 
-@ratelimit(key="ip", rate="5/m")
+@ratelimit(key='ip', rate='5/m')
 @require_http_methods(["GET"])
 def nonce(request):
     now = datetime.now(tz=pytz.UTC)
@@ -74,8 +73,12 @@ def nonce(request):
 
 
 def _dict_camel_case_to_snake_case(data: dict) -> dict:
-    """Converts keys in dictionary from camel case to snake case"""
-    return {re.sub(r"(?<!^)(?=[A-Z])", "_", k).lower(): v for k, v in data.items()}
+    """Converts keys in dictionary from camel case to snake case
+    """
+    return {
+        re.sub(r"(?<!^)(?=[A-Z])", "_", k).lower(): v
+        for k, v in data.items()
+    }
 
 
 def _scrub_nonce():

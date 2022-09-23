@@ -12,7 +12,7 @@ DATABASES = {
     ),
 }
 
-INSTALLED_APPS.append("test_app")
+INSTALLED_APPS.append("try")
 
 CORS_ALLOWED_ORIGINS = [
     "https://example.com",
