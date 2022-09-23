@@ -37,7 +37,7 @@ class WalletManager(BaseUserManager):
         """
         user = self.create_user(ethereum_address=ethereum_address)
 
-        user.set_password(user.password)
+        user.set_password(password)
         user.is_admin = True
         user.is_superuser = True
         user.save(using=self._db)

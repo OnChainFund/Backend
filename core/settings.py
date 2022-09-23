@@ -26,6 +26,7 @@ INSTALLED_APPS = [
     "management",
     "admin_interface",
     "colorfield",
+    #"siwe_auth.apps.SiweAuthConfig",
     "siwe_auth",
     "django.contrib.admin",
     "django.contrib.auth",
