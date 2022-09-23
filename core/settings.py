@@ -163,7 +163,10 @@ STRAWBERRY_DJANGO = {
 
 # Django Sign-In with Ethereum Auth Settings
 AUTH_USER_MODEL = "siwe_auth.Wallet"
-AUTHENTICATION_BACKENDS = ["siwe_auth.backend.SiweBackend"]
+AUTHENTICATION_BACKENDS = [
+    "django.contrib.auth.backends.ModelBackend",
+    "siwe_auth.backend.SiweBackend",
+]
 LOGIN_URL = "/"
 SESSION_COOKIE_AGE = 3 * 60 * 60
 CREATE_GROUPS_ON_AUTHN = False  # defaults to False
