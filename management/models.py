@@ -9,7 +9,7 @@ from utils.utils import args_to_string
 from .fields import CustomDurationField
 from django.utils.translation import gettext_lazy as _
 from django_jsonform.models.fields import JSONField
-from users.models import User
+from django.conf import settings
 
 
 class LiquidityManagement(models.Model):
@@ -67,7 +67,9 @@ class Strategy(models.Model):
 
     title = models.TextField(verbose_name="標題", null=True, blank=True)
     description = models.TextField(verbose_name="簡介", null=True, blank=True)
-    creator = models.ForeignKey(to=User, on_delete=models.CASCADE, null=True)
+    creator = models.ForeignKey(
+        to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True
+    )
     status = models.CharField(
         max_length=10, choices=StrategyStatus.choices, default=StrategyStatus.PAUSED
     )

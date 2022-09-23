@@ -23,6 +23,7 @@ CORS_ALLOWED_ORIGINS = [config("FRONTEND_DOMAIN")]
 # Application definition
 
 INSTALLED_APPS = [
+    "management",
     "admin_interface",
     "colorfield",
     "siwe_auth.apps.SiweAuthConfig",
@@ -39,9 +40,8 @@ INSTALLED_APPS = [
     "django_jsonform",
     "contract",
     "fund",
-    "management",
     "try",
-    # "users",
+    "users",
     "utils",
 ]
 

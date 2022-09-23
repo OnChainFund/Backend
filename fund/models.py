@@ -2,8 +2,7 @@
 from tkinter import CASCADE
 from django.db import models
 from django.utils import timezone
-from users.models import User
-
+from django.conf import settings
 
 class Asset(models.Model):
     address = models.CharField(max_length=100, unique=True, primary_key=True)
@@ -25,7 +24,7 @@ class Fund(models.Model):
     name = models.CharField(max_length=100, null=True, verbose_name="基金名稱", blank=True)
     description = models.TextField(verbose_name="基金簡介", null=True, blank=True)
     creator = models.ForeignKey(
-        to=User,
+        to=settings.AUTH_USER_MODEL,
         related_name="created_funds",
         verbose_name="創建者",
         on_delete=models.CASCADE,
@@ -38,7 +37,7 @@ class Fund(models.Model):
         related_name="funds",
     )
     depositors = models.ManyToManyField(
-        to=User, related_name="invested_funds", verbose_name="投資者"
+        to=settings.AUTH_USER_MODEL, related_name="invested_funds", verbose_name="投資者"
     )
     # depositor = models.ForeignKey
     class Meta:
