@@ -89,6 +89,11 @@ class Fund:
     depositors: auto
     price: List["Price"]
 
+    @strawberry_django.field
+    def depositor_count(self) -> int:
+        return self.depositors.through.objects.count() 
+
+
 
 @strawberry.django.type(models.Asset)
 class Asset:

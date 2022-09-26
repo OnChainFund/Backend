@@ -4,9 +4,12 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 
+
 class Asset(models.Model):
     address = models.CharField(max_length=100, unique=True, primary_key=True)
     name = models.CharField(max_length=100, unique=True)
+    price_feed = models.CharField(max_length=100, null=True)
+    price_feed_is_mocked = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

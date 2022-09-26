@@ -63,5 +63,55 @@
     "model": "fund.asset",
     "pk": "0x5FbDB2315678afecb367f032d93F642f64180aa3",
     "fields": { "name": "TWTR" }
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "BTCDOWN" },
+    "pk": "0xC8d3d3b794F9aCc39aec53c389484fC32eaf149c"
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "ETHDOWN" },
+    "pk": "0x41B091d0b7cC4396401A5f65189Fa55167B944F9"
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "USDTDOWN" },
+    "pk": "0x9a13BE5e8D310C07BF4dBE7Dc4CF5b699AA5430a"
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "AAVEDOWN" },
+    "pk": "0x54025679199DC617f0BC77E11448c584c4C74D97"
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "AAPLDOWN" },
+    "pk": "0xD3a0CB2B751efbBd09ACcD8bC930eA65BFaB8cd8"
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "TWTRDOWN" },
+    "pk": "0x174E0b98De1362D57563EBdF0c4A695869f453Bf"
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "GLDDOWN" },
+    "pk": "0x1779AA9AB2D76B62416849caB0a3f6ba1B098776"
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "TSLADOWN" },
+    "pk": "0xE02340Cb4D307E9Ba9227c9Ca9719Bd04Bde444C"
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "LINKDOWN" },
+    "pk": "0xcc074927Eb35C90a66153A2dfe0ae7BD592a2537"
+  },
+  {
+    "model": "fund.asset",
+    "fields": { "name": "AVAXDOWN" },
+    "pk": "0xd5A3c39344a71Fa403e7E023008c288Bf5061670"
   }
 ]

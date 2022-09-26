@@ -4,19 +4,16 @@ from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 
 
 class AssetAdmin(ImportExportModelAdmin):
-    list_display = (
-        "name",
-        "address",
-    )
+    list_display = ("name", "address", "price_feed_is_mocked")
 
 
 class FundAdmin(ImportExportModelAdmin):
     list_display = (
         "name",
         "denominated_asset",
-        "comptroller_proxy",
-        "vault_proxy",
-        "creator",
+        # "comptroller_proxy",
+        # "vault_proxy",
+        # "creator",
         # "depositors",
     )
 
