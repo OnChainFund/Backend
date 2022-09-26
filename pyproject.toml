@@ -30,7 +30,8 @@ Django = "4.1"
 abnf = "1.1.1"
 django-ratelimit = "3.0.1"
 siwe = "1.0.1"
-multicall = "^0.5.1"
+eth-retry = "^0.1.8"
+django-ethereum-events = "^4.2.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
