@@ -2,6 +2,7 @@ from ast import Add
 from datetime import timezone
 import math
 from decouple import config
+from management.web3.utils import update_oracle_answer
 
 from utils.data_source.ftx.client import FtxClient
 from utils.utils import get_provider
@@ -16,6 +17,17 @@ def get_price_from_ftx(ftx_trading_pair: str) -> int:
     ftx_client = FtxClient()
     data = ftx_client.get_price(ftx_trading_pair)
     return data
+
+
+def manage_price(ftx_trading_pair: str, mock_v3_aggregator_address: str):
+    # 用 ftx api 獲取價格資料
+    print("ftx_trading_pair")
+    print(ftx_trading_pair)
+    print("mock_v3_aggregator_address")
+    print(mock_v3_aggregator_address)
+
+    ftx_price = int((get_price_from_ftx(ftx_trading_pair)) * 1e18)
+    update_oracle_answer(ftx_price, mock_v3_aggregator_address)
 
 
 def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair: str):
@@ -83,13 +95,16 @@ def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair
     w3.eth.sendRawTransaction(signed_txn.rawTransaction)
 
 
-# manage_liquidity(Addresses["WETH"], Addresses["USDT"], "ETH/USD")
 def calculate_weight():
     pass
+
 
 def swap_fund_asset():
     pass
 
+
 def rebalance():
     pass
 
+
+manage_price("TSLA/USD", "0x58B4b7949D344d3357F953011B98FdB6C128D174")

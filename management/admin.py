@@ -12,9 +12,12 @@ class LiquidityManagementAdmin(ImportExportModelAdmin):
         "denominated_asset",
         # "schedual",
         "round_time",
+        "update_price_pangolin",
+        "update_price_mock_v3_aggregator",
     )
     readonly_fields = [
-        "schedual",
+        "update_price_pangolin_schedual",
+        "update_price_mock_v3_aggregator_schedual",
     ]
     form = LiquidityManagementForm
 

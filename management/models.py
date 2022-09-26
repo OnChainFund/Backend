@@ -29,9 +29,23 @@ class LiquidityManagement(models.Model):
         null=False,
         related_name="denominated_asset",
     )
-    schedual = models.OneToOneField(Schedule, on_delete=models.CASCADE, null=True)
+
     # round_time = models.DurationField(null=True)
     round_time = CustomDurationField(null=True)
+    update_price_pangolin = models.BooleanField(default=True)
+    update_price_mock_v3_aggregator = models.BooleanField(default=False)
+    update_price_pangolin_schedual = models.OneToOneField(
+        Schedule,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="update_price_pangolin_schedual",
+    )
+    update_price_mock_v3_aggregator_schedual = models.OneToOneField(
+        Schedule,
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="update_price_mock_v3_aggregator_schedual",
+    )
 
     def __str__(self):
         return self.target_asset.name + "/" + self.denominated_asset.name
@@ -44,19 +58,48 @@ class LiquidityManagement(models.Model):
                 code="invalid",
                 params={"value": self.ftx_pair_name},
             )
-        self.schedual = Schedule.objects.create(
-            func="management.tasks.manage_liquidity",
-            name="LM:" + self.ftx_pair_name,
-            repeats=-1,
-            args=args_to_string(
-                [
-                    self.target_asset.address,
-                    self.denominated_asset.address,
-                    self.ftx_pair_name,
-                ]
-            ),
-            schedule_type=Schedule.HOURLY,
-        )
+        if self.update_price_pangolin:
+            if self.update_price_pangolin_schedual:
+                self.update_price_pangolin_schedual.delete()
+            self.update_price_pangolin_schedual = Schedule.objects.create(
+                func="management.tasks.manage_liquidity",
+                name="LM:" + self.ftx_pair_name,
+                repeats=-1,
+                args=args_to_string(
+                    [
+                        self.target_asset.address,
+                        self.denominated_asset.address,
+                        self.ftx_pair_name,
+                    ]
+                ),
+                schedule_type=Schedule.HOURLY,
+            )
+        if self.update_price_mock_v3_aggregator:
+            if not self.target_asset.price_feed_is_mocked:
+
+                raise ValidationError(
+                    _("The Price Feed is in Oracle, can't be change by user"),
+                    code="invalid",
+                    params={"value": self.ftx_pair_name},
+                )
+
+            if not self.target_asset.price_feed:
+                raise ValidationError(
+                    _("The price feed of target asset DoesNotExist"),
+                    code="invalid",
+                    params={"value": self.ftx_pair_name},
+                )
+
+            if self.update_price_mock_v3_aggregator_schedual:
+                self.update_price_mock_v3_aggregator_schedual.delete()
+
+            self.update_price_mock_v3_aggregator_schedual = Schedule.objects.create(
+                func="management.tasks.manage_price",
+                name="PM:" + self.target_asset.name,
+                repeats=-1,
+                args=args_to_string([self.ftx_pair_name, self.target_asset.price_feed]),
+                schedule_type=Schedule.HOURLY,
+            )
         super(LiquidityManagement, self).save(*args, **kwargs)
 
 
