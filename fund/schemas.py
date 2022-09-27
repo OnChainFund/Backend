@@ -6,7 +6,6 @@ import strawberry_django
 import strawberry_django.auth as auth
 from strawberry_django import mutations
 from .types import (
-    FundPrice,
     Fund,
     Asset,
     FundInput,

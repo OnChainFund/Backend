@@ -51,7 +51,7 @@ class Fund(models.Model):
 
 
 class FundPrice(models.Model):
-    date = models.DateField(auto_now_add=True)
+    time = models.DateTimeField(auto_now_add=True)
     gav = models.FloatField(default=0)
     nav_per_share = models.FloatField(default=0)
     fund = models.ForeignKey(
@@ -66,4 +66,22 @@ class FundPrice(models.Model):
         return self.fund.name + ":" + str(self.date)
 
     class Meta:
-        unique_together = (("date", "fund"),)
+        unique_together = (("time", "fund"),)
+
+
+class AssetPrice(models.Model):
+    time = models.DateTimeField(auto_now_add=True)
+    price = models.FloatField()
+    asset = models.ForeignKey(
+        to=Asset,
+        verbose_name="資產",
+        on_delete=models.CASCADE,
+        null=False,
+        related_name="price",
+    )
+
+    def __str__(self):
+        return self.asset.name + ":" + str(self.time)
+
+    class Meta:
+        unique_together = (("time", "asset"),)

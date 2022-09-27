@@ -9,7 +9,7 @@ from . import models
 @strawberry_django.filters.filter(models.FundPrice, lookups=True)
 class FundPriceFilter:
     id: auto
-    date: auto
+    time: auto
     gav: auto
     nav_per_share: auto
     fund: "Fund"
@@ -26,10 +26,19 @@ class FundFilter:
     price: FundPriceFilter
 
 
+@strawberry_django.filters.filter(models.AssetPrice, lookups=True)
+class AssetPriceFilter:
+    id: auto
+    time: auto
+    price: auto
+    asset: "Asset"
+
+
 @strawberry_django.filters.filter(models.Asset, lookups=True)
 class AssetFilter:
     address: auto
     name: auto
+    price: AssetPriceFilter
     funds: FundFilter
 
 
@@ -54,9 +63,16 @@ class FundOrder:
     price: FundPriceOrder
 
 
+@strawberry_django.ordering.order(models.AssetPrice)
+class AssetPriceOrder:
+    id: auto
+    asset: "Asset"
+
+
 @strawberry_django.ordering.order(models.Asset)
 class AssetOrder:
     name: auto
+    price: AssetPriceOrder
     funds: FundOrder
 
 
@@ -72,7 +88,7 @@ class UserOrder:
 @strawberry.django.type(models.FundPrice)
 class FundPrice:
     id: auto
-    date: auto
+    time: auto
     gav: auto
     nav_per_share: auto
     fund: "Fund"
@@ -94,10 +110,19 @@ class Fund:
         return self.depositors.through.objects.count()
 
 
+@strawberry.django.type(models.AssetPrice)
+class AssetPrice:
+    id: auto
+    time: auto
+    price: auto
+    asset: "Asset"
+
+
 @strawberry.django.type(models.Asset)
 class Asset:
     address: auto
     name: auto
+    price: List["AssetPrice"]
     funds: List["Fund"]
 
 
