@@ -5,7 +5,7 @@ from contract.contracts.deployment.others.chain_link.MockV3Aggregator import (
 from utils.utils import get_provider
 from decouple import config
 from typing import Union, List
-from multicall import Call, Multicall
+from utils.multicall import Call, Multicall
 
 Num = Union[int, float]
 

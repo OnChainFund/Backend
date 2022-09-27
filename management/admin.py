@@ -1,11 +1,11 @@
 from django.contrib import admin
 
-from management.forms import LiquidityManagementForm, StrategyForm
-from .models import LiquidityManagement, Strategy, Weight
+from management.forms import PriceManagementForm, StrategyForm
+from .models import PriceManagement, Strategy, Weight
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 
 
-class LiquidityManagementAdmin(ImportExportModelAdmin):
+class PriceManagementAdmin(ImportExportModelAdmin):
     list_display = (
         "ftx_pair_name",
         "target_asset",
@@ -19,7 +19,7 @@ class LiquidityManagementAdmin(ImportExportModelAdmin):
         "update_price_pangolin_schedual",
         "update_price_mock_v3_aggregator_schedual",
     ]
-    form = LiquidityManagementForm
+    form = PriceManagementForm
 
 
 class StrategyAdmin(ImportExportModelAdmin):
@@ -34,6 +34,6 @@ class WeightAdmin(ImportExportModelAdmin):
     list_display = ("time",)
 
 
-admin.site.register(LiquidityManagement, LiquidityManagementAdmin)
+admin.site.register(PriceManagement, PriceManagementAdmin)
 admin.site.register(Strategy, StrategyAdmin)
 # admin.site.register(WeightAdmin, Weight)

@@ -1,10 +1,10 @@
 from django import forms
-from .models import LiquidityManagement, Strategy, Weight
+from .models import PriceManagement, Strategy, Weight
 
 
-class LiquidityManagementForm(forms.ModelForm):
+class PriceManagementForm(forms.ModelForm):
     class Meta:
-        model = LiquidityManagement
+        model = PriceManagement
         fields = "__all__"
 
 

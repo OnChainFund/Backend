@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "import_export",  # import export admin
     "strawberry.django",
+    "django_ethereum_events",
     "django_q",
     "django_jsonform",
     "contract",
@@ -195,3 +196,6 @@ CUSTOM_GROUPS = [
 PROVIDER = os.environ.get(
     "SIWE_AUTH_PROVIDER", "https://api.avax-test.network/ext/bc/C/rpc"
 )
+
+# django_ethereum_events
+ETHEREUM_NODE_URI = "https://api.avax-test.network/ext/bc/C/rpc"

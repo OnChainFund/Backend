@@ -4,9 +4,11 @@ import string
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
 
+from django.conf import settings
+
 
 def get_provider() -> Web3.HTTPProvider:
-    w3 = Web3(Web3.HTTPProvider("https://api.avax-test.network/ext/bc/C/rpc"))
+    w3 = Web3(Web3.HTTPProvider(settings.ETHEREUM_NODE_URI))
     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
     return w3
 

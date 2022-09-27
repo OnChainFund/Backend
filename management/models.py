@@ -12,7 +12,7 @@ from django_jsonform.models.fields import JSONField
 from django.conf import settings
 
 
-class LiquidityManagement(models.Model):
+class PriceManagement(models.Model):
     ftx_pair_name = models.CharField(max_length=100, null=True, blank=True)
 
     target_asset = models.ForeignKey(
@@ -100,7 +100,14 @@ class LiquidityManagement(models.Model):
                 args=args_to_string([self.ftx_pair_name, self.target_asset.price_feed]),
                 schedule_type=Schedule.HOURLY,
             )
-        super(LiquidityManagement, self).save(*args, **kwargs)
+        super(PriceManagement, self).save(*args, **kwargs)
+
+    def delete(self, *args, **kwargs):
+        if self.update_price_pangolin_schedual:
+            self.update_price_pangolin_schedual.delete()
+        if self.update_price_mock_v3_aggregator_schedual:
+            self.update_price_mock_v3_aggregator_schedual.delete()
+        return super(PriceManagement, self).delete(*args, **kwargs)
 
 
 class Strategy(models.Model):
