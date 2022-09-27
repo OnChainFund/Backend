@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Fund, Asset, Price
+from .models import Fund, Asset, FundPrice
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 
 
@@ -18,10 +18,10 @@ class FundAdmin(ImportExportModelAdmin):
     )
 
 
-class PriceAdmin(ImportExportModelAdmin):
+class FundPriceAdmin(ImportExportModelAdmin):
     list_display = ("date", "fund", "gav", "nav_per_share")
 
 
 admin.site.register(Asset, AssetAdmin)
 admin.site.register(Fund, FundAdmin)
-admin.site.register(Price, PriceAdmin)
+admin.site.register(FundPrice, FundPriceAdmin)

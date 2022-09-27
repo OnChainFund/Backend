@@ -1,7 +1,7 @@
 from utils.utils import get_provider
 from contract.contracts.deployment.others.FundValueCalculator import FundValueCalculator
 from contract.contracts.deployment.others.Addresses import Addresses
-from fund.models import Fund, Price
+from fund.models import Fund, FundPrice
 
 
 def get_price(vault_proxy: str, quote_asset: str = Addresses["USDT"]):
@@ -36,7 +36,9 @@ def add_price_to_fund(vault_proxy: str):
     )
     print(price)
     # write price in model
-    Price.objects.create(fund=Fund.objects.get(vault_proxy=vault_proxy), price=price)
+    FundPrice.objects.create(
+        fund=Fund.objects.get(vault_proxy=vault_proxy), price=price
+    )
     pass
 
 

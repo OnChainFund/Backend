@@ -50,7 +50,7 @@ class Fund(models.Model):
         return self.name
 
 
-class Price(models.Model):
+class FundPrice(models.Model):
     date = models.DateField(auto_now_add=True)
     gav = models.FloatField(default=0)
     nav_per_share = models.FloatField(default=0)

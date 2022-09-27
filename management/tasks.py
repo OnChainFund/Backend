@@ -109,3 +109,4 @@ def rebalance():
 
 
 #manage_price("TSLA/USD", "0x58B4b7949D344d3357F953011B98FdB6C128D174")
+print(get_price_from_ftx_revert("AVAX/USD"))

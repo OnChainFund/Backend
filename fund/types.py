@@ -6,8 +6,8 @@ import strawberry_django
 from . import models
 
 # filters
-@strawberry_django.filters.filter(models.Price, lookups=True)
-class PriceFilter:
+@strawberry_django.filters.filter(models.FundPrice, lookups=True)
+class FundPriceFilter:
     id: auto
     date: auto
     gav: auto
@@ -23,7 +23,7 @@ class FundFilter:
     denominated_asset: "Asset"
     creator: auto
     depositors: auto
-    price: PriceFilter
+    price: FundPriceFilter
 
 
 @strawberry_django.filters.filter(models.Asset, lookups=True)
@@ -42,8 +42,8 @@ class UserFilter:
 
 
 # order
-@strawberry_django.ordering.order(models.Price)
-class PriceOrder:
+@strawberry_django.ordering.order(models.FundPrice)
+class FundPriceOrder:
     id: auto
     fund: "Fund"
 
@@ -51,7 +51,7 @@ class PriceOrder:
 @strawberry_django.ordering.order(models.Fund)
 class FundOrder:
     name: auto
-    price: PriceOrder
+    price: FundPriceOrder
 
 
 @strawberry_django.ordering.order(models.Asset)
@@ -69,8 +69,8 @@ class UserOrder:
 
 
 # types
-@strawberry.django.type(models.Price)
-class Price:
+@strawberry.django.type(models.FundPrice)
+class FundPrice:
     id: auto
     date: auto
     gav: auto
@@ -87,12 +87,11 @@ class Fund:
     denominated_asset: "Asset"
     creator: auto
     depositors: auto
-    price: List["Price"]
+    price: List["FundPrice"]
 
     @strawberry_django.field
     def depositor_count(self) -> int:
-        return self.depositors.through.objects.count() 
-
+        return self.depositors.through.objects.count()
 
 
 @strawberry.django.type(models.Asset)

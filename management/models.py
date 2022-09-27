@@ -34,6 +34,7 @@ class PriceManagement(models.Model):
     round_time = CustomDurationField(null=True)
     update_price_pangolin = models.BooleanField(default=True)
     update_price_mock_v3_aggregator = models.BooleanField(default=False)
+    is_short_position  = models.BooleanField(default=False)
     update_price_pangolin_schedual = models.OneToOneField(
         Schedule,
         on_delete=models.SET_NULL,
@@ -46,6 +47,7 @@ class PriceManagement(models.Model):
         null=True,
         related_name="update_price_mock_v3_aggregator_schedual",
     )
+
 
     def __str__(self):
         return self.target_asset.name + "/" + self.denominated_asset.name

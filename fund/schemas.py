@@ -6,7 +6,7 @@ import strawberry_django
 import strawberry_django.auth as auth
 from strawberry_django import mutations
 from .types import (
-    Price,
+    FundPrice,
     Fund,
     Asset,
     FundInput,
@@ -26,7 +26,7 @@ class Query:
     funds: List[Fund] = strawberry_django.field()
     asset: Asset = strawberry_django.field()
     assets: List[Asset] = strawberry_django.field()
-    # prices: List[Price] = strawberry_django.field()
+    # prices: List[FundPrice] = strawberry_django.field()
 
 
 @strawberry.type
