@@ -10,13 +10,13 @@ from utils.multicall import Call, Multicall
 Num = Union[int, float]
 
 
-def update_oracle_answer(ansir: int, mock_v3_aggregator_address: str):
+def update_oracle_answer(ansir: float, mock_v3_aggregator_address: str):
     w3 = get_provider()
     mock_v3_aggregator = w3.eth.contract(
         mock_v3_aggregator_address,
         abi=MockV3Aggregator,
     )
-    txn = mock_v3_aggregator.functions.updateAnswer(ansir).buildTransaction(
+    txn = mock_v3_aggregator.functions.updateAnswer(int(ansir * 1e18)).buildTransaction(
         {
             "chainId": 43113,
             "gas": 8000000,
@@ -41,5 +41,3 @@ def update_oracle_answer_multicall(
     ansirs: List[Num], mock_v3_aggregator_addresses: List[str]
 ):
     pass
-
-

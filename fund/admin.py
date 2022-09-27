@@ -20,10 +20,12 @@ class FundAdmin(ImportExportModelAdmin):
 
 class FundPriceAdmin(ImportExportModelAdmin):
     list_display = ("fund", "time", "gav", "nav_per_share")
+    list_filter = ("fund",)
 
 
 class AssetPriceAdmin(ImportExportModelAdmin):
     list_display = ("asset", "time", "price")
+    list_filter = ("asset",)
 
 
 admin.site.register(Asset, AssetAdmin)

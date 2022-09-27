@@ -7,17 +7,18 @@ from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 
 class PriceManagementAdmin(ImportExportModelAdmin):
     list_display = (
-        "ftx_pair_name",
         "target_asset",
+        "ftx_pair_name",
         "denominated_asset",
-        # "schedual",
+        "update_asset_price_db",
+        "update_asset_price_pangolin",
+        "update_asset_price_mock_v3_aggregator",
+        "is_short_position",
         "round_time",
-        "update_price_pangolin",
-        "update_price_mock_v3_aggregator",
+        "schedual"
     )
     readonly_fields = [
-        "update_price_pangolin_schedual",
-        "update_price_mock_v3_aggregator_schedual",
+        "schedual",
     ]
     form = PriceManagementForm
 

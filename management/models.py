@@ -32,22 +32,16 @@ class PriceManagement(models.Model):
 
     # round_time = models.DurationField(null=True)
     round_time = CustomDurationField(null=True)
-    update_price_pangolin = models.BooleanField(default=True)
-    update_price_mock_v3_aggregator = models.BooleanField(default=False)
-    is_short_position  = models.BooleanField(default=False)
-    update_price_pangolin_schedual = models.OneToOneField(
+    update_asset_price_db = models.BooleanField(default=False)
+    update_asset_price_pangolin = models.BooleanField(default=False)
+    update_asset_price_mock_v3_aggregator = models.BooleanField(default=False)
+    is_short_position = models.BooleanField(default=False)
+    schedual = models.OneToOneField(
         Schedule,
         on_delete=models.SET_NULL,
         null=True,
-        related_name="update_price_pangolin_schedual",
+        related_name="schedual",
     )
-    update_price_mock_v3_aggregator_schedual = models.OneToOneField(
-        Schedule,
-        on_delete=models.SET_NULL,
-        null=True,
-        related_name="update_price_mock_v3_aggregator_schedual",
-    )
-
 
     def __str__(self):
         return self.target_asset.name + "/" + self.denominated_asset.name
@@ -60,23 +54,25 @@ class PriceManagement(models.Model):
                 code="invalid",
                 params={"value": self.ftx_pair_name},
             )
-        if self.update_price_pangolin:
-            if self.update_price_pangolin_schedual:
-                self.update_price_pangolin_schedual.delete()
-            self.update_price_pangolin_schedual = Schedule.objects.create(
-                func="management.tasks.manage_liquidity",
-                name="LM:" + self.ftx_pair_name,
-                repeats=-1,
-                args=args_to_string(
-                    [
-                        self.target_asset.address,
-                        self.denominated_asset.address,
-                        self.ftx_pair_name,
-                    ]
-                ),
-                schedule_type=Schedule.HOURLY,
-            )
-        if self.update_price_mock_v3_aggregator:
+        # remove last schedual
+        if self.schedual:
+            self.schedual.delete()
+
+        # set variable (can be better)
+        if self.update_asset_price_db:
+            self.update_asset_price_db = True
+        else:
+            self.update_asset_price_db = False
+        if self.update_asset_price_pangolin:
+            self.update_asset_price_pangolin = True
+        else:
+            self.update_asset_price_pangolin = False
+        if self.update_asset_price_mock_v3_aggregator:
+            self.update_asset_price_mock_v3_aggregator = True
+        else:
+            self.update_asset_price_mock_v3_aggregator = False
+
+        if self.update_asset_price_mock_v3_aggregator:
             if not self.target_asset.price_feed_is_mocked:
 
                 raise ValidationError(
@@ -92,23 +88,29 @@ class PriceManagement(models.Model):
                     params={"value": self.ftx_pair_name},
                 )
 
-            if self.update_price_mock_v3_aggregator_schedual:
-                self.update_price_mock_v3_aggregator_schedual.delete()
-
-            self.update_price_mock_v3_aggregator_schedual = Schedule.objects.create(
-                func="management.tasks.manage_price",
-                name="PM:" + self.target_asset.name,
-                repeats=-1,
-                args=args_to_string([self.ftx_pair_name, self.target_asset.price_feed]),
-                schedule_type=Schedule.HOURLY,
-            )
+        self.schedual = Schedule.objects.create(
+            func="management.tasks.manage_price",
+            name="PM:" + self.target_asset.name,
+            repeats=-1,
+            args=args_to_string(
+                [
+                    self.target_asset.address,
+                    self.denominated_asset.address,
+                    self.ftx_pair_name,
+                    self.target_asset.price_feed,
+                    self.update_asset_price_db,
+                    self.update_asset_price_pangolin,
+                    self.update_asset_price_mock_v3_aggregator,
+                    self.is_short_position,
+                ]
+            ),
+            schedule_type=Schedule.HOURLY,
+        )
         super(PriceManagement, self).save(*args, **kwargs)
 
     def delete(self, *args, **kwargs):
-        if self.update_price_pangolin_schedual:
-            self.update_price_pangolin_schedual.delete()
-        if self.update_price_mock_v3_aggregator_schedual:
-            self.update_price_mock_v3_aggregator_schedual.delete()
+        if self.schedual:
+            self.schedual.delete()
         return super(PriceManagement, self).delete(*args, **kwargs)
 
 

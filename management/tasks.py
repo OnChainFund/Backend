@@ -1,5 +1,6 @@
 import math
 from decouple import config
+from fund.models import Asset, AssetPrice
 from management.web3.utils import update_oracle_answer
 
 from utils.data_source.ftx.client import FtxClient
@@ -10,30 +11,49 @@ from contract.contracts.deployment.others.Addresses import Addresses
 from contract.contracts.deployment.others.ERC20 import ERC20
 
 
-def get_price_from_ftx(ftx_trading_pair: str) -> int:
+def get_price_from_ftx(ftx_trading_pair: str, is_short_position: bool) -> int:
     ftx_client = FtxClient()
     data = ftx_client.get_price(ftx_trading_pair)
+    if is_short_position:
+        data = 10000 / data
     return data
 
-def get_price_from_ftx_revert(ftx_trading_pair: str) -> int:
-    ftx_client = FtxClient()
-    data = ftx_client.get_price(ftx_trading_pair)
-    return data
 
-def manage_price(ftx_trading_pair: str, mock_v3_aggregator_address: str):
+def manage_price(
+    target_asset_address: str,
+    denominated_asset_address: str,
+    ftx_pair_name: str,
+    mock_v3_aggregator_address: str,
+    update_asset_price_db: bool,
+    update_asset_price_pangolin: bool,
+    update_asset_price_mock_v3_aggregator: bool,
+    is_short_position: bool,
+):
     # 用 ftx api 獲取價格資料
-    print("ftx_trading_pair")
-    print(ftx_trading_pair)
-    print("mock_v3_aggregator_address")
-    print(mock_v3_aggregator_address)
 
-    ftx_price = int((get_price_from_ftx(ftx_trading_pair)) * 1e18)
-    update_oracle_answer(ftx_price, mock_v3_aggregator_address)
+    ftx_price = get_price_from_ftx(ftx_pair_name, is_short_position)
+
+    if update_asset_price_pangolin:
+        manage_pangolin_liquidity(
+            target_asset_address, denominated_asset_address, ftx_price
+        )
+    if update_asset_price_mock_v3_aggregator:
+        update_oracle_answer(ftx_price, mock_v3_aggregator_address)
+    if update_asset_price_db:
+        add_asset_price_to_db(target_asset_address, ftx_price)
 
 
-def manage_liquidity(target_asset: str, denominated_asset: str, ftx_trading_pair: str):
-    # 用 ftx api 獲取價格資料
-    ftx_price = get_price_from_ftx(ftx_trading_pair)
+def add_asset_price_to_db(target_asset_address: str, ftx_price: float):
+    asset = Asset.objects.get(pk=target_asset_address)
+    asset_price = AssetPrice(asset=asset, price=ftx_price)
+    asset_price.save()
+    pass
+
+
+def manage_pangolin_liquidity(
+    target_asset: str, denominated_asset: str, ftx_price: float
+):
+
     # 從 pangolin swap 獲取流動性資料
     # 獲取 pair address(pangolinFactory.getPair)
     w3 = get_provider()
@@ -108,5 +128,6 @@ def rebalance():
     pass
 
 
-#manage_price("TSLA/USD", "0x58B4b7949D344d3357F953011B98FdB6C128D174")
-print(get_price_from_ftx_revert("AVAX/USD"))
+# manage_price("TSLA/USD", "0x58B4b7949D344d3357F953011B98FdB6C128D174")
+# print(get_price_from_ftx_revert("AVAX/USD"))
+add_asset_price_to_db("0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4", 1)

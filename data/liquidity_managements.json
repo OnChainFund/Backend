@@ -1,7 +1,0 @@
-[
-  {
-    "model": "management.liquidity_management",
-    "pk": 1,
-    "fields": { "name": "WAVAX" }
-  }
-]

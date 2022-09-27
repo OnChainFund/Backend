@@ -28,5 +28,8 @@ def args_to_string(args: list) -> str:
         elif type(arg) == int:
             result += str(arg)
             result += ","
+        elif type(arg) == bool:
+            result += str(arg)
+            result += ","
     result_remove_last = result[:-1]
     return result_remove_last
