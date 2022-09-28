@@ -6,6 +6,7 @@ from utils.utils import get_provider
 from decouple import config
 from typing import Union, List
 from utils.multicall import Call, Multicall
+import statistics
 
 Num = Union[int, float]
 
@@ -16,12 +17,12 @@ def update_oracle_answer(ansir: float, mock_v3_aggregator_address: str):
         mock_v3_aggregator_address,
         abi=MockV3Aggregator,
     )
-    txn = mock_v3_aggregator.functions.updateAnswer(int(ansir * 1e18)).buildTransaction(
+    txn = mock_v3_aggregator.functions.updateAnswer(int(ansir * 1e8)).buildTransaction(
         {
             "chainId": 43113,
-            "gas": 8000000,
-            "maxFeePerGas": int(20e11),
-            "maxPriorityFeePerGas": int(20e11),
+            # "gas": 8000000,
+            # "maxFeePerGas": int(20e11),
+            # "maxPriorityFeePerGas": int(20e11),
             "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
         }
     )

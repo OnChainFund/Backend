@@ -1,3 +1,4 @@
+from random import random
 from django.utils import timezone
 from django.db import models
 from django.forms import ValidationError
@@ -10,6 +11,8 @@ from .fields import CustomDurationField
 from django.utils.translation import gettext_lazy as _
 from django_jsonform.models.fields import JSONField
 from django.conf import settings
+import datetime
+from random import randint
 
 
 class PriceManagement(models.Model):
@@ -104,6 +107,7 @@ class PriceManagement(models.Model):
                     self.is_short_position,
                 ]
             ),
+            next_run=timezone.now() + datetime.timedelta(randint(1, 100) * 100),
             schedule_type=Schedule.HOURLY,
         )
         super(PriceManagement, self).save(*args, **kwargs)

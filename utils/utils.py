@@ -3,12 +3,13 @@ import string
 
 from web3 import Web3
 from web3.middleware import geth_poa_middleware
-
+from web3.gas_strategies.time_based import fast_gas_price_strategy
 from django.conf import settings
 
 
 def get_provider() -> Web3.HTTPProvider:
     w3 = Web3(Web3.HTTPProvider(settings.ETHEREUM_NODE_URI))
+    #w3.eth.set_gas_price_strategy(fast_gas_price_strategy)
     w3.middleware_onion.inject(geth_poa_middleware, layer=0)
     return w3
 

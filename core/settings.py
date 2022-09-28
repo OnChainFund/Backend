@@ -26,7 +26,7 @@ INSTALLED_APPS = [
     "management",
     "admin_interface",
     "colorfield",
-    #"siwe_auth.apps.SiweAuthConfig",
+    # "siwe_auth.apps.SiweAuthConfig",
     "siwe_auth",
     "django.contrib.admin",
     "django.contrib.auth",
@@ -146,7 +146,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 Q_CLUSTER = {
     "name": "ocf_backend",
     "workers": 8,
-    "recycle": 500,
+    "recycle": 3,
     "timeout": 60,
     "compress": True,
     "save_limit": 250,

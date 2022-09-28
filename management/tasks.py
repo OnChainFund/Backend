@@ -107,8 +107,8 @@ def manage_pangolin_liquidity(
         {
             "chainId": 43113,
             "gas": 7900000,
-            "maxFeePerGas": w3.toWei("30", "gwei"),
-            "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
+            #"maxFeePerGas": w3.toWei("30", "gwei"),
+            #"maxPriorityFeePerGas": w3.toWei("1", "gwei"),
             "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
         }
     )
@@ -128,6 +128,4 @@ def rebalance():
     pass
 
 
-# manage_price("TSLA/USD", "0x58B4b7949D344d3357F953011B98FdB6C128D174")
-# print(get_price_from_ftx_revert("AVAX/USD"))
-add_asset_price_to_db("0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4", 1)
+#manage_pangolin_liquidity("0x6cEeB8fec16F7276F57ACF70C14ecA6008d3DDD4", "0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4", 18)
