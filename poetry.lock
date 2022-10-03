@@ -849,6 +849,18 @@ six = "*"
 varint = "*"
 
 [[package]]
+name = "multicall"
+version = "0.6.1"
+description = "aggregate results from multiple ethereum contract calls"
+category = "main"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.dependencies]
+eth_retry = ">=0.1.8,<0.2.0"
+web3 = ">=5.27,<6.0"
+
+[[package]]
 name = "multidict"
 version = "6.0.2"
 description = "multidict implementation"
@@ -1440,7 +1452,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "34298efbfd93d84cd4a614416ed1ae5a798bf0dae6ad62570ffc8a94602a8b83"
+content-hash = "d28adc0bfbc166a8e5ce6ac03eaed940d36280eeda700cffe51ace5699005a62"
 
 [metadata.files]
 abnf = [
@@ -1969,6 +1981,10 @@ markuppy = [
 multiaddr = [
     {file = "multiaddr-0.0.9-py2.py3-none-any.whl", hash = "sha256:5c0f862cbcf19aada2a899f80ef896ddb2e85614e0c8f04dd287c06c69dac95b"},
     {file = "multiaddr-0.0.9.tar.gz", hash = "sha256:30b2695189edc3d5b90f1c303abb8f02d963a3a4edf2e7178b975eb417ab0ecf"},
+]
+multicall = [
+    {file = "multicall-0.6.1-py3-none-any.whl", hash = "sha256:4d29463de18a0c0d7b932c2dd9f5182029a513e53c4fcb6c0bf3d4eb4dd5141b"},
+    {file = "multicall-0.6.1.tar.gz", hash = "sha256:057ba0b9df1eb54513310fc345bb0c3f68bb5935d742ec2a4b1bfd444f95088a"},
 ]
 multidict = [
     {file = "multidict-6.0.2-cp310-cp310-macosx_10_9_universal2.whl", hash = "sha256:0b9e95a740109c6047602f4db4da9949e6c5945cefbad34a1299775ddc9a62e2"},
