@@ -12,7 +12,6 @@ from django.utils.translation import gettext_lazy as _
 from django_jsonform.models.fields import JSONField
 from django.conf import settings
 import datetime
-from random import randint
 
 
 class PriceManagement(models.Model):
@@ -35,6 +34,8 @@ class PriceManagement(models.Model):
 
     # round_time = models.DurationField(null=True)
     round_time = CustomDurationField(null=True)
+    round_start_time = models.DateTimeField(null=True)
+    order = models.PositiveIntegerField()
     update_asset_price_db = models.BooleanField(default=False)
     update_asset_price_pangolin = models.BooleanField(default=False)
     update_asset_price_mock_v3_aggregator = models.BooleanField(default=False)
@@ -107,7 +108,7 @@ class PriceManagement(models.Model):
                     self.is_short_position,
                 ]
             ),
-            next_run=timezone.now() + datetime.timedelta(randint(1, 100) * 100),
+            next_run=timezone.now() + datetime.timedelta(minutes=self.order * 5),
             schedule_type=Schedule.HOURLY,
         )
         super(PriceManagement, self).save(*args, **kwargs)

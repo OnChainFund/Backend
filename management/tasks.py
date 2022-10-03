@@ -9,6 +9,7 @@ from contract.contracts.deployment.others.PangolinFactory import PangolinFactory
 from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
 from contract.contracts.deployment.others.Addresses import Addresses
 from contract.contracts.deployment.others.ERC20 import ERC20
+from time import sleep
 
 
 def get_price_from_ftx(ftx_trading_pair: str, is_short_position: bool) -> int:
@@ -37,8 +38,10 @@ def manage_price(
         manage_pangolin_liquidity(
             target_asset_address, denominated_asset_address, ftx_price
         )
+    sleep(120)
     if update_asset_price_mock_v3_aggregator:
         update_oracle_answer(ftx_price, mock_v3_aggregator_address)
+    sleep(120)
     if update_asset_price_db:
         add_asset_price_to_db(target_asset_address, ftx_price)
 
@@ -107,8 +110,8 @@ def manage_pangolin_liquidity(
         {
             "chainId": 43113,
             "gas": 7900000,
-            #"maxFeePerGas": w3.toWei("30", "gwei"),
-            #"maxPriorityFeePerGas": w3.toWei("1", "gwei"),
+            # "maxFeePerGas": w3.toWei("30", "gwei"),
+            # "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
             "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
         }
     )
@@ -128,4 +131,4 @@ def rebalance():
     pass
 
 
-#manage_pangolin_liquidity("0x6cEeB8fec16F7276F57ACF70C14ecA6008d3DDD4", "0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4", 18)
+# manage_pangolin_liquidity("0x6cEeB8fec16F7276F57ACF70C14ecA6008d3DDD4", "0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4", 18)
