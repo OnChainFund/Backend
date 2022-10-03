@@ -146,8 +146,8 @@ MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 Q_CLUSTER = {
     "name": "ocf_backend",
     "workers": 8,
-    "recycle": 1,
-    "timeout": 1000,
+    "recycle": 0,
+    "timeout": 60,
     "compress": True,
     "save_limit": 250,
     "queue_limit": 500,

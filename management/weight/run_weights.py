@@ -149,5 +149,6 @@ now = int(datetime.timestamp(now))
 print(now)
 weight = get_weights(now, 3600)
 weights = weight.iloc[-1, :].to_numpy()
+print(weights)
 for i in weights:
     print(floor(i * 100000))

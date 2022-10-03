@@ -4,46 +4,49 @@ from contract.contracts.deployment.others.Addresses import Addresses
 from fund.models import Fund, FundPrice
 
 
-def get_price(vault_proxy: str, quote_asset: str = Addresses["USDT"]):
+def get_value(vault_proxy: str, quote_asset: str = Addresses["USDT"]):
     w3 = get_provider()
     fund_value_calculator_contract = w3.eth.contract(
         Addresses["ocf"]["FundValueCalculator"],
         abi=FundValueCalculator,
     )
-    data = fund_value_calculator_contract.encodeABI(
+    gav_data = fund_value_calculator_contract.encodeABI(
         fn_name="calcGavInAsset",
         args=[vault_proxy, quote_asset],
     )
-    tx = w3.eth.call(
+    nav_per_share_data = fund_value_calculator_contract.encodeABI(
+        fn_name="calcNetShareValueInAsset",
+        args=[vault_proxy, quote_asset],
+    )
+    tx_gav = w3.eth.call(
         {
-            "value": 0,
-            "gas": 7900000,
-            "maxFeePerGas": w3.toWei("30", "gwei"),
-            "maxPriorityFeePerGas": 1000000000,
             "to": Addresses["ocf"]["FundValueCalculator"],
-            "data": data,
+            "data": gav_data,
+        }
+    )
+    tx_nav = w3.eth.call(
+        {
+            "to": Addresses["ocf"]["FundValueCalculator"],
+            "data": nav_per_share_data,
         }
     )
 
-    return int(tx.hex()[2:], 16) / 1e18
+    return [(int(tx_gav.hex()[2:], 16) / 1e18), (int(tx_nav.hex()[2:], 16) / 1e18)]
 
 
 def add_price_to_fund(vault_proxy: str):
     # get price
-    price = get_price(
+    gav, nav_per_share = get_value(
         vault_proxy,
         Addresses["USDT"],
     )
-    print(price)
-    # write price in model
     FundPrice.objects.create(
-        fund=Fund.objects.get(vault_proxy=vault_proxy), price=price
+        fund=Fund.objects.get(vault_proxy=vault_proxy),
+        gav=gav,
+        nav_per_share=nav_per_share,
     )
-    pass
 
 
-print(
-    add_price_to_fund(
-        "0x02b7a6d41F929a2d09D6dd8aF5537c1d1fe2E678",
-    )
+add_price_to_fund(
+    "0x9dd3b3471AF147DF6c7E93ff35a5f04eE9342e9C",
 )

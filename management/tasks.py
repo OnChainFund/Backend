@@ -42,8 +42,8 @@ def manage_price(
     if update_asset_price_mock_v3_aggregator:
         update_oracle_answer(ftx_price, mock_v3_aggregator_address)
     sleep(120)
-    if update_asset_price_db:
-        add_asset_price_to_db(target_asset_address, ftx_price)
+    # if update_asset_price_db:
+    #    add_asset_price_to_db(target_asset_address, ftx_price)
 
 
 def add_asset_price_to_db(target_asset_address: str, ftx_price: float):
