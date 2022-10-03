@@ -137,6 +137,8 @@ GitHub.sublime-settings
 !.vscode/extensions.json 
 .history
 
+*.sol
+*.json
 static/
 wodl/
 migrations/

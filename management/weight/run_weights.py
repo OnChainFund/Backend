@@ -5,8 +5,6 @@ import pandas as pd
 from psycopg2 import Timestamp
 import requests
 from collections import OrderedDict
-from pathlib import Path
-from django.core.files import File
 import numpy as np
 import torch
 from torch.utils.data import Dataset, DataLoader
@@ -35,19 +33,17 @@ resolution = 3600  # per hour
 ## Start time
 ####
 def get_weights(time: Timestamp, resolution: int) -> list:
-    now = pd.Timestamp.now().round("60min").to_pydatetime()
 
-    now = int(datetime.timestamp(now))
-    start_time = now - 479 * resolution
+    start_time = time - 479 * resolution
     print(f'{"start":<8}:', datetime.fromtimestamp(start_time))
-    print(f'{"end":<8}:', datetime.fromtimestamp(now))
+    print(f'{"end":<8}:', datetime.fromtimestamp(time))
 
     ## collecting data
     l = []
     pbar = tqdm(total=len(target), colour="green", ncols=100, position=0, leave=True)
     for name in target:
 
-        api = f"/markets/{name}/candles?resolution={resolution}&start_time={start_time}&end_time={now}"
+        api = f"/markets/{name}/candles?resolution={resolution}&start_time={start_time}&end_time={time}"
         res = requests.get(url + api).json()
         df = pd.DataFrame(res["result"])
         l.append(df["close"])
@@ -142,13 +138,3 @@ def prep_dataloader(path, lookback=720, holding=120, batch_size=32):
         dataset, batch_size, shuffle=False, drop_last=False, pin_memory=True
     )  # Construct dataloader
     return dataloader
-
-
-now = pd.Timestamp.now().round("60min").to_pydatetime()
-now = int(datetime.timestamp(now))
-print(now)
-weight = get_weights(now, 3600)
-weights = weight.iloc[-1, :].to_numpy()
-print(weights)
-for i in weights:
-    print(floor(i * 100000))

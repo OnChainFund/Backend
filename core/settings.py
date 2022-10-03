@@ -40,8 +40,8 @@ INSTALLED_APPS = [
     "django_ethereum_events",
     "django_q",
     "django_jsonform",
-    "contract",
     "fund",
+    "contract",
     # "users",
     "utils",
 ]
