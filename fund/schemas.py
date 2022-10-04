@@ -8,10 +8,12 @@ from strawberry_django import mutations
 from .types import (
     Fund,
     Asset,
+    FundFilter,
     FundInput,
     FundPartialInput,
     AssetInput,
     AssetPartialInput,
+    FundUpdateFilter,
     User,
     UserInput,
 )
@@ -32,7 +34,7 @@ class Query:
 class Mutation:
     createFund: Fund = mutations.create(FundInput)
     createFunds: List[Fund] = mutations.create(FundInput)
-    updateFunds: List[Fund] = mutations.update(FundPartialInput)
+    updateFunds: List[Fund] = mutations.update(FundPartialInput, filters=FundUpdateFilter)
     deleteFunds: List[Fund] = mutations.delete()
 
     createAsset: Asset = mutations.create(AssetInput)

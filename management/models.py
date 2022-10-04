@@ -157,3 +157,4 @@ class Weight(models.Model):
 
     class Meta:
         unique_together = (("time", "strategy"),)
+

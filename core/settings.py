@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "import_export",  # import export admin
     "strawberry.django",
-    "django_ethereum_events",
+    # "django_ethereum_events",
     "django_q",
     "django_jsonform",
     "fund",

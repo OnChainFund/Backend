@@ -35,9 +35,6 @@ resolution = 3600  # per hour
 def get_weights(time: Timestamp, resolution: int) -> list:
 
     start_time = time - 479 * resolution
-    print(f'{"start":<8}:', datetime.fromtimestamp(start_time))
-    print(f'{"end":<8}:', datetime.fromtimestamp(time))
-
     ## collecting data
     l = []
     pbar = tqdm(total=len(target), colour="green", ncols=100, position=0, leave=True)

@@ -26,6 +26,7 @@ class Fund(models.Model):
 
     name = models.CharField(max_length=100, null=True, verbose_name="基金名稱", blank=True)
     description = models.TextField(verbose_name="基金簡介", null=True, blank=True)
+    detail= models.TextField(verbose_name="基金詳細介紹", null=True, blank=True)
     creator = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
         related_name="created_funds",

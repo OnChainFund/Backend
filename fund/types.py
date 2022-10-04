@@ -23,7 +23,13 @@ class FundFilter:
     denominated_asset: "Asset"
     creator: auto
     depositors: auto
+    detail: auto
     price: FundPriceFilter
+
+
+@strawberry_django.filters.filter(models.Fund, lookups=True)
+class FundUpdateFilter:
+    vault_proxy: auto
 
 
 @strawberry_django.filters.filter(models.AssetPrice, lookups=True)
@@ -100,6 +106,7 @@ class Fund:
     comptroller_proxy: auto
     name: auto
     description: auto
+    detail: auto
     denominated_asset: "Asset"
     creator: auto
     depositors: auto
@@ -165,7 +172,9 @@ class UserInput:
 # partial input types
 @strawberry_django.input(models.Fund, partial=True)
 class FundPartialInput(FundInput):
-    pass
+    name: auto
+    description: auto
+    detail: auto
 
 
 @strawberry_django.input(models.Asset, partial=True)
