@@ -31,11 +31,10 @@ class PriceManagement(models.Model):
         null=False,
         related_name="denominated_asset",
     )
-
+    pangolin_pool_address = models.CharField(max_length=255, null=True, blank=True)
     # round_time = models.DurationField(null=True)
     round_time = CustomDurationField(null=True)
     round_start_time = models.DateTimeField(null=True)
-    order = models.PositiveIntegerField()
     update_asset_price_db = models.BooleanField(default=False)
     update_asset_price_pangolin = models.BooleanField(default=False)
     update_asset_price_mock_v3_aggregator = models.BooleanField(default=False)
@@ -49,74 +48,6 @@ class PriceManagement(models.Model):
 
     def __str__(self):
         return self.target_asset.name + "/" + self.denominated_asset.name
-
-    def save(self, *args, **kwargs):
-        # test if ftx has the trading pair
-        if self.ftx_pair_name not in FTX_TRADING_PAIR_LIST:
-            raise ValidationError(
-                _("Invalid input of ftx trading pair: %(value)s"),
-                code="invalid",
-                params={"value": self.ftx_pair_name},
-            )
-        # remove last schedual
-        if self.schedual:
-            self.schedual.delete()
-
-        # set variable (can be better)
-        if self.update_asset_price_db:
-            self.update_asset_price_db = True
-        else:
-            self.update_asset_price_db = False
-        if self.update_asset_price_pangolin:
-            self.update_asset_price_pangolin = True
-        else:
-            self.update_asset_price_pangolin = False
-        if self.update_asset_price_mock_v3_aggregator:
-            self.update_asset_price_mock_v3_aggregator = True
-        else:
-            self.update_asset_price_mock_v3_aggregator = False
-
-        if self.update_asset_price_mock_v3_aggregator:
-            if not self.target_asset.price_feed_is_mocked:
-
-                raise ValidationError(
-                    _("The Price Feed is in Oracle, can't be change by user"),
-                    code="invalid",
-                    params={"value": self.ftx_pair_name},
-                )
-
-            if not self.target_asset.price_feed:
-                raise ValidationError(
-                    _("The price feed of target asset DoesNotExist"),
-                    code="invalid",
-                    params={"value": self.ftx_pair_name},
-                )
-
-        self.schedual = Schedule.objects.create(
-            func="management.tasks.manage_price",
-            name="PM:" + self.target_asset.name,
-            repeats=-1,
-            args=args_to_string(
-                [
-                    self.target_asset.address,
-                    self.denominated_asset.address,
-                    self.ftx_pair_name,
-                    self.target_asset.price_feed,
-                    self.update_asset_price_db,
-                    self.update_asset_price_pangolin,
-                    self.update_asset_price_mock_v3_aggregator,
-                    self.is_short_position,
-                ]
-            ),
-            next_run=timezone.now() + datetime.timedelta(minutes=self.order * 5),
-            schedule_type=Schedule.HOURLY,
-        )
-        super(PriceManagement, self).save(*args, **kwargs)
-
-    def delete(self, *args, **kwargs):
-        if self.schedual:
-            self.schedual.delete()
-        return super(PriceManagement, self).delete(*args, **kwargs)
 
 
 class Strategy(models.Model):
@@ -157,4 +88,3 @@ class Weight(models.Model):
 
     class Meta:
         unique_together = (("time", "strategy"),)
-

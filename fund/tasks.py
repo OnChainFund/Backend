@@ -47,6 +47,16 @@ def add_price_to_fund(vault_proxy: str):
     )
 
 
-add_price_to_fund(
-    "0x9dd3b3471AF147DF6c7E93ff35a5f04eE9342e9C",
-)
+def update_funds_price():
+    funds = list(Fund.objects.all())
+    print(funds)
+    for fund in funds:
+        add_price_to_fund(fund.vault_proxy)
+
+
+# update_funds_price()
+
+
+# add_price_to_fund(
+#    "0x9dd3b3471AF147DF6c7E93ff35a5f04eE9342e9C",
+# )

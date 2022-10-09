@@ -43,7 +43,6 @@ class WalletManager(BaseUserManager):
         user.save(using=self._db)
         return user
 
-
 class Wallet(AbstractBaseUser, PermissionsMixin):
     # EIP-55 compliant: https://eips.ethereum.org/EIPS/eip-55
     password = models.CharField(_("password"), max_length=128, blank=True, null=True)

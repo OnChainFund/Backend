@@ -70,7 +70,7 @@ def manage_pangolin_liquidity(
     )
     target_asset_contract = w3.eth.contract(target_asset, abi=ERC20)
     denominated_asset_contract = w3.eth.contract(denominated_asset, abi=ERC20)
-
+    
     pair = pangolin_factory.functions.getPair(target_asset, denominated_asset).call()
     # 獲取流動性對的剩餘量
 

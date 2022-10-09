@@ -30,7 +30,7 @@ class Multicall:
         txn = self.multicall.functions.aggregate(calls).buildTransaction(
             {
                 "chainId": 43113,
-                # "gas": 8000000,
+                "gas": 8000000,
                 # "maxFeePerGas": int(20e11),
                 # "maxPriorityFeePerGas": int(20e11),
                 "nonce": self.w3.eth.getTransactionCount(Addresses["user_1"]),

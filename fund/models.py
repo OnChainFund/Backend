@@ -4,7 +4,6 @@ from django.db import models
 from django.utils import timezone
 from django.conf import settings
 
-
 class Asset(models.Model):
     address = models.CharField(max_length=100, unique=True, primary_key=True)
     name = models.CharField(max_length=100, unique=True)
@@ -26,7 +25,7 @@ class Fund(models.Model):
 
     name = models.CharField(max_length=100, null=True, verbose_name="基金名稱", blank=True)
     description = models.TextField(verbose_name="基金簡介", null=True, blank=True)
-    detail= models.TextField(verbose_name="基金詳細介紹", null=True, blank=True)
+    detail = models.TextField(verbose_name="基金詳細介紹", null=True, blank=True)
     creator = models.ForeignKey(
         to=settings.AUTH_USER_MODEL,
         related_name="created_funds",
@@ -48,7 +47,7 @@ class Fund(models.Model):
         get_latest_by = "name"
 
     def __str__(self):
-        return self.name
+        return self.comptroller_proxy
 
 
 class FundPrice(models.Model):
@@ -64,7 +63,7 @@ class FundPrice(models.Model):
     )
 
     def __str__(self):
-        return self.fund.name + ":" + str(self.date)
+        return self.fund.comptroller_proxy + ":" + str(self.date)
 
     class Meta:
         unique_together = (("time", "fund"),)
