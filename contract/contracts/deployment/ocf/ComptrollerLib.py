@@ -1,4 +1,8 @@
-ComptrollerLib = [
+import json
+from typing import Any
+
+
+ComptrollerLib: list[Any] = [
     {
         "inputs": [
             {"internalType": "address", "name": "_dispatcher", "type": "address"},

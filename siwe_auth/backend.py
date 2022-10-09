@@ -72,8 +72,9 @@ class SiweBackend(BaseBackend):
         if getattr(settings, "CREATE_ENS_PROFILE_ON_AUTHN", True):
             ens_profile = ENSProfile(ethereum_address=siwe_message.address, w3=w3)
         else:
-            ens_profile = ENSProfile.__new__(ENSProfile) # blank ENSProfile, skipping __init__ constructor
-
+            ens_profile = ENSProfile.__new__(
+                ENSProfile
+            )  # blank ENSProfile, skipping __init__ constructor
 
         # Message and nonce has been validated. Authentication complete. Continue with authorization/other.
         now = datetime.datetime.now(tz=pytz.UTC)
@@ -132,8 +133,8 @@ class ENSProfile:
     Container for ENS profile information including but not limited to primary name and avatar.
     """
 
-    name: str = None
-    avatar: str = None
+    name: str | None = None
+    avatar: str | None = None
 
     def __init__(self, ethereum_address: str, w3: Web3):
         # Temporary until https://github.com/ethereum/web3.py/pull/2286 is merged

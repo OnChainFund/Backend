@@ -12,6 +12,7 @@ from decouple import config
 
 # from eth_abi import encode, encode_abi
 import eth_abi
+
 print(ComptrollerLib)
 pangolin_exchange_adaptor = "0x9c734a1af86273c0712a83ac154c51f8f5b21762"
 from_asset: str = Addresses["WAVAX"]
@@ -47,7 +48,7 @@ call_args = call_on_integration_args(
     # pangolin_exchange_adaptor,
     "0x5A6453C51B49e22A191eFb504FeD192754A6F619",
     take_order_args,
-    b"0x03e38a2b",
+    b"0x03",
 )
 # print(Keccak256("takeOrder(address,bytes,bytes)"))
 
@@ -55,31 +56,32 @@ w3 = get_provider()
 multicall = Multicall(w3, "fuji")
 fund = Fund.objects.first()
 comptroller_proxy = w3.eth.contract(fund.comptroller_proxy, abi=ComptrollerLib)
-print(call_args)
+# print(call_args)
 # calls = [
-#   multicall.create_call(
-#       comptroller_proxy,
-#       "callOnExtension",
-#       [
-#           "0xbf07f33165Cc5d64c299E4567e19575AabB80575",
-#           0,
-#           call_args,
-#       ],
-#   ),
-# ]#
+#    multicall.create_call(
+#        comptroller_proxy,
+#        "callOnExtension",
+#        [
+#            "0xbf07f33165Cc5d64c299E4567e19575AabB80575",
+#            0,
+#            call_args,
+#        ],
+#    ),
+# ]  #
 # result = multicall.call(calls)
 
-# txn = comptroller_proxy.functions.callOnExtension(
-#    "0xbf07f33165Cc5d64c299E4567e19575AabB80575", 0, call_args
-# ).buildTransaction(
-#    {
-#        "chainId": 43113,
-#        "gas": 7900000,
-#        # "maxFeePerGas": w3.toWei("30", "gwei"),
-#        # "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
-#        "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
-#    }
-# )
-# signed_txn = w3.eth.account.sign_transaction(txn, private_key=config("PRIVATE_KEY"))
-# w3.eth.sendRawTransaction(signed_txn.rawTransaction)
-#
+txn = comptroller_proxy.functions.callOnExtension(
+    "0xbf07f33165Cc5d64c299E4567e19575AabB80575",
+    0,
+    "0x00000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000005f5e100000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000020000000000000000000000006ceeb8fec16f7276f57acf70c14eca6008d3ddd4000000000000000000000000d1cc87496af84105699e82d46b6c5ab6775afae4",
+).buildTransaction(
+    {
+        "chainId": 43113,
+        "gas": 7900000,
+        # "maxFeePerGas": w3.toWei("30", "gwei"),
+        # "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
+        "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
+    }
+)
+signed_txn = w3.eth.account.sign_transaction(txn, private_key=config("PRIVATE_KEY"))
+w3.eth.sendRawTransaction(signed_txn.rawTransaction)
