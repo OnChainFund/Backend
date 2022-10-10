@@ -32,7 +32,7 @@ resolution = 3600  # per hour
 
 ## Start time
 ####
-def get_weights(time: int, resolution: int) -> pd.DataFrame:
+def get_weights(time: Timestamp, resolution: int) -> list:
 
     start_time = time - 479 * resolution
     ## collecting data

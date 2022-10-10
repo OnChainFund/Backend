@@ -4,7 +4,7 @@ import pandas as pd
 import requests
 from management.weight.model import *
 from datetime import datetime
-from .models import Asset
+from ....fund.models import Asset
 
 url = "https://ftx.com/api"
 out_layer = "origin"

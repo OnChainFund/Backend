@@ -5,8 +5,7 @@ from try_app.makerdao_multicall import (
     MAKERDAO_MULTICALL_ABI,
     MAKERDAO_MULTICALL_ADDRESS,
 )
-from contract.contracts.deployment.others.Addresses import Addresses
-
+from utils.constants.addresses import addresses
 
 class MulticallWrite:
     def __init__(self, w3: Web3, chain="mainnet", custom_address=None, custom_abi=None):
@@ -33,7 +32,7 @@ class MulticallWrite:
                 "gas": 8000000,
                 # "maxFeePerGas": int(20e11),
                 # "maxPriorityFeePerGas": int(20e11),
-                "nonce": self.w3.eth.getTransactionCount(Addresses["user_1"]),
+                "nonce": self.w3.eth.getTransactionCount(addresses["user_1"]),
             }
         )
         signed_txn = self.w3.eth.account.sign_transaction(

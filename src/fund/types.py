@@ -17,8 +17,8 @@ class FundPriceFilter:
 
 @strawberry.django.filters.filter(models.Fund, lookups=True)
 class FundFilter:
-    vault_proxy: auto
-    comptroller_proxy: auto
+    vault_proxy: str
+    comptroller_proxy: str
     name: auto
     denominated_asset: "Asset"
     creator: auto
@@ -40,7 +40,7 @@ class FundFilterForCreator:
 
 @strawberry.django.filters.filter(models.Fund, lookups=True)
 class FundUpdateFilter:
-    vault_proxy: auto
+    vault_proxy: str
 
 
 @strawberry.django.filters.filter(models.AssetPrice, lookups=True)
@@ -53,7 +53,7 @@ class AssetPriceFilter:
 
 @strawberry.django.filters.filter(models.Asset, lookups=True)
 class AssetFilter:
-    address: auto
+    address: str
     name: auto
     price: AssetPriceFilter
     funds: FundFilter
@@ -62,7 +62,7 @@ class AssetFilter:
 @strawberry.django.filters.filter(get_user_model(), lookups=True)
 class UserFilter:
     # username: auto
-    ethereum_address: auto
+    ethereum_address: str
     # email: auto
     funds: FundFilter
 
@@ -96,7 +96,7 @@ class AssetOrder:
 @strawberry.django.ordering.order(get_user_model())
 class UserOrder:
     # username: auto
-    ethereum_address: auto
+    ethereum_address: str
     # email: auto
     funds: FundOrder
 
@@ -113,8 +113,8 @@ class FundPrice:
 
 @strawberry.django.type(models.Fund)
 class Fund:
-    vault_proxy: auto
-    comptroller_proxy: auto
+    vault_proxy: str
+    comptroller_proxy: str
     name: auto
     description: auto
     detail: auto
@@ -138,7 +138,7 @@ class AssetPrice:
 
 @strawberry.django.type(models.Asset)
 class Asset:
-    address: auto
+    address: str
     name: auto
     price: List["AssetPrice"]
     funds: List["Fund"]
@@ -148,7 +148,7 @@ class Asset:
 class User:
     # id: auto
     # username: auto
-    ethereum_address: auto
+    ethereum_address: str
     # password: auto
     # email: auto
     funds: List["Fund"]
@@ -157,8 +157,8 @@ class User:
 # input types
 @strawberry.django.input(models.Fund)
 class FundInput:
-    vault_proxy: auto
-    comptroller_proxy: auto
+    vault_proxy: str
+    comptroller_proxy: str
     name: auto
     description: auto
     denominated_asset: auto
@@ -173,14 +173,14 @@ class FundInputForFilter:
 
 @strawberry.django.input(models.Asset)
 class AssetInput:
-    address: auto
+    address: str
     name: auto
 
 
 @strawberry.django.input(get_user_model())
 class UserInput:
     # username: auto
-    ethereum_address: auto
+    ethereum_address: str
     # password: auto
     # email: auto
 

@@ -3,9 +3,10 @@ from tkinter import CASCADE
 from django.db import models
 from django.utils import timezone
 from django.conf import settings
+from utils.eth_fields.models import EthereumAddressField
 
 class Asset(models.Model):
-    address = models.CharField(max_length=100, unique=True, primary_key=True)
+    address = EthereumAddressField(max_length=100, unique=True, primary_key=True)
     name = models.CharField(max_length=100, unique=True)
     price_feed = models.CharField(max_length=100, null=True)
     price_feed_is_mocked = models.BooleanField(default=False)
@@ -16,10 +17,10 @@ class Asset(models.Model):
 
 class Fund(models.Model):
     # id = models.CharField(_(""), max_length=50)
-    vault_proxy = models.CharField(
+    vault_proxy = EthereumAddressField(
         max_length=100, verbose_name="金庫代理", primary_key=True, unique=True
     )
-    comptroller_proxy = models.CharField(
+    comptroller_proxy = EthereumAddressField(
         max_length=100, unique=True, verbose_name="控制器代理"
     )
 

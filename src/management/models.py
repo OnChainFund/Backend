@@ -5,7 +5,7 @@ from django.forms import ValidationError
 from django.utils.functional import lazy as _
 from django_q.models import Schedule
 from fund.models import Asset
-from utils.constants import FTX_TRADING_PAIR_LIST
+from utils.constants.ftx_trading_pair import FTX_TRADING_PAIR_LIST
 from utils.utils import args_to_string
 from .fields import CustomDurationField
 from django.utils.translation import gettext_lazy as _
