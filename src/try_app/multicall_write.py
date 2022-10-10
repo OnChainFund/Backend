@@ -1,6 +1,6 @@
 from web3 import Web3
 from web3.contract import Contract
-from decouple import config
+from decouple import config  # type: ignore
 from try_app.makerdao_multicall import (
     MAKERDAO_MULTICALL_ABI,
     MAKERDAO_MULTICALL_ADDRESS,
@@ -30,7 +30,7 @@ class Multicall:
         if custom_abi:
             abi = custom_abi
         self.w3 = w3
-        self.multicall = w3.eth.contract(address=address, abi=abi)
+        self.multicall = w3.eth.contract(address=address, abi=abi)  # type: ignore
 
     def call(self, calls: list) -> list:
         txn = self.multicall.functions.aggregate(calls).buildTransaction(
@@ -39,13 +39,13 @@ class Multicall:
                 "gas": 8000000,
                 # "maxFeePerGas": int(20e11),
                 # "maxPriorityFeePerGas": int(20e11),
-                "nonce": self.w3.eth.getTransactionCount(Addresses["user_1"]),
+                "nonce": self.w3.eth.getTransactionCount(Addresses["user_1"]),  # type: ignore
             }
         )
-        signed_txn = self.w3.eth.account.sign_transaction(
+        signed_txn = self.w3.eth.account.sign_transaction(  # type: ignore
             txn, private_key=config("PRIVATE_KEY")
         )
-        result = self.w3.eth.sendRawTransaction(signed_txn.rawTransaction)
+        result = self.w3.eth.sendRawTransaction(signed_txn.rawTransaction)  # type: ignore
         return result
 
     def create_call(self, contract: Contract, fn_name: str, args: list) -> tuple:

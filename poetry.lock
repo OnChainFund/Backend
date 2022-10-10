@@ -404,6 +404,14 @@ optional = false
 python-versions = ">=3.4"
 
 [[package]]
+name = "django-types"
+version = "0.16.0"
+description = "Type stubs for Django"
+category = "dev"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[[package]]
 name = "et-xmlfile"
 version = "1.1.0"
 description = "An implementation of lxml.xmlfile for the standard library"
@@ -995,6 +1003,14 @@ socks = ["PySocks (>=1.5.6,!=1.5.7)"]
 use_chardet_on_py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
+name = "rfc3987"
+version = "1.3.8"
+description = "Parsing and validation of URIs (RFC 3986) and IRIs (RFC 3987)"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "rlp"
 version = "2.0.1"
 description = "A package for Recursive Length Prefix encoding and decoding"
@@ -1019,6 +1035,22 @@ description = "Simple Web3 multicall"
 category = "main"
 optional = false
 python-versions = "*"
+
+[[package]]
+name = "siwe"
+version = "2.1.0"
+description = "A Python implementation of Sign-In with Ethereum (EIP-4361)."
+category = "main"
+optional = false
+python-versions = ">=3.7, !=2.7.*, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, !=3.6.*"
+
+[package.dependencies]
+abnf = "1.1.1"
+eth-account = ">=0.5.6,<0.6.0"
+pydantic = ">=1.10.2,<2.0.0"
+python-dateutil = "2.8.2"
+rfc3987 = ">=1.3.4,<2.0.0"
+web3 = ">=5.26.0,<6.0.0"
 
 [[package]]
 name = "six"
@@ -1315,7 +1347,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "4b17d5f875b0c6654e8cb8c04d408d7f25e86dcd6e59ac7efb365ec9acdf38ce"
+content-hash = "1db606e37ebf5d542d74c7d8f316eff244f3183142666e193dd3f53ae71a08d3"
 
 [metadata.files]
 abnf = [
@@ -1712,6 +1744,10 @@ django-q = [
 django-ratelimit = [
     {file = "django-ratelimit-3.0.1.tar.gz", hash = "sha256:73223d860abd5c5d7b9a807fabb39a6220068129b514be8d78044b52607ab154"},
     {file = "django_ratelimit-3.0.1-py2.py3-none-any.whl", hash = "sha256:857e797f23de948b204a31dba9d88aea3ce731b7a5d926d0240c772e19b5486f"},
+]
+django-types = [
+    {file = "django-types-0.16.0.tar.gz", hash = "sha256:29d23af8b88fa1579b47418e92ffc1d89bfbdf11eab64d2ae006fa09e54fed9a"},
+    {file = "django_types-0.16.0-py3-none-any.whl", hash = "sha256:9df4e1936f304f309a59f4cee19a607e151282fc0d97238833a382fafc5052c8"},
 ]
 et-xmlfile = [
     {file = "et_xmlfile-1.1.0-py3-none-any.whl", hash = "sha256:a2ba85d1d6a74ef63837eed693bcb89c3f752169b0e3e7ae5b16ca5e1b3deada"},
@@ -2372,6 +2408,10 @@ requests = [
     {file = "requests-2.28.1-py3-none-any.whl", hash = "sha256:8fefa2a1a1365bf5520aac41836fbee479da67864514bdb821f31ce07ce65349"},
     {file = "requests-2.28.1.tar.gz", hash = "sha256:7c5599b102feddaa661c826c56ab4fee28bfd17f5abca1ebbe3e7f19d7c97983"},
 ]
+rfc3987 = [
+    {file = "rfc3987-1.3.8-py2.py3-none-any.whl", hash = "sha256:10702b1e51e5658843460b189b185c0366d2cf4cff716f13111b0ea9fd2dce53"},
+    {file = "rfc3987-1.3.8.tar.gz", hash = "sha256:d3c4d257a560d544e9826b38bc81db676890c79ab9d7ac92b39c7a253d5ca733"},
+]
 rlp = [
     {file = "rlp-2.0.1-py2.py3-none-any.whl", hash = "sha256:52a57c9f53f03c88b189283734b397314288250cc4a3c4113e9e36e2ac6bdd16"},
     {file = "rlp-2.0.1.tar.gz", hash = "sha256:665e8312750b3fc5f7002e656d05b9dcb6e93b6063df40d95c49ad90c19d1f0e"},
@@ -2379,6 +2419,10 @@ rlp = [
 simple-multicall = [
     {file = "simple_multicall-0.1.5-py3-none-any.whl", hash = "sha256:08a0e9c8ab1542d1301e40c85b4a32a32c399c3e4ed7e0d0820193cba12f0a22"},
     {file = "simple_multicall-0.1.5.tar.gz", hash = "sha256:253e33dfddb9f8a61bca91e2e486050c9f5a92524a2a7a81221736817a867ef9"},
+]
+siwe = [
+    {file = "siwe-2.1.0-py3-none-any.whl", hash = "sha256:202efb7d2b345494a4af022d7b827d5c2349cd40eb99077d4370adb90a3cd3c6"},
+    {file = "siwe-2.1.0.tar.gz", hash = "sha256:5986960d08a4ab8db8377bba88f54b4e1a1d4630cf6b8fb731e291a858654fb6"},
 ]
 six = [
     {file = "six-1.16.0-py2.py3-none-any.whl", hash = "sha256:8abb2f1d86890a2dfb989f9a77cfcfd3e47c2a354b01111771326f8aa26e0254"},

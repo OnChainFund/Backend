@@ -33,9 +33,11 @@ eth-retry = "^0.1.8"
 simple-multicall = "^0.1.5"
 strawberry-django-jwt = "^0.2.3"
 web3 = "^5.31.1"
+siwe = "^2.1.0"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"
+django-types = "^0.16.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

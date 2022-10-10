@@ -56,7 +56,7 @@ call_args = call_on_integration_args(
 w3 = get_provider()
 multicall = Multicall(w3, "fuji")
 fund = Fund.objects.first()
-comptroller_proxy = w3.eth.contract(fund.comptroller_proxy, abi=ComptrollerLib)
+comptroller_proxy: Contract = w3.eth.contract(fund.comptroller_proxy, abi=ComptrollerLib)
 calls = [
     multicall.create_call(
         comptroller_proxy,
