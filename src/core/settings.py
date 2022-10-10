@@ -42,7 +42,7 @@ INSTALLED_APPS = [
     "django_q",
     "django_jsonform",
     "fund",
-    "contract",
+    "abi",
     # "users",
     "utils",
 ]
