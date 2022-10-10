@@ -29,10 +29,10 @@ django-admin-interface = "^0.20.0"
 Django = "4.1"
 abnf = "1.1.1"
 django-ratelimit = "3.0.1"
-siwe = "1.0.1"
 eth-retry = "^0.1.8"
-multicall = "^0.6.1"
 simple-multicall = "^0.1.5"
+strawberry-django-jwt = "^0.2.3"
+web3 = "^5.31.1"
 
 [tool.poetry.dev-dependencies]
 black = "^22.6.0"

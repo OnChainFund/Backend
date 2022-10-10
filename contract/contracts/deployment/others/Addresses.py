@@ -1,9 +1,11 @@
-Addresses = {
+RecursiveDict = dict[str, str | "RecursiveDict"]
+Addresses: RecursiveDict = {
     "user_1": "0xA3579C4c2057b58244DBc7DF5411C79d5F63a8A7",
     "user_2": "0x9Cd4b8a8709cb598bF1d248f20aeD3E50ce9f81a",
-    "multicall":"0xca11bde05977b3631167028862be2a173976ca11",
+    "multicall": "0xca11bde05977b3631167028862be2a173976ca11",
     "comptrollerProxy": "0x8a479C366EE7E51eF0Bc2c496b9707CEF0aC610c",
     "vaultProxy": "0x02b7a6d41F929a2d09D6dd8aF5537c1d1fe2E678",
+    
     "USDT": "0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4",
     "WAVAX": "0x6cEeB8fec16F7276F57ACF70C14ecA6008d3DDD4",
     "WBTC": "0xbC9052c594261Acc1a26271567bDb72A8A1Acac9",
@@ -49,5 +51,4 @@ Addresses = {
         "FundValueCalculator": "0x4FB4526A2D9A041a76a635dF4EE9e3335641F2a1",
         "FundValueCalculatorRouter": "0xF2F81C87A634cd8E2847b04743240e069b38031B",
     },
-
 }

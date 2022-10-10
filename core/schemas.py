@@ -1,6 +1,9 @@
 from django.conf import settings
 from fund.schemas import Query as FundQuery, Mutation as FundMutation
-
+from strawberry_django_jwt.middleware import (
+    JSONWebTokenMiddleware,
+)
+from strawberry import Schema
 import strawberry
 
 if settings.DEBUG == True:
@@ -20,4 +23,11 @@ else:
         pass
 
 
-schema = strawberry.Schema(query=Query, mutation=Mutation)
+schema = strawberry.Schema(
+    query=Query,
+    mutation=Mutation,
+    extensions=[
+        JSONWebTokenMiddleware,
+        # AsyncJSONWebTokenMiddleware,
+    ],
+)

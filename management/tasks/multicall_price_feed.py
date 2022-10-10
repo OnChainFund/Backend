@@ -21,6 +21,7 @@ def manage_price_feed():
     pangolin_pair_info_calls = []
     pangolin_liquidity_managemeny_calls = []
     for target in targets:
+        print(target)
         # get price
         data = get_price_from_ftx(target.ftx_pair_name, target.is_short_position)
         mock_v3_aggregator = w3.eth.contract(
@@ -40,3 +41,4 @@ def manage_price_feed():
             add_asset_price_to_db(target.target_asset.address, data)
 
     multicall_write.call(update_answer_calls)
+manage_price_feed()

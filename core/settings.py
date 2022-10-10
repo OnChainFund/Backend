@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     "corsheaders",
     "import_export",  # import export admin
     "strawberry.django",
+    "strawberry_django_jwt.refresh_token",
     # "django_ethereum_events",
     "django_q",
     "django_jsonform",
@@ -166,6 +167,7 @@ STRAWBERRY_DJANGO = {
 # AUTH_USER_MODEL = "siwe_auth.Wallet"
 AUTH_USER_MODEL = "siwe_auth.Wallet"
 AUTHENTICATION_BACKENDS = [
+    "strawberry_django_jwt.backends.JSONWebTokenBackend",
     "django.contrib.auth.backends.ModelBackend",
     "siwe_auth.backend.SiweBackend",
 ]

@@ -11,7 +11,7 @@ DATABASES = {
         default=config("DEV_DATABASE_URL"), conn_max_age=1800
     ),
 }
-
+CSRF_COOKIE_SECURE = False
 INSTALLED_APPS.append("try_app")
 
 CORS_ALLOWED_ORIGINS = [

@@ -30,7 +30,9 @@ def get_value(vault_proxy: str, quote_asset: str = Addresses["USDT"]):
             "data": nav_per_share_data,
         }
     )
-
+    print(tx_gav)
+    print(tx_gav.hex()[2:])
+    print((int(tx_gav.hex()[2:], 16) / 1e18))
     return [(int(tx_gav.hex()[2:], 16) / 1e18), (int(tx_nav.hex()[2:], 16) / 1e18)]
 
 
@@ -56,7 +58,8 @@ def update_funds_price():
 
 # update_funds_price()
 
-
+price = add_price_to_fund("0x9dd3b3471AF147DF6c7E93ff35a5f04eE9342e9C")
+print(price)
 # add_price_to_fund(
 #    "0x9dd3b3471AF147DF6c7E93ff35a5f04eE9342e9C",
 # )
