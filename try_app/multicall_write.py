@@ -1,5 +1,5 @@
 from web3 import Web3
-from web3.eth import Contract
+from web3.contract import Contract
 from decouple import config
 from try_app.makerdao_multicall import (
     MAKERDAO_MULTICALL_ABI,
@@ -9,7 +9,13 @@ from contract.contracts.deployment.others.Addresses import Addresses
 
 
 class Multicall:
-    def __init__(self, w3: Web3, chain="mainnet", custom_address=None, custom_abi=None):
+    def __init__(
+        self,
+        w3: Web3.HTTPProvider,
+        chain="mainnet",
+        custom_address=None,
+        custom_abi=None,
+    ):
         if custom_address:
             address = Web3.toChecksumAddress(custom_address)
         else:
