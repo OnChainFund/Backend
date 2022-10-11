@@ -12,7 +12,6 @@ DATABASES = {
     ),
 }
 CSRF_COOKIE_SECURE = False
-INSTALLED_APPS.append("try_app")
 
 CORS_ALLOWED_ORIGINS = [
     "https://example.com",
