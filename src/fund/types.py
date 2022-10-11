@@ -1,8 +1,12 @@
+from eth_abi.abi import decode
+from eth_utils.address import to_canonical_address
+from pydantic import BaseModel
 import strawberry
 from strawberry import auto
-from typing import List
+from typing import Any, List
 from django.contrib.auth import get_user_model
 import strawberry.django
+from abi.ocf.VaultLib import VaultLib
 from utils.multicall.multicall import Multicall
 
 from utils.utils import get_provider
@@ -115,6 +119,16 @@ class FundPrice:
     fund: "Fund"
 
 
+class FundInfoModel(BaseModel):
+    symbol: str
+    name: str
+
+
+@strawberry.experimental.pydantic.type(model=FundInfoModel, all_fields=True)
+class FundInfo:
+    pass
+
+
 @strawberry.django.type(models.Fund)
 class Fund:
     vault_proxy: auto
@@ -132,11 +146,31 @@ class Fund:
         return self.depositors.through.objects.count()
 
     @strawberry.django.field
-    def fund_info(self) -> str:
+    def fund_info(self) -> FundInfo:
         w3 = get_provider()
         multicall = Multicall(w3, "fuji")
-        calls = []
-        return self.vault_proxy
+        vault = w3.eth.contract(
+            to_canonical_address(self.vault_proxy),
+            abi=VaultLib,
+        )
+        calls = [
+            multicall.create_call(
+                vault,
+                "symbol",
+                [],
+            ),
+            multicall.create_call(
+                vault,
+                "name",
+                [],
+            ),
+        ]
+
+        result = multicall.call(calls)
+        return FundInfoModel(
+            symbol=decode(["string"], result[1][0])[0],
+            name=str(decode(["string"], result[1][1])[0]),
+        )
 
 
 @strawberry.django.type(models.AssetPrice)

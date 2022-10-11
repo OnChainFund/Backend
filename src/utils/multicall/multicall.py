@@ -1,7 +1,7 @@
 from web3 import Web3
 from web3.contract import Contract
 
-from try_app.makerdao_multicall import (
+from abi.multicall.makerdao_multicall import (
     MAKERDAO_MULTICALL_ABI,
     MAKERDAO_MULTICALL_ADDRESS,
 )
