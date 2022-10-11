@@ -28,9 +28,11 @@ class Fund(models.Model):
     description = models.TextField(verbose_name="基金簡介", null=True, blank=True)
     detail = models.TextField(verbose_name="基金詳細介紹", null=True, blank=True)
     creator = models.CharField(
-        max_length=100, null=True, verbose_name="基金名稱", blank=True
+        max_length=100, null=True, verbose_name="創建者", blank=True
     )
-    denominated_asset = models.TextField(verbose_name="定價資產", null=True, blank=True)
+    denominated_asset = models.CharField(
+        max_length=100, null=True, verbose_name="定價資產", blank=True
+    )
     depositors = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL, related_name="invested_funds", verbose_name="投資者"
     )

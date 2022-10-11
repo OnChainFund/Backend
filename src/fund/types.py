@@ -3,6 +3,9 @@ from strawberry import auto
 from typing import List
 from django.contrib.auth import get_user_model
 import strawberry.django
+from utils.multicall.multicall import Multicall
+
+from utils.utils import get_provider
 from . import models
 
 # filters
@@ -20,7 +23,7 @@ class FundFilter:
     vault_proxy: auto
     comptroller_proxy: auto
     name: auto
-    denominated_asset: "Asset"
+    denominated_asset: auto
     creator: auto
     depositors: auto
     detail: auto
@@ -30,6 +33,7 @@ class FundFilter:
 @strawberry.django.filters.filter(models.Fund, lookups=True)
 class FundFilterForCreator:
     creator: auto
+    vault_proxy: auto
 
 
 #
@@ -118,7 +122,7 @@ class Fund:
     name: auto
     description: auto
     detail: auto
-    denominated_asset: "Asset"
+    denominated_asset: auto
     creator: auto
     depositors: auto
     price: List["FundPrice"]
@@ -126,6 +130,13 @@ class Fund:
     @strawberry.django.field
     def depositor_count(self) -> int:
         return self.depositors.through.objects.count()
+
+    @strawberry.django.field
+    def fund_info(self) -> str:
+        w3 = get_provider()
+        multicall = Multicall(w3, "fuji")
+        calls = []
+        return self.vault_proxy
 
 
 @strawberry.django.type(models.AssetPrice)

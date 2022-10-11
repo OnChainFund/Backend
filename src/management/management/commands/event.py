@@ -3,7 +3,8 @@ import json
 from web3 import Web3
 import asyncio
 from abi.ocf.FundDeployer import FundDeployer
-
+from fund.models import Fund
+from asgiref.sync import sync_to_async
 
 # add blockchain connection information
 infura_url = "https://api.avax-test.network/ext/bc/C/rpc"
@@ -16,8 +17,19 @@ contract = web3.eth.contract(address=fund_deployer_address, abi=FundDeployer)
 
 
 # define function to handle events and print to the console
+@sync_to_async
 def handle_event(event):
+    print(event)
     print(Web3.toJSON(event))
+    fund_data = json.loads(Web3.toJSON(event))
+    print(fund_data["args"])
+
+    fund = Fund(
+        vault_proxy=fund_data["args"]["vaultProxy"],
+        creator=fund_data["args"]["creator"],
+        comptroller_proxy=fund_data["args"]["comptrollerProxy"],
+    )
+    (fund.save())
 
 
 # asynchronous defined function to loop
@@ -26,7 +38,7 @@ def handle_event(event):
 async def log_loop(event_filter, poll_interval):
     while True:
         for NewFundCreated in event_filter.get_new_entries():
-            handle_event(NewFundCreated)
+            await handle_event(NewFundCreated)
         await asyncio.sleep(poll_interval)
 
 
@@ -43,6 +55,3 @@ def listen_to_event():
         loop.run_until_complete(asyncio.gather(log_loop(event_filter, 2)))
     finally:
         loop.close()
-
-
-listen_to_event()

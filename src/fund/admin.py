@@ -13,7 +13,7 @@ class FundAdmin(ImportExportModelAdmin):
         "denominated_asset",
         # "comptroller_proxy",
         # "vault_proxy",
-        # "creator",
+        "creator",
         # "depositors",
     )
 
