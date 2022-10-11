@@ -1,6 +1,6 @@
 from utils.utils import get_provider
 from utils.multicall.multicall import Multicall
-from contract.contracts.deployment.others.ERC20 import ERC20 as ERC20_ABI
+from abi.others.ERC20 import ERC20 as ERC20_ABI
 from fund.models import Asset
 
 w3 = get_provider()

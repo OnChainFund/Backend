@@ -6,23 +6,23 @@ from decouple import config
 
 from utils.data_source.ftx.client import FtxClient
 from utils.utils import get_provider
-from contract.contracts.deployment.others.PangolinFactory import PangolinFactory
-from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
-from contract.contracts.deployment.others.FundValueCalculator import FundValueCalculator
-from contract.contracts.deployment.others.Addresses import Addresses
-from contract.contracts.deployment.others.ERC20 import ERC20
+from abi.others.PangolinFactory import PangolinFactory
+from abi.others.PangolinRouter import PangolinRouter
+from abi.others.FundValueCalculator import FundValueCalculator
+from utils.constants.addresses import addresses
+from abi.others.ERC20 import ERC20
 
 
 def get_price(vault_proxy: str, quote_asset: str):
     w3 = get_provider()
     fund_value_calculator_contract = w3.eth.contract(
-        # Addresses["pangolinFactory"], abi=PangolinFactory
-        Addresses["ocf"]["FundValueCalculator"],
+        # addresses["pangolinFactory"], abi=PangolinFactory
+        addresses["ocf"]["FundValueCalculator"],
         abi=FundValueCalculator,
     )
     data = fund_value_calculator_contract.encodeABI(
         fn_name="calcGavInAsset",
-        args=["0x02b7a6d41F929a2d09D6dd8aF5537c1d1fe2E678", Addresses["USDT"]],
+        args=["0x02b7a6d41F929a2d09D6dd8aF5537c1d1fe2E678", addresses["USDT"]],
     )
     tx = w3.eth.call(
         {
@@ -30,7 +30,7 @@ def get_price(vault_proxy: str, quote_asset: str):
             "gas": 7900000,
             "maxFeePerGas": w3.toWei("30", "gwei"),
             "maxPriorityFeePerGas": 1000000000,
-            "to": Addresses["ocf"]["FundValueCalculator"],
+            "to": addresses["ocf"]["FundValueCalculator"],
             "data": data,
         }
     )

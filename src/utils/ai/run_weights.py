@@ -15,24 +15,24 @@ from datetime import datetime
 url = "https://ftx.com/api"
 out_layer = "origin"
 check_path = os.path.join(settings.MEDIA_ROOT, "checkpoints/model_weight.tar")
-target = [
-    "BTC/USD",
-    "ETH/USD",
-    "USDT/USD",
-    "AAVE/USD",
-    "AAPL/USD",
-    "TWTR/USD",
-    "GLD/USD",
-    "TSLA/USD",
-    "LINK/USD",
-    "AVAX/USD",
-]
-resolution = 3600  # per hour
 
 
 ## Start time
 ####
 def get_weights(time: Timestamp, resolution: int) -> list:
+    target = [
+        "AAPL/USD",
+        "AAVE/USD",
+        "AVAX/USD",
+        "BTC/USD",
+        "ETH/USD",
+        "GLD/USD",
+        "LINK/USD",
+        "TSLA/USD",
+        "TWTR/USD",
+        "USDT/USD",
+    ]
+    resolution = 3600  # per hour
 
     start_time = time - 479 * resolution
     ## collecting data

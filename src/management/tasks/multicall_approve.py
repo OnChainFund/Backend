@@ -1,12 +1,12 @@
 from math import sqrt
-from contract.contracts.deployment.others.Addresses import Addresses
-from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
+from utils.constants.addresses import addresses
+from abi.others.PangolinRouter import PangolinRouter
 from management.models import PriceManagement
 from management.tasks.utils import get_price_from_ftx
 from utils.multicall.multicall_write import MulticallWrite
 from utils.utils import get_provider
 from utils.multicall.multicall import Multicall
-from contract.contracts.deployment.others.ERC20 import ERC20 as ERC20_ABI
+from abi.others.ERC20 import ERC20 as ERC20_ABI
 from fund.models import Asset
 
 w3 = get_provider()
@@ -18,7 +18,7 @@ approve_erc20_calls = []
 pangolin_liquidity_get_pair_reserve_calls = []
 pangolin_liquidity_management_calls = []
 ftx_prices = []
-pangolin_router = w3.eth.contract(Addresses["pangolin"]["Router"], abi=PangolinRouter)
+pangolin_router = w3.eth.contract(addresses["pangolin"]["Router"], abi=PangolinRouter)
 # get pair
 # get balance
 for target in targets:

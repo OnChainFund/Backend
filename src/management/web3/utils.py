@@ -1,5 +1,5 @@
-from contract.contracts.deployment.others.Addresses import Addresses
-from contract.contracts.deployment.others.chain_link.MockV3Aggregator import (
+from utils.constants.addresses import addresses
+from abi.others.chain_link.MockV3Aggregator import (
     MockV3Aggregator,
 )
 from utils.utils import get_provider
@@ -23,7 +23,7 @@ def update_oracle_answer(ansir: float, mock_v3_aggregator_address: str):
             # "gas": 8000000,
             # "maxFeePerGas": int(20e11),
             # "maxPriorityFeePerGas": int(20e11),
-            "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
+            "nonce": w3.eth.getTransactionCount(addresses["user_1"]),
         }
     )
     signed_txn = w3.eth.account.sign_transaction(txn, private_key=config("PRIVATE_KEY"))

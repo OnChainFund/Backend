@@ -2,7 +2,7 @@ from email.headerregistry import Address
 from pkg_resources import get_provider
 from try_app.multicall import Multicall
 from utils.utils import get_provider
-from contract.contracts.deployment.others.ERC20 import ERC20 as ERC20_ABI
+from abi.others.ERC20 import ERC20 as ERC20_ABI
 
 w3 = get_provider()
 multicall = Multicall(w3, "fuji")
@@ -23,7 +23,9 @@ calls = [
     multicall.create_call(
         USDT,
         "balanceOf",
-        ["0xA3579C4c2057b58244DBc7DF5411C79d5F63a8A7",],
+        [
+            "0xA3579C4c2057b58244DBc7DF5411C79d5F63a8A7",
+        ],
     ),
 ]
 

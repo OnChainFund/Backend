@@ -2,8 +2,8 @@
 
 from web3.contract import Contract
 from eth_utils.hexadecimal import decode_hex
-from contract.contracts.deployment.ocf.ComptrollerLib import ComptrollerLib
-from contract.contracts.deployment.others.Addresses import Addresses
+from abi.ocf.ComptrollerLib import ComptrollerLib
+from utils.constants.addresses import addresses
 from try_app.multicall_write import Multicall
 from utils.utils import get_provider
 from fund.models import Fund
@@ -12,8 +12,8 @@ from decouple import config  # type: ignore
 from eth_abi.abi import encode, encode_abi  # type: ignore
 
 pangolin_exchange_adaptor = "0x9c734a1af86273c0712a83ac154c51f8f5b21762"
-from_asset: str = Addresses["WAVAX"]  # type: ignore
-to_asset: str = Addresses["USDT"]  # type: ignore
+from_asset: str = addresses["WAVAX"]  # type: ignore
+to_asset: str = addresses["USDT"]  # type: ignore
 
 
 def encode_args(types: list[str], args: list[str | list[str] | int | bytes]):
@@ -67,7 +67,7 @@ txn = comptroller_proxy.functions.callOnExtension(
         "gas": 7900000,
         # "maxFeePerGas": w3.toWei("30", "gwei"),
         # "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
-        "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),  # type: ignore
+        "nonce": w3.eth.getTransactionCount(addresses["user_1"]),  # type: ignore
     }
 )
 signed_txn = w3.eth.account.sign_transaction(txn, private_key=config("PRIVATE_KEY"))  # type: ignore

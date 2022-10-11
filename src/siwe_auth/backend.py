@@ -11,9 +11,8 @@ from web3 import Web3, HTTPProvider
 from web3.middleware import geth_poa_middleware
 from ens import ENS
 
-from siwe.siwe import (
+from siwe import (
     SiweMessage,
-    ValidationError,
     ExpiredMessage,
     MalformedSession,
     InvalidSignature,
@@ -60,7 +59,7 @@ class SiweBackend(BaseBackend):
         except InvalidSignature:
             logging.info("Authentication attempt rejected due to invalid signature.")
             return None
-        except ValidationError:
+        except ValueError:
             logging.info("Authentication attempt rejected due to invalid message.")
             return None
 

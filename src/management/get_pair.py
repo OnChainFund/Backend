@@ -6,11 +6,11 @@ from graphql import assert_list_type
 
 from utils.data_source.ftx.client import FtxClient
 from utils.utils import get_provider
-from contract.contracts.deployment.others.PangolinFactory import PangolinFactory
-from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
-from contract.contracts.deployment.others.PangolinPair import PangolinPair
-from contract.contracts.deployment.others.Addresses import Addresses
-from contract.contracts.deployment.others.ERC20 import ERC20
+from abi.others.PangolinFactory import PangolinFactory
+from abi.others.PangolinRouter import PangolinRouter
+from abi.others.PangolinPair import PangolinPair
+from utils.constants.addresses import addresses
+from abi.others.ERC20 import ERC20
 
 
 def get_price_from_ftx(ftx_trading_pair: str) -> int:
@@ -21,8 +21,8 @@ def get_price_from_ftx(ftx_trading_pair: str) -> int:
 
 def get_lp():
 
-    target_asset = Addresses["USDT"]
-    # denominated_asset = Addresses["AVAXDOWN"]
+    target_asset = addresses["USDT"]
+    # denominated_asset = addresses["AVAXDOWN"]
     asset_list = [
         "0x6cEeB8fec16F7276F57ACF70C14ecA6008d3DDD4",
         "0xE85e1219691aF541F064E111161174C1F7Db2e84",
@@ -38,12 +38,12 @@ def get_lp():
     ]
     w3 = get_provider()
     pangolin_factory = w3.eth.contract(
-        # Addresses["pangolinFactory"], abi=PangolinFactory
-        Addresses["pangolin"]["FactoryMy"],
+        # addresses["pangolinFactory"], abi=PangolinFactory
+        addresses["pangolin"]["FactoryMy"],
         abi=PangolinFactory,
     )
     pangolin_router = w3.eth.contract(
-        Addresses["pangolin"]["Router"], abi=PangolinRouter
+        addresses["pangolin"]["Router"], abi=PangolinRouter
     )
     target_asset_contract = w3.eth.contract(target_asset, abi=ERC20)
     for asset in asset_list:

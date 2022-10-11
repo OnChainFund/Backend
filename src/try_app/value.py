@@ -6,11 +6,11 @@ import binascii
 import struct
 from utils.data_source.ftx.client import FtxClient
 from utils.utils import get_provider
-from contract.contracts.deployment.others.PangolinFactory import PangolinFactory
-from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
-from contract.contracts.deployment.others.FundValueCalculator import FundValueCalculator
-from contract.contracts.deployment.others.Addresses import Addresses
-from contract.contracts.deployment.others.ERC20 import ERC20
+from abi.others.PangolinFactory import PangolinFactory
+from abi.others.PangolinRouter import PangolinRouter
+from abi.others.FundValueCalculator import FundValueCalculator
+from utils.constants.addresses import addresses
+from abi.others.ERC20 import ERC20
 
 
 def get_price(vault_proxy: str, quote_asset: str):
@@ -32,18 +32,19 @@ def get_price(vault_proxy: str, quote_asset: str):
     bytesToHex = binascii.b2a_hex(reverseBytes)
     print("[14]: %s" % bytesToHex)
 
-    bytesHexToASCII = bytesToHex.decode('ascii')
+    bytesHexToASCII = bytesToHex.decode("ascii")
     print("[17]: %s" % bytesHexToASCII)
 
-    unpackFromhex = struct.unpack('l', bytes.fromhex(bytesHexToASCII))[0]
+    unpackFromhex = struct.unpack("l", bytes.fromhex(bytesHexToASCII))[0]
     print("[20]: %s" % unpackFromhex)
 
-    unpackBytes = struct.unpack('f', b'\x91\xfc\xb6C')[0]
+    unpackBytes = struct.unpack("f", b"\x91\xfc\xb6C")[0]
     print("[23]: %s" % unpackBytes)
     # txn = fund_value_calculator.functions.calcGavInAsset(
     #    vault_proxy,
     #    quote_asset,
     # ).transact()
+
 
 # vault proxy
 get_price(

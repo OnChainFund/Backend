@@ -1,11 +1,11 @@
 from email.headerregistry import Address
 from pkg_resources import get_provider
-from contract.contracts.deployment.others.Addresses import Addresses
-from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
+from utils.constants.addresses import addresses
+from abi.others.PangolinRouter import PangolinRouter
 from try_app.multicall_write import Multicall
 from utils.utils import get_provider
-from contract.contracts.deployment.others.ERC20 import ERC20 as ERC20_ABI
-from contract.contracts.deployment.others.chain_link.MockV3Aggregator import (
+from abi.others.ERC20 import ERC20 as ERC20_ABI
+from abi.others.chain_link.MockV3Aggregator import (
     MockV3Aggregator,
 )
 
@@ -20,7 +20,7 @@ mock_v3_aggregator = w3.eth.contract(
 USDT = w3.eth.contract(
     address="0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4", abi=ERC20_ABI
 )
-pangolin_router = w3.eth.contract(Addresses["pangolin"]["Router"], abi=PangolinRouter)
+pangolin_router = w3.eth.contract(addresses["pangolin"]["Router"], abi=PangolinRouter)
 calls = [
     multicall.create_call(
         pangolin_router,
@@ -32,7 +32,7 @@ calls = [
                 "0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4",
                 "0xbC9052c594261Acc1a26271567bDb72A8A1Acac9",
             ],
-            Addresses["user_1"],
+            addresses["user_1"],
             1758392484,
         ],
     ),

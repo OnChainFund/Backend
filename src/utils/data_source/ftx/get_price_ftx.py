@@ -1,10 +1,12 @@
+# pyright: strict
 import os
 from django.conf import settings
 import pandas as pd
 import requests
 from management.weight.model import *
 from datetime import datetime
-from ....fund.models import Asset
+from fund.models import Asset
+from utils.data_source.ftx.client import FtxClient
 
 url = "https://ftx.com/api"
 out_layer = "origin"
@@ -23,13 +25,13 @@ target = [
 ]
 
 
-def get_price_ftx(from_asset_address: str, to_asset_address: str):
-    from_asset = Asset.objects.all.filter(address=from_asset_address)
+def get_price_ftx_for_all_asset_in_db(from_asset_address: str, to_asset_address: str):
+    from_asset = Asset.objects.all().filter(address=from_asset_address)
     resolution = 3600  # per hour
     name = "BTC/USD"
     now = pd.Timestamp.now().round("60min").to_pydatetime()
     now = int(datetime.timestamp(now))
-    start_time = now - 5 * resolution
+    start_time = now - 1 * resolution
     end_time = now
     api = f"/markets/{name}/candles?resolution={resolution}&start_time={start_time}&end_time={end_time}"
     res = requests.get(url + api).json()
@@ -38,7 +40,22 @@ def get_price_ftx(from_asset_address: str, to_asset_address: str):
     print(df)
 
 
-get_price_ftx(
-    "0xe05F46AAfa9919f722bc83fbD2Bb7B3Ac23E1Bc2",
-    "0xE85e1219691aF541F064E111161174C1F7Db2e84",
-)
+def get_price_ftx_for_all_asset_in_input_list():
+    targets = [
+        "AAPL/USD",
+        "AAVE/USD",
+        "AVAX/USD",
+        "BTC/USD",
+        "ETH/USD",
+        "GLD/USD",
+        "LINK/USD",
+        "TSLA/USD",
+        "TWTR/USD",
+        "USDT/USD",
+    ]
+    ftx_client = FtxClient()
+    for index in range(len(targets)):
+        print(ftx_client.get_price(target[index]))
+
+
+get_price_ftx_for_all_asset_in_input_list()

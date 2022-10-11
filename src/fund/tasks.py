@@ -1,13 +1,13 @@
 from utils.utils import get_provider
-from contract.contracts.deployment.others.FundValueCalculator import FundValueCalculator
-from contract.contracts.deployment.others.Addresses import Addresses
+from abi.others.FundValueCalculator import FundValueCalculator
 from fund.models import Fund, FundPrice
+from utils.constants.addresses import addresses
 
 
-def get_value(vault_proxy: str, quote_asset: str = Addresses["USDT"]):
+def get_value(vault_proxy: str, quote_asset: str = addresses["USDT"]):
     w3 = get_provider()
     fund_value_calculator_contract = w3.eth.contract(
-        Addresses["ocf"]["FundValueCalculator"],
+        addresses["ocf"]["FundValueCalculator"],
         abi=FundValueCalculator,
     )
     gav_data = fund_value_calculator_contract.encodeABI(
@@ -20,13 +20,13 @@ def get_value(vault_proxy: str, quote_asset: str = Addresses["USDT"]):
     )
     tx_gav = w3.eth.call(
         {
-            "to": Addresses["ocf"]["FundValueCalculator"],
+            "to": addresses["ocf"]["FundValueCalculator"],
             "data": gav_data,
         }
     )
     tx_nav = w3.eth.call(
         {
-            "to": Addresses["ocf"]["FundValueCalculator"],
+            "to": addresses["ocf"]["FundValueCalculator"],
             "data": nav_per_share_data,
         }
     )
@@ -40,7 +40,7 @@ def add_price_to_fund(vault_proxy: str):
     # get price
     gav, nav_per_share = get_value(
         vault_proxy,
-        Addresses["USDT"],
+        addresses["USDT"],
     )
     FundPrice.objects.create(
         fund=Fund.objects.get(vault_proxy=vault_proxy),
@@ -56,7 +56,7 @@ def update_funds_price():
         add_price_to_fund(fund.vault_proxy)
 
 
-# update_funds_price()
+update_funds_price()
 
 price = add_price_to_fund("0x9dd3b3471AF147DF6c7E93ff35a5f04eE9342e9C")
 print(price)

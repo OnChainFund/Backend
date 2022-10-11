@@ -1,12 +1,12 @@
 # pyright: strict
 
 from web3.contract import Contract
-from contract.contracts.deployment.ocf.VaultLib import VaultLib
+from abi.ocf.VaultLib import VaultLib
 from try_app.multicall_write import Multicall
 from utils.utils import get_provider
 from fund.models import Fund
 from decouple import config  # type: ignore
-from contract.contracts.deployment.others.Addresses import Addresses
+from utils.constants.addresses import addresses
 
 w3 = get_provider()
 multicall = Multicall(w3, "fuji")
@@ -24,7 +24,7 @@ txn = vault_proxy.functions.addAssetManagers(
         "gas": 7900000,
         # "maxFeePerGas": w3.toWei("30", "gwei"),
         # "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
-        "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),  # type: ignore
+        "nonce": w3.eth.getTransactionCount(addresses["user_1"]),  # type: ignore
     }
 )
 signed_txn = w3.eth.account.sign_transaction(txn, private_key=config("PRIVATE_KEY"))  # type: ignore

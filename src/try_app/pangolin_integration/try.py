@@ -4,8 +4,8 @@
 
 from eth_utils.hexadecimal import decode_hex
 from pkg_resources import get_provider
-from contract.contracts.deployment.ocf.ComptrollerLib import ComptrollerLib
-from contract.contracts.deployment.others.Addresses import Addresses
+from abi.ocf.ComptrollerLib import ComptrollerLib
+from utils.constants.addresses import addresses
 from try_app.multicall_write import Multicall
 from utils.utils import get_provider
 from fund.models import Fund
@@ -14,8 +14,8 @@ from decouple import config  # type: ignore
 from eth_abi.abi import encode, encode_abi
 
 pangolin_exchange_adaptor = "0x9c734a1af86273c0712a83ac154c51f8f5b21762"
-from_asset: str = Addresses["WAVAX"]  # type: ignore
-to_asset: str = Addresses["USDT"]  # type: ignore
+from_asset: str = addresses["WAVAX"]  # type: ignore
+to_asset: str = addresses["USDT"]  # type: ignore
 
 
 def encode_args(types: list[str], args: list[str]):
@@ -56,7 +56,9 @@ call_args = call_on_integration_args(
 w3 = get_provider()
 multicall = Multicall(w3, "fuji")
 fund = Fund.objects.first()
-comptroller_proxy: Contract = w3.eth.contract(fund.comptroller_proxy, abi=ComptrollerLib)
+comptroller_proxy: Contract = w3.eth.contract(
+    fund.comptroller_proxy, abi=ComptrollerLib
+)
 calls = [
     multicall.create_call(
         comptroller_proxy,

@@ -1,9 +1,6 @@
-from contract.contracts.deployment.others.ERC20 import ERC20
 from management.tasks.utils import get_price_from_ftx, add_asset_price_to_db
-from typing import List, Set, Dict, Tuple, Optional
 from management.models import PriceManagement
-from django.core import serializers
-from contract.contracts.deployment.others.chain_link.MockV3Aggregator import (
+from abi.chain_link.MockV3Aggregator import (
     MockV3Aggregator,
 )
 from utils.utils import get_provider
@@ -41,4 +38,3 @@ def manage_price_feed():
             add_asset_price_to_db(target.target_asset.address, data)
 
     multicall_write.call(update_answer_calls)
-manage_price_feed()

@@ -6,11 +6,11 @@ from graphql import assert_list_type
 
 from utils.data_source.ftx.client import FtxClient
 from utils.utils import get_provider
-from contract.contracts.deployment.others.PangolinFactory import PangolinFactory
-from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
-from contract.contracts.deployment.others.PangolinPair import PangolinPair
-from contract.contracts.deployment.others.Addresses import Addresses
-from contract.contracts.deployment.others.ERC20 import ERC20
+from abi.others.PangolinFactory import PangolinFactory
+from abi.others.PangolinRouter import PangolinRouter
+from abi.others.PangolinPair import PangolinPair
+from utils.constants.addresses import addresses
+from abi.others.ERC20 import ERC20
 
 
 def get_price_from_ftx(ftx_trading_pair: str) -> int:
@@ -21,7 +21,7 @@ def get_price_from_ftx(ftx_trading_pair: str) -> int:
 
 def get_factory():
 
-    # denominated_asset = Addresses["AVAXDOWN"]
+    # denominated_asset = addresses["AVAXDOWN"]
     pair_list = [
         "0x10e87C2dADe91407b3f5284196fd29E3810EDd28",
         "0x4AC3d002400311F189055a37FD167957F62C7833",
@@ -50,7 +50,7 @@ def get_factory():
 
     for pair in pair_list:
         pangolin_pair = w3.eth.contract(
-            # Addresses["pangolinFactory"], abi=PangolinFactory
+            # addresses["pangolinFactory"], abi=PangolinFactory
             pair,
             abi=PangolinPair,
         )

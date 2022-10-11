@@ -5,10 +5,10 @@ from management.web3.utils import update_oracle_answer
 
 from utils.data_source.ftx.client import FtxClient
 from utils.utils import get_provider
-from contract.contracts.deployment.others.PangolinFactory import PangolinFactory
-from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
-from contract.contracts.deployment.others.Addresses import Addresses
-from contract.contracts.deployment.others.ERC20 import ERC20
+from abi.others.PangolinFactory import PangolinFactory
+from abi.others.PangolinRouter import PangolinRouter
+from utils.constants.addresses import addresses
+from abi.others.ERC20 import ERC20
 from time import sleep
 
 
@@ -61,16 +61,16 @@ def manage_pangolin_liquidity(
     # 獲取 pair address(pangolinFactory.getPair)
     w3 = get_provider()
     pangolin_factory = w3.eth.contract(
-        # Addresses["pangolinFactory"], abi=PangolinFactory
-        Addresses["pangolin"]["FactoryMy"],
+        # addresses["pangolinFactory"], abi=PangolinFactory
+        addresses["pangolin"]["FactoryMy"],
         abi=PangolinFactory,
     )
     pangolin_router = w3.eth.contract(
-        Addresses["pangolin"]["Router"], abi=PangolinRouter
+        addresses["pangolin"]["Router"], abi=PangolinRouter
     )
     target_asset_contract = w3.eth.contract(target_asset, abi=ERC20)
     denominated_asset_contract = w3.eth.contract(denominated_asset, abi=ERC20)
-    
+
     pair = pangolin_factory.functions.getPair(target_asset, denominated_asset).call()
     # 獲取流動性對的剩餘量
 
@@ -104,7 +104,7 @@ def manage_pangolin_liquidity(
         int(abs(amount)),
         1,
         path,
-        Addresses["user_1"],
+        addresses["user_1"],
         1758392484,
     ).buildTransaction(
         {
@@ -112,7 +112,7 @@ def manage_pangolin_liquidity(
             "gas": 7900000,
             # "maxFeePerGas": w3.toWei("30", "gwei"),
             # "maxPriorityFeePerGas": w3.toWei("1", "gwei"),
-            "nonce": w3.eth.getTransactionCount(Addresses["user_1"]),
+            "nonce": w3.eth.getTransactionCount(addresses["user_1"]),
         }
     )
     signed_txn = w3.eth.account.sign_transaction(txn, private_key=config("PRIVATE_KEY"))

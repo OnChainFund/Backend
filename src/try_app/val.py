@@ -6,11 +6,11 @@ from decouple import config
 
 from utils.data_source.ftx.client import FtxClient
 from utils.utils import get_provider
-from contract.contracts.deployment.others.PangolinFactory import PangolinFactory
-from contract.contracts.deployment.others.PangolinRouter import PangolinRouter
-from contract.contracts.deployment.others.FundValueCalculator import FundValueCalculator
-from contract.contracts.deployment.others.Addresses import Addresses
-from contract.contracts.deployment.others.ERC20 import ERC20
+from abi.others.PangolinFactory import PangolinFactory
+from abi.others.PangolinRouter import PangolinRouter
+from abi.others.FundValueCalculator import FundValueCalculator
+from utils.constants.addresses import addresses
+from abi.others.ERC20 import ERC20
 
 
 def get_price(vault_proxy: str, quote_asset: str):
@@ -31,19 +31,17 @@ def get_price(vault_proxy: str, quote_asset: str):
     print((tx.hex()))
     logdata_hex = tx
 
-    logdata_hex_wo_0x =  tx.hex()[2:]
+    logdata_hex_wo_0x = tx.hex()[2:]
     print(logdata_hex_wo_0x)
     print(len(logdata_hex_wo_0x))
     print(type(logdata_hex_wo_0x))
-
-
 
     # Trim '0x' from beginning of string
     hexdataTrimed = tx.hex()[2:]
     print(int(hexdataTrimed, 16))
     # Split trimmed string every 64 characters
     n = 64
-    dataSplit = [hexdataTrimed[i:i+n] for i in range(0, len(hexdataTrimed), n)]
+    dataSplit = [hexdataTrimed[i : i + n] for i in range(0, len(hexdataTrimed), n)]
 
     # Fill new list with converted decimal values
     data = []
@@ -52,18 +50,18 @@ def get_price(vault_proxy: str, quote_asset: str):
         data.append(toDec)
 
     print(data)
-    #logdata = logdata_hex_wo_0x.decode('hex')
-    #print(logdata)
+    # logdata = logdata_hex_wo_0x.decode('hex')
+    # print(logdata)
 
-    #import ethereum.abi
-    #data_dec = ethereum.abi.decode_abi(["address", "address", "uint256"], logdata)
-    #print; pprint (data_dec)
-    
-    #print(bytes.fromhex(tx.hex()).decode('utf-8'))
+    # import ethereum.abi
+    # data_dec = ethereum.abi.decode_abi(["address", "address", "uint256"], logdata)
+    # print; pprint (data_dec)
+
+    # print(bytes.fromhex(tx.hex()).decode('utf-8'))
     # print((tx.title))
     # print(struct.unpack(">h",tx) )
     fund_value_calculator = w3.eth.contract(
-        Addresses["ocf"]["FundValueCalculator"], abi=FundValueCalculator
+        addresses["ocf"]["FundValueCalculator"], abi=FundValueCalculator
     )
     # txn = fund_value_calculator.functions.calcGavInAsset(
     #    vault_proxy,
