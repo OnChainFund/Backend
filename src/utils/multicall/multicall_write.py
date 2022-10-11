@@ -1,11 +1,12 @@
 from web3 import Web3
-from web3.eth import Contract
+from web3.contract import Contract
 from decouple import config
 from try_app.makerdao_multicall import (
     MAKERDAO_MULTICALL_ABI,
     MAKERDAO_MULTICALL_ADDRESS,
 )
 from utils.constants.addresses import addresses
+
 
 class MulticallWrite:
     def __init__(self, w3: Web3, chain="mainnet", custom_address=None, custom_abi=None):

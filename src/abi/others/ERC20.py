@@ -1,4 +1,4 @@
-ERC20 = [
+ERC20: list[object] = [
     {
         "constant": True,
         "inputs": [],

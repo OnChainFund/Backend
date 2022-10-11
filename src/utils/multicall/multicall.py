@@ -1,10 +1,13 @@
 from web3 import Web3
-from web3.eth import Contract
+from web3.contract import Contract
 
 from try_app.makerdao_multicall import (
     MAKERDAO_MULTICALL_ABI,
     MAKERDAO_MULTICALL_ADDRESS,
 )
+
+Call = tuple[bytes | str, str]
+CallResult = list[int | list[bytes]]
 
 
 class Multicall:
@@ -60,7 +63,7 @@ class Multicall:
 
         self.multicall = w3.eth.contract(address=address, abi=abi)
 
-    def call(self, calls: list) -> list:
+    def call(self, calls: list[Call]) -> CallResult:
         """
         Executes multicall for specified list of smart contracts functions.
 
@@ -75,7 +78,9 @@ class Multicall:
 
         return self.multicall.functions.aggregate(calls).call()
 
-    def create_call(self, contract: Contract, fn_name: str, args: list) -> tuple:
+    def create_call(
+        self, contract: Contract, fn_name: str, args: list[bytes | str | int | float]
+    ) -> Call:
         """
         Prepares a tuple for passing to Multicall.call list.
 

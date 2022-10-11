@@ -18,6 +18,7 @@ pangolin_liquidity_get_pair_reserve_calls = []
 pangolin_liquidity_management_calls = []
 ftx_prices = []
 pangolin_router = w3.eth.contract(addresses["pangolin"]["Router"], abi=PangolinRouter)
+
 # get pair
 # get balance
 for target in targets:
@@ -26,9 +27,9 @@ for target in targets:
             get_price_from_ftx(target.ftx_pair_name, target.is_short_position)
         )
         print(target.pangolin_pool_address)
-        target_asset = w3.eth.contract(address=target.target_asset.address, abi=ERC20_ABI)
+        target_asset = w3.eth.contract(address=target.target_asset.address, abi=ERC20_ABI)  # type: ignore
         denominated_asset = w3.eth.contract(
-            address=target.denominated_asset.address, abi=ERC20_ABI
+            address=target.denominated_asset.address, abi=ERC20_ABI  # type: ignore
         )
         pangolin_liquidity_get_pair_reserve_calls.append(
             multicall.create_call(
