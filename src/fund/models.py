@@ -27,23 +27,14 @@ class Fund(models.Model):
     name = models.CharField(max_length=100, null=True, verbose_name="基金名稱", blank=True)
     description = models.TextField(verbose_name="基金簡介", null=True, blank=True)
     detail = models.TextField(verbose_name="基金詳細介紹", null=True, blank=True)
-    creator = models.ForeignKey(
-        to=settings.AUTH_USER_MODEL,
-        related_name="created_funds",
-        verbose_name="創建者",
-        on_delete=models.CASCADE,
+    creator = models.CharField(
+        max_length=100, null=True, verbose_name="基金名稱", blank=True
     )
-    denominated_asset = models.ForeignKey(
-        to=Asset,
-        verbose_name="定價資產",
-        on_delete=models.CASCADE,
-        null=False,
-        related_name="funds",
-    )
+    denominated_asset = models.TextField(verbose_name="定價資產", null=True, blank=True)
     depositors = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL, related_name="invested_funds", verbose_name="投資者"
     )
-    # depositor = models.ForeignKey
+
     class Meta:
         get_latest_by = "name"
 
@@ -64,7 +55,7 @@ class FundPrice(models.Model):
     )
 
     def __str__(self):
-        return self.fund.comptroller_proxy + ":" + str(self.date)
+        return self.fund.comptroller_proxy + ":" + str(self.time)
 
     class Meta:
         unique_together = (("time", "fund"),)

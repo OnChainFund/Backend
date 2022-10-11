@@ -26,8 +26,8 @@ else:
 schema = strawberry.Schema(
     query=Query,
     mutation=Mutation,
-    extensions=[
-        JSONWebTokenMiddleware,
-        # AsyncJSONWebTokenMiddleware,
-    ],
+    # extensions=[
+    #    JSONWebTokenMiddleware,
+    #    # AsyncJSONWebTokenMiddleware,
+    # ],
 )
