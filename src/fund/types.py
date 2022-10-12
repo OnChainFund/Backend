@@ -6,6 +6,7 @@ from strawberry import auto
 from typing import Any, List
 from django.contrib.auth import get_user_model
 import strawberry.django
+from abi.ocf.ComptrollerLib import ComptrollerLib
 from abi.ocf.VaultLib import VaultLib
 from utils.multicall.multicall import Multicall
 
@@ -38,6 +39,12 @@ class FundFilter:
 class FundFilterForCreator:
     creator: auto
     vault_proxy: auto
+
+
+@strawberry.django.filters.filter(models.Asset, lookups=True)
+class AssetFilterForAddress:
+    address: auto
+    name: auto
 
 
 #
@@ -122,6 +129,7 @@ class FundPrice:
 class FundInfoModel(BaseModel):
     symbol: str
     name: str
+    denominated_asset: str
 
 
 @strawberry.experimental.pydantic.type(model=FundInfoModel, all_fields=True)
@@ -153,6 +161,10 @@ class Fund:
             to_canonical_address(self.vault_proxy),
             abi=VaultLib,
         )
+        comptroller = w3.eth.contract(
+            to_canonical_address(self.comptroller_proxy),
+            abi=ComptrollerLib,
+        )
         calls = [
             multicall.create_call(
                 vault,
@@ -164,12 +176,19 @@ class Fund:
                 "name",
                 [],
             ),
+            multicall.create_call(
+                comptroller,
+                "getDenominationAsset",
+                [],
+            ),
         ]
 
         result = multicall.call(calls)
+
         return FundInfoModel(
             symbol=decode(["string"], result[1][0])[0],
             name=str(decode(["string"], result[1][1])[0]),
+            denominated_asset=str(decode(["address"], result[1][2])[0]),
         )
 
 
@@ -179,6 +198,10 @@ class AssetPrice:
     time: auto
     price: auto
     asset: "Asset"
+
+    @strawberry.django.field
+    def value(self) -> float:
+        return self.price
 
 
 @strawberry.django.type(models.Asset)
@@ -218,7 +241,7 @@ class FundInputForFilter:
 
 @strawberry.django.input(models.Asset)
 class AssetInput:
-    address: auto
+    # address: auto
     name: auto
 
 

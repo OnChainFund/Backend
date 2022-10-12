@@ -1,4 +1,5 @@
-import json
+# pyright: strict:5
+
 from typing import Any
 
 

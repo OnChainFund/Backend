@@ -36,6 +36,7 @@ class Fund(models.Model):
     depositors = models.ManyToManyField(
         to=settings.AUTH_USER_MODEL, related_name="invested_funds", verbose_name="投資者"
     )
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         get_latest_by = "name"

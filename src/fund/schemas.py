@@ -6,6 +6,8 @@ import strawberry_django
 import strawberry_django.auth as auth
 from strawberry_django import mutations
 from .types import (
+    AssetFilter,
+    AssetFilterForAddress,
     Fund,
     Asset,
     FundFilter,
@@ -30,7 +32,7 @@ class Query:
     # funds: List[Fund] = strawberry_django.field()
     funds: List[Fund] = strawberry_django.field(filters=FundFilterForCreator)
     asset: Asset = strawberry_django.field()
-    assets: List[Asset] = strawberry_django.field()
+    assets: List[Asset] = strawberry_django.field(filters=AssetFilterForAddress)
     # prices: List[FundPrice] = strawberry_django.field()
 
 

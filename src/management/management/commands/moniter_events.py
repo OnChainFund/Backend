@@ -1,6 +1,6 @@
 from django.core.management.base import BaseCommand, CommandError
 from fund.models import Fund
-from management.management.commands.event import listen_to_event
+from management.management.commands.event_async import listen_to_event
 
 
 class Command(BaseCommand):

@@ -1,6 +1,5 @@
 {
   "python.linting.enabled": true,
   "python.formatting.provider": "black",
-  "python.analysis.extraPaths": ["./learn"],
   "python.analysis.typeCheckingMode": "basic"
 }
