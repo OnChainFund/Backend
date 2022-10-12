@@ -8,7 +8,7 @@ ALLOWED_ALL_HOST = True
 
 DATABASES = {
     "default": dj_database_url.config(
-        default=config("DEV_DATABASE_URL"), conn_max_age=1800
+        default=config("DATABASE_URL"), conn_max_age=1800
     ),
 }
 CSRF_COOKIE_SECURE = False
