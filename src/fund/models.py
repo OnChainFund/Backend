@@ -7,6 +7,8 @@ class Asset(models.Model):
     name = models.CharField(max_length=100, unique=True)
     price_feed = models.CharField(max_length=100, null=True)
     price_feed_is_mocked = models.BooleanField(default=False)
+    ftx_pair_name = models.CharField(max_length=100, null=True)
+    is_short_position = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

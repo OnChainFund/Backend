@@ -211,6 +211,10 @@ class Asset:
     price: List["AssetPrice"]
     funds: List["Fund"]
 
+    @strawberry.django.field
+    def ftx_price(self) -> float:
+        return 0
+
 
 @strawberry.django.type(get_user_model())
 class User:
