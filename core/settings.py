@@ -26,7 +26,6 @@ INSTALLED_APPS = [
     "management",
     "admin_interface",
     "colorfield",
-    "user.apps.SiweAuthConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -38,6 +37,7 @@ INSTALLED_APPS = [
     "strawberry.django",
     "strawberry_django_jwt.refresh_token",
     # "django_ethereum_events",
+    "user",
     "django_q",
     "django_jsonform",
     "fund",
@@ -162,7 +162,6 @@ STRAWBERRY_DJANGO = {
 
 
 # Django Sign-In with Ethereum Auth Settings
-# AUTH_USER_MODEL = "user.Wallet"
 AUTH_USER_MODEL = "user.Wallet"
 AUTHENTICATION_BACKENDS = [
     "strawberry_django_jwt.backends.JSONWebTokenBackend",
