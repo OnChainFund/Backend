@@ -9,5 +9,4 @@ urlpatterns = [
     # path("api/", api.urls),
     path("control_pannel/", admin.site.urls),
     path("graphql", AsyncGraphQLView.as_view(schema=schema)),
-    path("api/auth/", include("user.urls")),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

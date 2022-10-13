@@ -6,28 +6,21 @@ import strawberry_django
 import strawberry_django.auth as auth
 from strawberry_django import mutations
 from .types import (
-    AssetFilter,
     AssetFilterForAddress,
     Fund,
     Asset,
-    FundFilter,
     FundFilterForCreator,
     FundInput,
-    FundInputForFilter,
     FundPartialInput,
     AssetInput,
     AssetPartialInput,
     FundUpdateFilter,
-    User,
-    UserInput,
 )
 import strawberry_django_jwt.mutations as jwt_mutations
 
 
 @strawberry.type
 class Query:
-    user: User = strawberry_django.field()
-    users: List[User] = strawberry_django.field()
     fund: Fund = strawberry_django.field()
     # funds: List[Fund] = strawberry_django.field()
     funds: List[Fund] = strawberry_django.field(filters=FundFilterForCreator)
@@ -51,7 +44,6 @@ class Mutation:
     deleteAssets: List[Asset] = mutations.delete()
 
     # register: User = auth.register(UserInput)
-    register: User = mutations.create(UserInput)
 
     # auth
     # token_auth = jwt_mutations.ObtainJSONWebToken.obtain

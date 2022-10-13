@@ -8,7 +8,6 @@ import requests
 import strawberry
 from strawberry import auto
 from typing import Any, List
-from django.contrib.auth import get_user_model
 import strawberry.django
 from abi.ocf.ComptrollerLib import ComptrollerLib
 from abi.ocf.VaultLib import VaultLib
@@ -78,14 +77,6 @@ class AssetFilter:
     funds: FundFilter
 
 
-@strawberry.django.filters.filter(get_user_model(), lookups=True)
-class UserFilter:
-    # username: auto
-    ethereum_address: auto
-    # email: auto
-    funds: FundFilter
-
-
 # order
 @strawberry.django.ordering.order(models.FundPrice)
 class FundPriceOrder:
@@ -109,14 +100,6 @@ class AssetPriceOrder:
 class AssetOrder:
     name: auto
     price: AssetPriceOrder
-    funds: FundOrder
-
-
-@strawberry.django.ordering.order(get_user_model())
-class UserOrder:
-    # username: auto
-    ethereum_address: auto
-    # email: auto
     funds: FundOrder
 
 
@@ -247,16 +230,6 @@ class Asset:
         return results
 
 
-@strawberry.django.type(get_user_model())
-class User:
-    # id: auto
-    # username: auto
-    ethereum_address: auto
-    # password: auto
-    # email: auto
-    funds: List["Fund"]
-
-
 # input types
 @strawberry.django.input(models.Fund)
 class FundInput:
@@ -278,14 +251,6 @@ class FundInputForFilter:
 class AssetInput:
     # address: auto
     name: auto
-
-
-@strawberry.django.input(get_user_model())
-class UserInput:
-    # username: auto
-    ethereum_address: auto
-    # password: auto
-    # email: auto
 
 
 # partial input types
