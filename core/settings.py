@@ -37,7 +37,7 @@ INSTALLED_APPS = [
     "strawberry.django",
     "strawberry_django_jwt.refresh_token",
     # "django_ethereum_events",
-    "user",
+    # "user",
     "django_q",
     "django_jsonform",
     "fund",
