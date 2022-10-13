@@ -139,7 +139,7 @@ GitHub.sublime-settings
 
 *.sol
 *.json
-static/
+
 wodl/
 migrations/
 staticfiles/
