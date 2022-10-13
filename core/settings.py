@@ -26,8 +26,7 @@ INSTALLED_APPS = [
     "management",
     "admin_interface",
     "colorfield",
-    # "user.apps.SiweAuthConfig",
-    "user",
+    "user.apps.SiweAuthConfig",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -43,7 +42,6 @@ INSTALLED_APPS = [
     "django_jsonform",
     "fund",
     "abi",
-    "user",
     "utils",
 ]
 
