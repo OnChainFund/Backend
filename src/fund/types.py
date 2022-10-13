@@ -1,6 +1,10 @@
+import datetime
+import json
+import time
 from eth_abi.abi import decode
 from eth_utils.address import to_canonical_address
 from pydantic import BaseModel
+import requests
 import strawberry
 from strawberry import auto
 from typing import Any, List
@@ -9,7 +13,7 @@ import strawberry.django
 from abi.ocf.ComptrollerLib import ComptrollerLib
 from abi.ocf.VaultLib import VaultLib
 from utils.multicall.multicall import Multicall
-
+import pandas as pd
 from utils.utils import get_provider
 from . import models
 
@@ -204,6 +208,17 @@ class AssetPrice:
         return self.price
 
 
+class BasePriceInfoModel(BaseModel):
+    # time: datetime.datetime
+    time: str
+    value: float
+
+
+@strawberry.experimental.pydantic.type(model=BasePriceInfoModel, all_fields=True)
+class BasePriceInfo:
+    pass
+
+
 @strawberry.django.type(models.Asset)
 class Asset:
     address: auto
@@ -212,8 +227,24 @@ class Asset:
     funds: List["Fund"]
 
     @strawberry.django.field
-    def ftx_price(self) -> float:
-        return 0
+    def ftx_price(self) -> list[BasePriceInfo]:
+        url = "https://ftx.com/api"
+        resolution = 3600 * 24
+        end_time = int(time.time())
+        start_time = end_time - (100 * resolution)
+        api = f"/markets/AAPL/USD/candles?resolution={resolution}&start_time={start_time}&end_time={end_time}"
+        res = requests.get(url + api).json()
+        df = pd.DataFrame(res["result"])
+        # df.drop(columns=["time","volume"])
+        k = df.drop(["time", "volume", "open", "high", "low"], axis=1)
+        start_time = k["startTime"].values.tolist()
+        close = k["close"].values.tolist()
+        results: list[BasePriceInfo] = []
+
+        for i in range(len(start_time)):
+            results.append(BasePriceInfo(time=start_time[i], value=close[i]))
+
+        return results
 
 
 @strawberry.django.type(get_user_model())

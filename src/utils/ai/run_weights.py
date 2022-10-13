@@ -32,6 +32,7 @@ def get_weights(time: Timestamp, resolution: int) -> list:
         "TWTR/USD",
         "USDT/USD",
     ]
+    
     resolution = 3600  # per hour
 
     start_time = time - 479 * resolution

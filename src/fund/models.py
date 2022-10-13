@@ -3,7 +3,9 @@ from django.conf import settings
 
 
 class Asset(models.Model):
-    address = models.CharField(max_length=100, unique=True, primary_key=True)
+    address = models.CharField(
+        max_length=100, verbose_name="地址", primary_key=True, unique=True
+    )
     name = models.CharField(max_length=100, unique=True)
     price_feed = models.CharField(max_length=100, null=True)
     price_feed_is_mocked = models.BooleanField(default=False)
