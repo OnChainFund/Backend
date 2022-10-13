@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     "django_jsonform",
     "fund",
     "abi",
-    # "users",
+    "user",
     "utils",
 ]
 
