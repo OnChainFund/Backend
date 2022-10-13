@@ -2,8 +2,8 @@ from abc import abstractmethod
 import logging
 from typing import Callable
 
-from siwe_auth.custom_groups.group_manager import GroupManager
-from siwe_auth.utils.data_classes import EthereumBaseClass
+from user.custom_groups.group_manager import GroupManager
+from user.utils.data_classes import EthereumBaseClass
 
 from web3 import Web3, HTTPProvider
 

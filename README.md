@@ -35,13 +35,3 @@ python manage.py qcluster
 ## Note
 ### when
 #### 重啟
-##### Before
-- export:Liquidity managements
-##### After
-- import:Liquidity managements
-
-#### ReDeploy
-```
-poetry export --without-hashes --format=requirements.txt > requirements.txt
-// git add, commit & push
-```

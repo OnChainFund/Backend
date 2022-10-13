@@ -15,7 +15,7 @@ from django.contrib.auth.management.commands.createsuperuser import (
     Command as SuperUserCommand,
 )
 
-# siwe_auth needs to come before django.contrib.auth inorder for this command to take precedence.
+# user needs to come before django.contrib.auth inorder for this command to take precedence.
 
 
 class NotRunningInTTYException(Exception):

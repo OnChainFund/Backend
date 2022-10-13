@@ -5,8 +5,8 @@ import django
 from django.utils.encoding import force_str
 import dj_database_url
 
-# from siwe_auth.custom_groups.erc721 import ERC721OwnerManager
-# from siwe_auth.custom_groups.erc20 import ERC20OwnerManager
+# from user.custom_groups.erc721 import ERC721OwnerManager
+# from user.custom_groups.erc20 import ERC20OwnerManager
 
 django.utils.encoding.force_text = force_str
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,8 +26,8 @@ INSTALLED_APPS = [
     "management",
     "admin_interface",
     "colorfield",
-    # "siwe_auth.apps.SiweAuthConfig",
-    "siwe_auth",
+    # "user.apps.SiweAuthConfig",
+    "user",
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -164,12 +164,12 @@ STRAWBERRY_DJANGO = {
 
 
 # Django Sign-In with Ethereum Auth Settings
-# AUTH_USER_MODEL = "siwe_auth.Wallet"
-AUTH_USER_MODEL = "siwe_auth.Wallet"
+# AUTH_USER_MODEL = "user.Wallet"
+AUTH_USER_MODEL = "user.Wallet"
 AUTHENTICATION_BACKENDS = [
     "strawberry_django_jwt.backends.JSONWebTokenBackend",
     "django.contrib.auth.backends.ModelBackend",
-    "siwe_auth.backend.SiweBackend",
+    "user.backend.SiweBackend",
 ]
 LOGIN_URL = "/"
 SESSION_COOKIE_AGE = 3 * 60 * 60
