@@ -87,13 +87,6 @@ DATABASES = {
         default=config("DATABASE_URL"), conn_max_age=1800
     ),
 }
-# DATABASES = {
-#    "default": {
-#        "ENGINE": "django.db.backends.sqlite3",
-#        "NAME": BASE_DIR / "db.sqlite3",
-#    }
-# }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
@@ -118,7 +111,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/4.0/topics/i18n/
 
 LANGUAGE_CODE = "zh-Hant"
-# TIME_ZONE = "Asia/Taipei"
+TIME_ZONE = "Asia/Taipei"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = True
@@ -162,11 +155,11 @@ STRAWBERRY_DJANGO = {
 
 
 # Django Sign-In with Ethereum Auth Settings
-AUTH_USER_MODEL = "user.Wallet"
+# AUTH_USER_MODEL = "user.Wallet"
 AUTHENTICATION_BACKENDS = [
     "strawberry_django_jwt.backends.JSONWebTokenBackend",
     "django.contrib.auth.backends.ModelBackend",
-    "user.backend.SiweBackend",
+    #    "user.backend.SiweBackend",
 ]
 LOGIN_URL = "/"
 SESSION_COOKIE_AGE = 3 * 60 * 60
