@@ -1,19 +1,11 @@
-import datetime
-import json
 import time
-from eth_abi.abi import decode
-from eth_utils.address import to_canonical_address
 from pydantic import BaseModel
 import requests
 import strawberry
 from strawberry import auto
-from typing import Any, List
+from typing import List
 import strawberry.django
-from abi.ocf.ComptrollerLib import ComptrollerLib
-from abi.ocf.VaultLib import VaultLib
-from utils.multicall.multicall import Multicall
 import pandas as pd
-from utils.utils import get_provider
 from . import models
 
 # filters
@@ -30,7 +22,6 @@ class FundPriceFilter:
 class FundFilter:
     vault_proxy: auto
     comptroller_proxy: auto
-    name: auto
     denominated_asset: auto
     creator: auto
     depositors: auto
@@ -48,12 +39,6 @@ class FundFilterForCreator:
 class AssetFilterForAddress:
     address: auto
     name: auto
-
-
-#
-#    def filter_creator(self, queryset):
-#
-#        return queryset.filter(creator=self.creator)
 
 
 @strawberry.django.filters.filter(models.Fund, lookups=True)
@@ -86,7 +71,7 @@ class FundPriceOrder:
 
 @strawberry.django.ordering.order(models.Fund)
 class FundOrder:
-    name: auto
+    created_at: auto
     price: FundPriceOrder
 
 
@@ -114,9 +99,9 @@ class FundPrice:
 
 
 class FundInfoModel(BaseModel):
-    symbol: str
-    name: str
-    denominated_asset: str
+    symbol: str | None = "F"
+    name: str | None = "Fund"
+    denominated_asset: str | None = "0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4"
 
 
 @strawberry.experimental.pydantic.type(model=FundInfoModel, all_fields=True)
@@ -129,6 +114,7 @@ class Fund:
     vault_proxy: auto
     comptroller_proxy: auto
     name: auto
+    symbol: auto
     description: auto
     detail: auto
     denominated_asset: auto
@@ -139,44 +125,6 @@ class Fund:
     @strawberry.django.field
     def depositor_count(self) -> int:
         return self.depositors.through.objects.count()
-
-    @strawberry.django.field
-    def fund_info(self) -> FundInfo:
-        w3 = get_provider()
-        multicall = Multicall(w3, "fuji")
-        vault = w3.eth.contract(
-            to_canonical_address(self.vault_proxy),
-            abi=VaultLib,
-        )
-        comptroller = w3.eth.contract(
-            to_canonical_address(self.comptroller_proxy),
-            abi=ComptrollerLib,
-        )
-        calls = [
-            multicall.create_call(
-                vault,
-                "symbol",
-                [],
-            ),
-            multicall.create_call(
-                vault,
-                "name",
-                [],
-            ),
-            multicall.create_call(
-                comptroller,
-                "getDenominationAsset",
-                [],
-            ),
-        ]
-
-        result = multicall.call(calls)
-
-        return FundInfoModel(
-            symbol=decode(["string"], result[1][0])[0],
-            name=str(decode(["string"], result[1][1])[0]),
-            denominated_asset=str(decode(["address"], result[1][2])[0]),
-        )
 
 
 @strawberry.django.type(models.AssetPrice)
@@ -235,7 +183,6 @@ class Asset:
 class FundInput:
     vault_proxy: auto
     comptroller_proxy: auto
-    name: auto
     description: auto
     denominated_asset: auto
     creator: auto
@@ -256,7 +203,6 @@ class AssetInput:
 # partial input types
 @strawberry.django.input(models.Fund, partial=True)
 class FundPartialInput(FundInput):
-    name: auto
     description: auto
     detail: auto
 
