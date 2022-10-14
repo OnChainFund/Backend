@@ -5,22 +5,17 @@ import django
 from django.utils.encoding import force_str
 import dj_database_url
 
-# from user.custom_groups.erc721 import ERC721OwnerManager
-# from user.custom_groups.erc20 import ERC20OwnerManager
-
 django.utils.encoding.force_text = force_str
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("SECRET_KEY")
 
 DEBUG = True
-ALLOWED_HOSTS = ["ocf-backend.up.railway.app"]
+ALLOWED_HOSTS = [config("BACKEND_DOAMIN")]
 CSRF_TRUSTED_ORIGINS = ["https://ocf-backend.up.railway.app"]
 CORS_ALLOWED_ORIGINS = [config("FRONTEND_DOMAIN")]
 
 INSTALLED_APPS = [
-    "management",
     "admin_interface",
     "colorfield",
     "django.contrib.admin",
@@ -33,10 +28,9 @@ INSTALLED_APPS = [
     "import_export",  # import export admin
     "strawberry.django",
     "strawberry_django_jwt.refresh_token",
-    # "django_ethereum_events",
-    # "user",
-    "django_q",
     "django_jsonform",
+    "django_q",
+    "management",
     "fund",
     "abi",
     "utils",
