@@ -10,7 +10,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = config("SECRET_KEY")
 
-DEBUG = False
+DEBUG = True
 ALLOWED_HOSTS = [config("BACKEND_DOAMIN")]
 CSRF_TRUSTED_ORIGINS = [config("FRONTEND_DOMAIN")]
 CORS_ALLOWED_ORIGINS = [config("FRONTEND_DOMAIN")]
@@ -30,6 +30,8 @@ INSTALLED_APPS = [
     "strawberry_django_jwt.refresh_token",
     "django_jsonform",
     "django_q",
+    "solo",
+    "django_ethereum_events",
     "management",
     "fund",
     "abi",
@@ -119,12 +121,11 @@ X_FRAME_OPTIONS = "SAMEORIGIN"
 SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 STATIC_URL = "static/"
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+STATICFILES_DIRS = [os.path.join(BASE_DIR, "static")]
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 MEDIA_URL = "media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+DISABLE_COLLECTSTATIC = 0
 
 Q_CLUSTER = {
     "name": "ocf_backend",
@@ -156,29 +157,9 @@ LOGIN_URL = "/"
 SESSION_COOKIE_AGE = 3 * 60 * 60
 CREATE_GROUPS_ON_AUTHN = False  # defaults to False
 CREATE_ENS_PROFILE_ON_AUTHN = True  # defaults to True
-CUSTOM_GROUPS = [
-    # (
-    #     "ens_owners",
-    #     ERC721OwnerManager(
-    #         config={"contract": "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85"}
-    #     ),
-    # ),
-    # (
-    #     "bayc_owners",
-    #     ERC721OwnerManager(
-    #         config={"contract": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"}
-    #     ),
-    # ),
-    # (
-    #     "shib_owners",
-    #     ERC20OwnerManager(
-    #         config={"contract": "0x95ad61b0a150d79219dcf64e1e6cc01f0b64c4ce"}
-    #     ),
-    # ),
-]  # See "Group Plugins" section
-PROVIDER = os.environ.get(
-    "SIWE_AUTH_PROVIDER", "https://api.avax-test.network/ext/bc/C/rpc"
-)
+
 
 # django_ethereum_events
 ETHEREUM_NODE_URI = "https://api.avax-test.network/ext/bc/C/rpc"
+ETHEREUM_LOGS_FILTER_AVAILABLE = True
+ETHEREUM_GETH_POA = True

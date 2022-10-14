@@ -1,0 +1,41 @@
+import json
+
+from django.core.management import BaseCommand
+
+from django_ethereum_events.chainevents import AbstractEventReceiver
+from django_ethereum_events.models import MonitoredEvent
+
+from abi.ocf.FundDeployer import FundDeployer
+
+fund_deployer_address = "0xd590Dc2e92ce061d941A7362F9DD92540679Ef8f"
+fund_deployer_abi = FundDeployer
+
+
+class TestReceiver(AbstractEventReceiver):
+    def save(self, decoded_event):
+        print("Received event: {}".format(decoded_event))
+
+
+receiver = "example.management.commands.register_events.TestReceiver"
+
+# List of ethereum events to monitor the blockchain for
+DEFAULT_EVENTS = [
+    ("LogEcho", fund_deployer_address, fund_deployer_abi, receiver),
+]
+
+
+class Command(BaseCommand):
+    def handle(self, *args, **options):
+        monitored_events = MonitoredEvent.objects.all()
+        for event in DEFAULT_EVENTS:
+
+            if not monitored_events.filter(
+                name=event[0], contract_address__iexact=event[1]
+            ).exists():
+                self.stdout.write(
+                    "Creating monitor for event {} at {}".format(event[0], event[1])
+                )
+
+                MonitoredEvent.objects.register_event(*event)
+
+        self.stdout.write(self.style.SUCCESS("Events are up to date"))
