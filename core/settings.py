@@ -1,9 +1,10 @@
 import os
 from pathlib import Path
-from decouple import config
-import django
-from django.utils.encoding import force_str
+
 import dj_database_url
+import django
+from decouple import config
+from django.utils.encoding import force_str
 
 django.utils.encoding.force_text = force_str
 BASE_DIR = Path(__file__).resolve().parent.parent
