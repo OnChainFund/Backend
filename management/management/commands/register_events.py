@@ -18,7 +18,6 @@ class TestReceiver(AbstractEventReceiver):
         print("Received event: {}".format(decoded_event))
         fund_data = json.loads(Web3.toJSON(decoded_event))
 
-        
         fund = Fund(
             vault_proxy=fund_data["args"]["vaultProxy"],
             creator=fund_data["args"]["creator"],
@@ -27,7 +26,7 @@ class TestReceiver(AbstractEventReceiver):
         fund.save()
 
 
-receiver = "management.management.commands.register_events.TestReceiver"
+receiver = "management.management.receivers.NewFundCreatedReceiver"
 
 # List of ethereum events to monitor the blockchain for
 DEFAULT_EVENTS = [

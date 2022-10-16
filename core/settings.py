@@ -133,12 +133,14 @@ Q_CLUSTER = {
     "workers": 8,
     "recycle": 0,
     "timeout": 60,
+    "ack_failures": True,
     "compress": True,
     "save_limit": 250,
     "queue_limit": 500,
     "cpu_affinity": 1,
     "label": "Django Q",
     "orm": "default",
+    "has_replica": True,
 }
 
 STRAWBERRY_DJANGO = {
