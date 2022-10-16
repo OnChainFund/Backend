@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import AssetPrice, Fund, Asset, FundPrice
+from .models import AssetPrice, Fund, Asset, FundPrice, Wallet
 from import_export.admin import ImportExportModelAdmin, ImportExportMixin
 from import_export import resources
 
@@ -52,7 +52,12 @@ class AssetPriceAdmin(ImportExportModelAdmin):
     list_filter = ("asset",)
 
 
+class WalletAdmin(ImportExportModelAdmin):
+    list_display = ("address",)
+
+
 admin.site.register(Asset, AssetAdmin)
 admin.site.register(Fund, FundAdmin)
 admin.site.register(FundPrice, FundPriceAdmin)
 admin.site.register(AssetPrice, AssetPriceAdmin)
+admin.site.register(Wallet, WalletAdmin)

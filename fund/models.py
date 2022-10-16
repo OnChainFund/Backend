@@ -38,16 +38,14 @@ class Fund(models.Model):
     denominated_asset = models.CharField(
         max_length=100, null=True, verbose_name="定價資產", blank=True
     )
-    depositors = models.ManyToManyField(
-        to=settings.AUTH_USER_MODEL, related_name="invested_funds", verbose_name="投資者"
-    )
+
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         get_latest_by = "name"
 
     def __str__(self):
-        return self.comptroller_proxy
+        return self.name
 
 
 class FundPrice(models.Model):
@@ -85,3 +83,10 @@ class AssetPrice(models.Model):
 
     class Meta:
         unique_together = (("time", "asset"),)
+
+
+class Wallet(models.Model):
+    address = models.CharField(
+        max_length=100, verbose_name="地址", primary_key=True, unique=True
+    )
+    invested_funds = models.ManyToManyField(Fund, related_name="depositors")

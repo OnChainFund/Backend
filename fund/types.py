@@ -24,7 +24,7 @@ class FundFilter:
     comptroller_proxy: auto
     denominated_asset: auto
     creator: auto
-    depositors: auto
+    # depositors: auto
     detail: auto
     price: FundPriceFilter
 
@@ -121,10 +121,11 @@ class Fund:
     creator: auto
     depositors: auto
     price: List["FundPrice"]
+    # wallets: auto
 
     @strawberry.django.field
     def depositor_count(self) -> int:
-        return self.depositors.through.objects.count()
+        return self.depositors.all().count()
 
 
 @strawberry.django.type(models.AssetPrice)
@@ -186,7 +187,7 @@ class FundInput:
     description: auto
     denominated_asset: auto
     creator: auto
-    depositors: auto
+    # depositors: auto
 
 
 @strawberry.django.input(models.Fund)
