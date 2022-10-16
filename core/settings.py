@@ -12,7 +12,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config("SECRET_KEY")
 
 DEBUG = True
-ALLOWED_HOSTS = [config("BACKEND_DOAMIN")]
+ALLOWED_HOSTS = [config("BACKEND_DOAMIN_NAME")]
 CSRF_TRUSTED_ORIGINS = [config("BACKEND_DOAMIN")]
 CORS_ALLOWED_ORIGINS = [config("FRONTEND_DOMAIN")]
 
