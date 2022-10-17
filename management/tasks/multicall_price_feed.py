@@ -1,11 +1,10 @@
-from utils.data_source.ftx.utils import get_price_from_ftx, add_asset_price_to_db
+from abi.chain_link.MockV3Aggregator import MockV3Aggregator
 from management.models import PriceManagement
-from abi.chain_link.MockV3Aggregator import (
-    MockV3Aggregator,
-)
-from utils.utils import get_provider
-from utils.multicall.multicall_write import MulticallWrite
+from utils.data_source.ftx.utils import (add_asset_price_to_db,
+                                         get_price_from_ftx)
 from utils.multicall.multicall import Multicall
+from utils.multicall.multicall_write import MulticallWrite
+from utils.utils import get_provider
 
 
 def manage_price_feed():

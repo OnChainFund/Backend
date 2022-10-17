@@ -38,11 +38,3 @@ def get_price_ftx_for_all_asset_in_db(from_asset_address: str, to_asset_address:
     df = pd.DataFrame(res["result"])
     df.drop(columns=["open", "low"])
     print(df)
-
-
-def get_price_ftx_for_all_asset_in_input_list(targets: list[str]) -> list[float]:
-    prices: list[float] = []
-    ftx_client = FtxClient()
-    for index in range(len(targets)):
-        prices.append(ftx_client.get_price(targets[index]))
-    return prices

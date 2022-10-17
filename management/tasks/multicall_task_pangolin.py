@@ -1,12 +1,12 @@
 from math import sqrt
-from utils.constants.addresses import addresses
+from abi.others.ERC20 import ERC20 as ERC20_ABI
 from abi.others.PangolinRouter import PangolinRouter
 from management.models import PriceManagement
+from utils.constants.addresses import addresses
 from utils.data_source.ftx.utils import get_price_from_ftx
+from utils.multicall.multicall import Multicall
 from utils.multicall.multicall_write import MulticallWrite
 from utils.utils import get_provider
-from utils.multicall.multicall import Multicall
-from abi.others.ERC20 import ERC20 as ERC20_ABI
 
 w3 = get_provider()
 
@@ -18,6 +18,7 @@ pangolin_liquidity_get_pair_reserve_calls = []
 pangolin_liquidity_management_calls = []
 ftx_prices = []
 pangolin_router = w3.eth.contract(addresses["pangolin"]["Router"], abi=PangolinRouter)
+multicall_address = "0xcA11bde05977b3631167028862bE2a173976CA11"
 # get pair
 # get balance
 for target in targets:
@@ -36,6 +37,7 @@ for target in targets:
             [target.pangolin_pool_address],
         ),
     )
+
     pangolin_liquidity_get_pair_reserve_calls.append(
         multicall.create_call(
             denominated_asset,
@@ -43,16 +45,8 @@ for target in targets:
             [target.pangolin_pool_address],
         ),
     )
-    approve_erc20_calls.append(
-        multicall_write.create_call(
-            target_asset,
-            "approve",
-            ["0xcA11bde05977b3631167028862bE2a173976CA11", int(1e30)],
-        ),
-    )
-result = multicall.call(pangolin_liquidity_get_pair_reserve_calls)
-# multicall_write.call(approve_erc20_calls)
 
+result = multicall.call(pangolin_liquidity_get_pair_reserve_calls)
 
 # calculate swap info
 for i in range(0, len(targets)):
@@ -61,7 +55,6 @@ for i in range(0, len(targets)):
     denominated_asset_reserve = int(result[1][2 * i + 1].hex(), 16)
     pangolin_price = denominated_asset_reserve / target_asset_reserve
     ftx_price = ftx_prices[i]
-
     if pangolin_price < ftx_price:
         # print("buy target")
         # print(sqrt(target_asset_reserve * denominated_asset_reserve * ftx_price))
@@ -71,7 +64,6 @@ for i in range(0, len(targets)):
             - denominated_asset_reserve
         )
         path = [target.denominated_asset.address, target.target_asset.address]
-
     else:
         # print("sell target")
         # print(sqrt(target_asset_reserve * denominated_asset_reserve * ftx_price))
@@ -81,24 +73,23 @@ for i in range(0, len(targets)):
         )
         path = [target.target_asset.address, target.denominated_asset.address]
     print(int(abs(amount)))
+    send_asset = w3.eth.contract(address=path[0], abi=ERC20_ABI)
     pangolin_liquidity_management_calls.extend(
         [
             multicall.create_call(
-                pangolin_router,
-                "swapExactTokensForTokens",
+                send_asset,
+                "transferFrom",
                 [
-                    int(1e5),
-                    1,
-                    path,
                     addresses["user_1"],
-                    1758392484,
-                ],
+                    multicall_address,
+                    int(abs(amount)),
+                ],  # _from,_to,_value
             ),
             multicall.create_call(
                 pangolin_router,
                 "swapExactTokensForTokens",
                 [
-                    int(1e5),
+                    int(abs(amount)),
                     1,
                     path,
                     addresses["user_1"],
@@ -107,5 +98,6 @@ for i in range(0, len(targets)):
             ),
         ]
     )
-result = multicall_write.call([pangolin_liquidity_management_calls[1]])
-# print(result)
+print(pangolin_liquidity_management_calls)
+result = multicall_write.call(pangolin_liquidity_management_calls)
+print(result)
