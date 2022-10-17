@@ -10,14 +10,7 @@ from abi.others.PangolinRouter import PangolinRouter
 from utils.constants.addresses import addresses
 from abi.others.ERC20 import ERC20
 from time import sleep
-
-
-def get_price_from_ftx(ftx_trading_pair: str, is_short_position: bool) -> int:
-    ftx_client = FtxClient()
-    data = ftx_client.get_price(ftx_trading_pair)
-    if is_short_position:
-        data = 10000 / data
-    return data
+from utils.data_source.ftx.utils import get_price_from_ftx
 
 
 def manage_price(

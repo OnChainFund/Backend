@@ -40,22 +40,9 @@ def get_price_ftx_for_all_asset_in_db(from_asset_address: str, to_asset_address:
     print(df)
 
 
-def get_price_ftx_for_all_asset_in_input_list():
-    targets = [
-        "AAPL/USD",
-        "AAVE/USD",
-        "AVAX/USD",
-        "BTC/USD",
-        "ETH/USD",
-        "GLD/USD",
-        "LINK/USD",
-        "TSLA/USD",
-        "TWTR/USD",
-        "USDT/USD",
-    ]
+def get_price_ftx_for_all_asset_in_input_list(targets: list[str]) -> list[float]:
+    prices: list[float] = []
     ftx_client = FtxClient()
     for index in range(len(targets)):
-        print(ftx_client.get_price(target[index]))
-
-
-get_price_ftx_for_all_asset_in_input_list()
+        prices.append(ftx_client.get_price(targets[index]))
+    return prices

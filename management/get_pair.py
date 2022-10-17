@@ -1,22 +1,9 @@
-from ast import Add
-from datetime import timezone
-import math
-from decouple import config
-from graphql import assert_list_type
 
-from utils.data_source.ftx.client import FtxClient
 from utils.utils import get_provider
 from abi.others.PangolinFactory import PangolinFactory
 from abi.others.PangolinRouter import PangolinRouter
-from abi.others.PangolinPair import PangolinPair
 from utils.constants.addresses import addresses
 from abi.others.ERC20 import ERC20
-
-
-def get_price_from_ftx(ftx_trading_pair: str) -> int:
-    ftx_client = FtxClient()
-    data = ftx_client.get_price(ftx_trading_pair)
-    return data
 
 
 def get_lp():

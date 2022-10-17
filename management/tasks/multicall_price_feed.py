@@ -1,4 +1,4 @@
-from management.tasks.utils import get_price_from_ftx, add_asset_price_to_db
+from utils.data_source.ftx.utils import get_price_from_ftx, add_asset_price_to_db
 from management.models import PriceManagement
 from abi.chain_link.MockV3Aggregator import (
     MockV3Aggregator,
@@ -18,7 +18,6 @@ def manage_price_feed():
     pangolin_pair_info_calls = []
     pangolin_liquidity_managemeny_calls = []
     for target in targets:
-        print(target)
         # get price
         data = get_price_from_ftx(target.ftx_pair_name, target.is_short_position)
         mock_v3_aggregator = w3.eth.contract(

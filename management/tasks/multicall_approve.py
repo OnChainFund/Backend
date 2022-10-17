@@ -1,13 +1,10 @@
-from math import sqrt
-from utils.constants.addresses import addresses
+from abi.others.ERC20 import ERC20 as ERC20_ABI
 from abi.others.PangolinRouter import PangolinRouter
-from management.models import PriceManagement
-from management.tasks.utils import get_price_from_ftx
+from fund.models import Asset
+from utils.constants.addresses import addresses
+from utils.multicall.multicall import Multicall
 from utils.multicall.multicall_write import MulticallWrite
 from utils.utils import get_provider
-from utils.multicall.multicall import Multicall
-from abi.others.ERC20 import ERC20 as ERC20_ABI
-from fund.models import Asset
 
 w3 = get_provider()
 

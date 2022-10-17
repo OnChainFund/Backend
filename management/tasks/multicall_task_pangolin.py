@@ -2,7 +2,7 @@ from math import sqrt
 from utils.constants.addresses import addresses
 from abi.others.PangolinRouter import PangolinRouter
 from management.models import PriceManagement
-from management.tasks.utils import get_price_from_ftx
+from utils.data_source.ftx.utils import get_price_from_ftx
 from utils.multicall.multicall_write import MulticallWrite
 from utils.utils import get_provider
 from utils.multicall.multicall import Multicall
