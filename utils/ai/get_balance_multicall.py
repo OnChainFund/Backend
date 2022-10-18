@@ -1,12 +1,12 @@
-# pyright: strict
 from eth_typing.evm import Address
 from eth_utils.address import to_canonical_address
 from pydantic import BaseModel
-from utils.ai.get_weighted_positions import assets
 from web3.contract import Contract
-from utils.utils import get_provider
-from utils.multicall.multicall import Multicall, Call, CallResult
+
 from abi.others.ERC20 import ERC20 as ERC20_ABI
+from utils.ai.constants import assets
+from utils.multicall.multicall import Call, CallResult, Multicall
+from utils.utils import get_provider
 
 
 class TokenBalance(BaseModel):
@@ -22,10 +22,10 @@ def get_balance_multicall(fund_address: str) -> list[TokenBalance]:
 
     for i in range(len(assets)):
         positive_address: Address = to_canonical_address(
-            assets[i]["positive"]["address"]
+            assets[i]["positive"]["address"]  # type: ignore
         )
         negitive_address: Address = to_canonical_address(
-            assets[i]["negitive"]["address"]
+            assets[i]["negitive"]["address"]  # type: ignore
         )
         target_asset_positive: Contract = w3.eth.contract(
             address=positive_address, abi=ERC20_ABI

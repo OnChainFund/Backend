@@ -1,5 +1,6 @@
-from django.db import models
 from django.conf import settings
+from django.db import models
+from django.utils.translation import gettext_lazy as _
 
 
 class Asset(models.Model):
@@ -37,6 +38,13 @@ class Fund(models.Model):
     )
     denominated_asset = models.CharField(
         max_length=100, null=True, verbose_name="定價資產", blank=True
+    )
+    subscribed_strategy = models.ForeignKey(
+        "management.Strategy",
+        verbose_name="訂閱策略",
+        on_delete=models.SET_NULL,
+        null=True,
+        related_name="funds",
     )
 
     created_at = models.DateTimeField(auto_now_add=True)

@@ -533,6 +533,14 @@ optional = false
 python-versions = ">=3.7,<4.0"
 
 [[package]]
+name = "djantic"
+version = "0.7.0"
+description = "Pydantic model support for Django ORM"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[[package]]
 name = "et-xmlfile"
 version = "1.1.0"
 description = "An implementation of lxml.xmlfile for the standard library"
@@ -1507,7 +1515,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "90eb06cb09be57cfaca99a090241befaf7229d97e0659509a87775c9e6b65cac"
+content-hash = "a217976d2e1261d837a111afc7fbe7d73f178fa17baf561a43075dfbd126211f"
 
 [metadata.files]
 abnf = [
@@ -1936,6 +1944,10 @@ django-solo = [
 django-types = [
     {file = "django-types-0.16.0.tar.gz", hash = "sha256:29d23af8b88fa1579b47418e92ffc1d89bfbdf11eab64d2ae006fa09e54fed9a"},
     {file = "django_types-0.16.0-py3-none-any.whl", hash = "sha256:9df4e1936f304f309a59f4cee19a607e151282fc0d97238833a382fafc5052c8"},
+]
+djantic = [
+    {file = "djantic-0.7.0-py3-none-any.whl", hash = "sha256:1ea0e6560d41e2d2350d8bb6a173ed8b1bcdd86fa8af5d0b7748e3609a8d5924"},
+    {file = "djantic-0.7.0.tar.gz", hash = "sha256:1b074b595879145582a726d9e6491b9c72e53e98efdfd445420c6b12ddfe5a85"},
 ]
 et-xmlfile = [
     {file = "et_xmlfile-1.1.0-py3-none-any.whl", hash = "sha256:a2ba85d1d6a74ef63837eed693bcb89c3f752169b0e3e7ae5b16ca5e1b3deada"},

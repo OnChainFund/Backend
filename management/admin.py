@@ -15,7 +15,7 @@ class PriceManagementAdmin(ImportExportModelAdmin):
         "update_asset_price_mock_v3_aggregator",
         "is_short_position",
         "round_time",
-        "schedual"
+        "schedual",
     )
     readonly_fields = [
         "schedual",
@@ -23,11 +23,10 @@ class PriceManagementAdmin(ImportExportModelAdmin):
     form = PriceManagementForm
 
 
+@admin.register(Strategy)
 class StrategyAdmin(ImportExportModelAdmin):
-    list_display = (
-        "title",
-        "description",
-    )
+    list_display = ("name", "description", "assets_count")
+
     form = StrategyForm
 
 
@@ -36,5 +35,4 @@ class WeightAdmin(ImportExportModelAdmin):
 
 
 admin.site.register(PriceManagement, PriceManagementAdmin)
-admin.site.register(Strategy, StrategyAdmin)
 # admin.site.register(WeightAdmin, Weight)

@@ -1,17 +1,20 @@
+import datetime
 from random import random
-from django.utils import timezone
+
+from django.conf import settings
 from django.db import models
 from django.forms import ValidationError
+from django.utils import timezone
 from django.utils.functional import lazy as _
+from django.utils.translation import gettext_lazy as _
+from django_jsonform.models.fields import JSONField
 from django_q.models import Schedule
+
 from fund.models import Asset
 from utils.constants.ftx_trading_pair import FTX_TRADING_PAIR_LIST
 from utils.utils import args_to_string
+
 from .fields import CustomDurationField
-from django.utils.translation import gettext_lazy as _
-from django_jsonform.models.fields import JSONField
-from django.conf import settings
-import datetime
 
 
 class PriceManagement(models.Model):
@@ -55,16 +58,23 @@ class Strategy(models.Model):
         RUNNING = "RUN", _("Running")
         PAUSED = "PAUSE", _("Paused")
 
-    title = models.TextField(verbose_name="標題", null=True, blank=True)
-    description = models.TextField(verbose_name="簡介", null=True, blank=True)
+    name = models.CharField(max_length=100, null=True, verbose_name="策略名稱", blank=True)
+    description = models.TextField(verbose_name="策略簡介", null=True, blank=True)
+    detail = models.TextField(verbose_name="策略詳細介紹", null=True, blank=True)
     creator = models.ForeignKey(
         to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True
     )
     status = models.CharField(
         max_length=10, choices=StrategyStatus.choices, default=StrategyStatus.PAUSED
     )
-    assets = models.ManyToManyField(to=Asset)
-    model = models.FileField()
+    assets = models.ManyToManyField(to=Asset, related_name="strategies")
+    # ai_model = models.FileField()
+    @property
+    def assets_count(self):
+        return self.assets.count()
+
+    def __str__(self):
+        return self.name
 
 
 class Weight(models.Model):
@@ -84,7 +94,7 @@ class Weight(models.Model):
     buffer = models.IntegerField()
 
     def __str__(self):
-        return self.strategy.title + ":" + str(self.time)
+        return str(self.strategy.name) + ":" + str(self.time)
 
     class Meta:
         unique_together = (("time", "strategy"),)

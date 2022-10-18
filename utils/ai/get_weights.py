@@ -1,35 +1,41 @@
 import os
-from django.conf import settings
+from collections import OrderedDict
+from datetime import datetime
+
+import numpy as np
 import pandas as pd
 import requests
-from collections import OrderedDict
-import numpy as np
 import torch
-from torch.utils.data import Dataset, DataLoader
+from django.conf import settings
+from torch.utils.data import DataLoader, Dataset
+
 from management.weight.model import *
 
 url = "https://ftx.com/api"
 out_layer = "origin"
 check_path = os.path.join(settings.MEDIA_ROOT, "checkpoints/model_weight.tar")
+
 target = [
-    "AAPL/USD",
-    "AAVE/USD",
-    "AVAX/USD",
     "BTC/USD",
     "ETH/USD",
-    "GLD/USD",
-    "LINK/USD",
-    "TSLA/USD",
-    "TWTR/USD",
     "USDT/USD",
+    "AAVE/USD",
+    "AAPL/USD",
+    "TWTR/USD",
+    "GLD/USD",
+    "TSLA/USD",
+    "LINK/USD",
+    "AVAX/USD",
 ]
 resolution = 3600  # per hour
 
 
 ## Start time
-####
-def get_weights(time: int, resolution: int) -> pd.DataFrame:
+def get_weights() -> list[float]:
 
+    now = pd.Timestamp.now().round("60min").to_pydatetime()
+    time = int(datetime.timestamp(now))
+    resolution = 3600  # per hour
     start_time = int(time) - 479 * resolution
     ## collecting data
     l = []
@@ -72,7 +78,14 @@ def get_weights(time: int, resolution: int) -> pd.DataFrame:
             out = out.cpu().detach().numpy().tolist()
             weight = weight + out
     df_weight = pd.DataFrame(weight, index=day_index, columns=target)
-    return df_weight
+    weights = df_weight.iloc[-1, :].to_numpy()
+    return weights  # type: ignore
+
+
+def get_weights_with_ftx_pair_name():
+    weights = get_weights()
+    res = {target[i]: weights[i] for i in range(len(weights))}
+    return res
 
 
 # filepath = './Data/'

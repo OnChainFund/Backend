@@ -6,18 +6,20 @@ from import_export import resources
 
 class AssetResource(resources.ModelResource):
     model = Asset
-    skip_unchanged = True
-    report_skipped = True
+    # skip_unchanged = True
+    # report_skipped = True
     exclude = ("id",)
-    import_id_fields = ("address",)
-    fields = (
-        "address",
-        "name",
-        "price_feed",
-        "price_feed_is_mocked",
-        "ftx_pair_name",
-        "is_short_position",
-    )
+
+
+# import_id_fields = ("address",)
+# fields = (
+#     "address",
+#     "name",
+#     "price_feed",
+#     "price_feed_is_mocked",
+#     "ftx_pair_name",
+#     "is_short_position",
+# )
 
 
 class AssetAdmin(ImportExportModelAdmin):
@@ -54,6 +56,13 @@ class AssetPriceAdmin(ImportExportModelAdmin):
 
 class WalletAdmin(ImportExportModelAdmin):
     list_display = ("address",)
+
+
+class StrategyAdmin(ImportExportModelAdmin):
+    list_display = (
+        "name",
+        "creator",
+    )
 
 
 admin.site.register(Asset, AssetAdmin)
