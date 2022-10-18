@@ -8,7 +8,7 @@ import requests
 import torch
 from django.conf import settings
 from torch.utils.data import DataLoader, Dataset
-
+from utils.ai.constants import assets_simple
 from management.weight.model import *
 
 url = "https://ftx.com/api"
@@ -86,6 +86,18 @@ def get_weights_with_ftx_pair_name():
     weights = get_weights()
     res = {target[i]: weights[i] for i in range(len(weights))}
     return res
+
+
+def get_weights_with_asset_address():
+    asset_weight = {}
+    weights = get_weights()
+    for i in range(len(weights)):
+        if weights[i] > 0:
+            asset_weight[assets_simple[target[i]]["positive"]["address"]] = weights[i]
+        else:
+            asset_weight[assets_simple[target[i]]["negitive"]["address"]] = -weights[i]
+
+    return asset_weight
 
 
 # filepath = './Data/'

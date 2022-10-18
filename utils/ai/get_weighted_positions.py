@@ -8,8 +8,7 @@ from pydantic import BaseModel
 from utils.ai.get_weights import get_weights
 
 
-
-
+from utils.ai.constants import assets
 
 
 class Position(BaseModel):
