@@ -37,6 +37,8 @@ class AssetAdmin(ImportExportModelAdmin):
 
 class FundAdmin(ImportExportModelAdmin):
     list_display = (
+        "name",
+        "symbol",
         "vault_proxy",
         "denominated_asset",
         "comptroller_proxy",
