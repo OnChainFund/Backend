@@ -11,12 +11,12 @@ w3 = get_provider()
 multicall = MulticallWrite(w3, "fuji")
 # fund = Fund.objects.first()
 vault_proxy: Contract = w3.eth.contract(  # type: ignore
-    "0x9dd3b3471AF147DF6c7E93ff35a5f04eE9342e9C", abi=VaultLib  # type: ignore
+    "0xfc2Db9172C5ff957CB3c342daeE9E2D193287817", abi=VaultLib  # type: ignore
 )
 
 
 txn = vault_proxy.functions.addAssetManagers(
-    ["0xA3579C4c2057b58244DBc7DF5411C79d5F63a8A7"]
+    ["0xcA11bde05977b3631167028862bE2a173976CA11"]
 ).buildTransaction(
     {
         "chainId": 43113,

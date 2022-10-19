@@ -12,13 +12,13 @@ fund_address = "0xdB15F01C3C7Dd083e0434Dd09E740ca3906Ab41c"
 w3 = get_provider()
 
 multicall_write = MulticallWrite(w3, "fuji")
-GAV = 100100
+GAV = 909910
 Buffer = 0.1
 usdt = "0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4"
 rebalance_calls = []
 comptroller_proxy: Contract = w3.eth.contract(  # type: ignore
     # fund.comptroller_proxy, abi=ComptrollerLib  # type: ignore
-    "0xcC4FD48180d680561d9e044ef49302B527b33f03",  # type: ignore
+    "0x7B3cED82De54424EbC9aFbBcD6513B9aCe1A002D",  # type: ignore
     abi=ComptrollerLib,  # type: ignore
 )
 for key, value in get_weights_with_asset_address().items():
