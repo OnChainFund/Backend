@@ -21,7 +21,8 @@ def manage_price_feed():
         )
         if target.is_short_position:
             data = int(10000 * 1e8 / data)
-            
+        else:
+            data = int(data * 1e8)
 
         if target.price_feed_is_mocked:
             update_answer_calls.append(
@@ -33,4 +34,4 @@ def manage_price_feed():
             )
 
     multicall_write.call(update_answer_calls)
-
+manage_price_feed()
