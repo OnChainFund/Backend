@@ -30,33 +30,32 @@ def liquidity_management_pangolin():
     # get pair
     # get balance
     for target in targets:
-        if not (target.ftx_pair_name == None or target.pangolin_pool_address == None):
-            ftx_prices.append(
-                get_price_from_ftx(target.ftx_pair_name, target.is_short_position)
-            )
-            print(target.pangolin_pool_address)
-            target_asset = w3.eth.contract(
-                address=to_canonical_address(target.target_asset.address), abi=ERC20_ABI
-            )
-            denominated_asset = w3.eth.contract(
-                address=to_canonical_address(target.denominated_asset.address),
-                abi=ERC20_ABI,
-            )
-            pangolin_liquidity_get_pair_reserve_calls.append(
-                multicall.create_call(
-                    target_asset,
-                    "balanceOf",
-                    [target.pangolin_pool_address],
-                ),
-            )
+        ftx_prices.append(
+            get_price_from_ftx(target.ftx_pair_name, target.is_short_position)
+        )
+        print(target.pangolin_pool_address)
+        target_asset = w3.eth.contract(
+            address=to_canonical_address(target.target_asset.address), abi=ERC20_ABI
+        )
+        denominated_asset = w3.eth.contract(
+            address=to_canonical_address(target.denominated_asset.address),
+            abi=ERC20_ABI,
+        )
+        pangolin_liquidity_get_pair_reserve_calls.append(
+            multicall.create_call(
+                target_asset,
+                "balanceOf",
+                [target.pangolin_pool_address],
+            ),
+        )
 
-            pangolin_liquidity_get_pair_reserve_calls.append(
-                multicall.create_call(
-                    denominated_asset,
-                    "balanceOf",
-                    [target.pangolin_pool_address],
-                ),
-            )
+        pangolin_liquidity_get_pair_reserve_calls.append(
+            multicall.create_call(
+                denominated_asset,
+                "balanceOf",
+                [target.pangolin_pool_address],
+            ),
+        )
 
         result = multicall.call(pangolin_liquidity_get_pair_reserve_calls)
 
@@ -85,7 +84,9 @@ def liquidity_management_pangolin():
                 )
                 path = [target.target_asset.address, target.denominated_asset.address]
             print(int(abs(amount)))
-            send_asset = w3.eth.contract(address=to_canonical_address(path[0]), abi=ERC20_ABI)
+            send_asset = w3.eth.contract(
+                address=to_canonical_address(path[0]), abi=ERC20_ABI
+            )
             pangolin_liquidity_management_calls.extend(
                 [
                     multicall.create_call(
@@ -111,4 +112,6 @@ def liquidity_management_pangolin():
                 ]
             )
         result = multicall_write.call(pangolin_liquidity_management_calls)
+
+
 liquidity_management_pangolin()
