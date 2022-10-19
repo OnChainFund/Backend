@@ -24,14 +24,12 @@ class PriceManagement(models.Model):
         to=Asset,
         verbose_name="資產",
         on_delete=models.CASCADE,
-        null=False,
         related_name="target_asset",
     )
     denominated_asset = models.ForeignKey(
         to=Asset,
         verbose_name="對價資產",
         on_delete=models.CASCADE,
-        null=False,
         related_name="denominated_asset",
     )
     pangolin_pool_address = models.CharField(max_length=255, null=True, blank=True)
