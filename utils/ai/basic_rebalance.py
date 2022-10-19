@@ -12,7 +12,7 @@ fund_address = "0xdB15F01C3C7Dd083e0434Dd09E740ca3906Ab41c"
 w3 = get_provider()
 
 multicall_write = MulticallWrite(w3, "fuji")
-GAV = 909910
+GAV = 90990
 Buffer = 0.1
 usdt = "0xd1Cc87496aF84105699E82D46B6c5Ab6775Afae4"
 rebalance_calls = []
@@ -34,7 +34,7 @@ for key, value in get_weights_with_asset_address().items():
                     get_call_args(
                         from_asset=usdt,
                         to_asset=key,
-                        outgoing_asset_amount=int(GAV * (1 - Buffer) * value * 1e18),
+                        outgoing_asset_amount=int(GAV * 0.9 * value * 1e18),
                         min_incoming_asset_amount=int(1e3),
                     ),
                 ],
