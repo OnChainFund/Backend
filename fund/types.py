@@ -157,6 +157,7 @@ class Asset:
     name: auto
     price: List["AssetPrice"]
     funds: List["Fund"]
+    is_short_position: auto
 
     @strawberry.django.field
     def ftx_price(self) -> list[BasePriceInfo]:
@@ -172,9 +173,14 @@ class Asset:
         start_time = k["startTime"].values.tolist()
         close = k["close"].values.tolist()
         results: list[BasePriceInfo] = []
-
-        for i in range(len(start_time)):
-            results.append(BasePriceInfo(time=start_time[i], value=close[i]))
+        if self.is_short_position:
+            for i in range(len(start_time)):
+                results.append(
+                    BasePriceInfo(time=start_time[i], value=10000 / close[i])
+                )
+        else:
+            for i in range(len(start_time)):
+                results.append(BasePriceInfo(time=start_time[i], value=close[i]))
 
         return results
 

@@ -20,16 +20,18 @@ def manage_price_feed():
             abi=MockV3Aggregator,
         )
         if target.is_short_position:
-            data = int(10000 / data)
+            data = int(10000 * 1e8 / data)
 
         if target.price_feed_is_mocked:
             update_answer_calls.append(
                 multicall_write.create_call(
                     mock_v3_aggregator,
                     "updateAnswer",
-                    [int(data * 1e8)],
+                    [int(data)],
                 ),
             )
 
     multicall_write.call(update_answer_calls)
+
+
 manage_price_feed()
