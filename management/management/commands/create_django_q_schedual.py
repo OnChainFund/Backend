@@ -25,7 +25,7 @@ class Command(BaseCommand):
 
         # pangolin liquidity management
         Schedule.objects.create(
-            func="management.tasks.multicall_price_feed.manage_price_feed",
+            func="management.tasks.liquidity_management_pangolin.liquidity_management_pangolin",
             name="Pangolin Liquidity Management",
             repeats=-1,
             schedule_type=Schedule.HOURLY,
