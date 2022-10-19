@@ -23,7 +23,7 @@ def manage_price_feed():
             data = int(10000 * 1e8 / data)
         else:
             data = int(data * 1e8)
-        if target.address == "0x9a13BE5e8D310C07BF4dBE7Dc4CF5b699AA5430a":
+        if target.name == "USDTDOWN":
             data = 1 * 1e8
         if target.price_feed_is_mocked:
             update_answer_calls.append(
