@@ -157,6 +157,7 @@ class Asset:
     name: auto
     price: List["AssetPrice"]
     funds: List["Fund"]
+    ftx_pair_name: auto
     is_short_position: auto
 
     @strawberry.django.field
@@ -165,7 +166,7 @@ class Asset:
         resolution = 3600 * 24
         end_time = int(time.time())
         start_time = end_time - (100 * resolution)
-        api = f"/markets/AAPL/USD/candles?resolution={resolution}&start_time={start_time}&end_time={end_time}"
+        api = f"/markets/{self.ftx_pair_name}/candles?resolution={resolution}&start_time={start_time}&end_time={end_time}"
         res = requests.get(url + api).json()
         df = pd.DataFrame(res["result"])
         # df.drop(columns=["time","volume"])
