@@ -32,6 +32,19 @@ python manage.py qcluster
 ./manage.py shell < management/tasks.py
 ```
 
+## 手動測試部分(有時候調用合約掛掉,可以手動測)
+```
+# batch approve
+./manage.py shell < management/tasks/multicall_approve.py
+
+# batch liquidity management
+./manage.py shell < management/tasks/liquidity_management_pangolin.py
+
+# batch price feed update
+./manage.py shell < management/tasks/multicall_price_feed.py         
+
+```
+
 ## Note
 ### when
 #### 重啟

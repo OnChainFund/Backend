@@ -1,24 +1,17 @@
-import datetime
-from random import random
-
 from django.conf import settings
 from django.db import models
-from django.forms import ValidationError
-from django.utils import timezone
 from django.utils.functional import lazy as _
 from django.utils.translation import gettext_lazy as _
 from django_jsonform.models.fields import JSONField
 from django_q.models import Schedule
 
 from fund.models import Asset
-from utils.constants.ftx_trading_pair import FTX_TRADING_PAIR_LIST
-from utils.utils import args_to_string
 
 from .fields import CustomDurationField
 
 
 class PriceManagement(models.Model):
-    ftx_pair_name = models.CharField(max_length=100, null=True, blank=True)
+    ftx_pair_name = models.CharField(max_length=100)
 
     target_asset = models.ForeignKey(
         to=Asset,
@@ -32,7 +25,7 @@ class PriceManagement(models.Model):
         on_delete=models.CASCADE,
         related_name="denominated_asset",
     )
-    pangolin_pool_address = models.CharField(max_length=255, null=True, blank=True)
+    pangolin_pool_address = models.CharField(max_length=255)
     # round_time = models.DurationField(null=True)
     round_time = CustomDurationField(null=True)
     round_start_time = models.DateTimeField(null=True)

@@ -33,7 +33,8 @@ def manage_price_feed():
                     [int(data)],
                 ),
             )
-
+        print(target.name)
+        print(int(data))
     multicall_write.call(update_answer_calls)
 
 

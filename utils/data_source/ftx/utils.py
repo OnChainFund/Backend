@@ -2,15 +2,13 @@ from fund.models import Asset, AssetPrice
 from utils.data_source.ftx.client import FtxClient
 
 
-def get_price_from_ftx(ftx_trading_pair: str, is_short_position: bool = False) -> float:
+def get_price_from_ftx(ftx_trading_pair: str, is_short_position: bool) -> float:
     ftx_client = FtxClient()
     data = ftx_client.get_price(ftx_trading_pair)
-    try:
-        value = float(data)
-    except ValueError:
-        value = 0
-    if is_short_position:
-        data = 10000 / value
+    value = float(data)
+    if is_short_position == True:
+        value = 10000 / value
+
     return value
 
 
