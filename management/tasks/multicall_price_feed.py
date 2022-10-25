@@ -19,10 +19,8 @@ def manage_price_feed():
             target.price_feed,
             abi=MockV3Aggregator,
         )
-        if target.is_short_position:
-            data = int(10000 * 1e8 / data)
-        else:
-            data = int(data * 1e8)
+
+        data = int(data * 1e8)
         if target.name == "USDTDOWN":
             data = 1 * 1e8
         if target.price_feed_is_mocked:
