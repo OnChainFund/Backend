@@ -36,4 +36,4 @@ def manage_price_feed():
     multicall_write.call(update_answer_calls)
 
 
-manage_price_feed()
+# manage_price_feed()

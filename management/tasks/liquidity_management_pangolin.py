@@ -67,9 +67,7 @@ def liquidity_management_pangolin():
         denominated_asset_reserve = int(result[1][2 * i + 1].hex(), 16)  # type: ignore
         pangolin_price = denominated_asset_reserve / target_asset_reserve
         ftx_price = ftx_prices[i]
-        print(target.target_asset.name, "png price: ", pangolin_price)
 
-        print(target.target_asset.name, "ftx price: ", ftx_price)
         if pangolin_price < ftx_price:
             # print("buy target")
             # print(sqrt(target_asset_reserve * denominated_asset_reserve * ftx_price))
@@ -117,4 +115,4 @@ def liquidity_management_pangolin():
     result = multicall_write.call(pangolin_liquidity_management_calls)
 
 
-liquidity_management_pangolin()
+# liquidity_management_pangolin()
