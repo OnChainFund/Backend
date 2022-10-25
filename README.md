@@ -32,6 +32,21 @@ python manage.py qcluster
 ./manage.py shell < management/tasks.py
 ```
 
+## Deployment
+use railway
+1. setup environment variables
+2. setup build and deploy command
+3. run `railway up`
+
+how to run django_q and web server in same app
+```
+railway run python manage.py qcluster
+```
+than kills the teminal, it will run in the same app
+
+
+
+
 ## 手動測試部分(有時候調用合約掛掉,可以手動測)
 ```
 # batch approve
