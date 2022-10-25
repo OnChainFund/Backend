@@ -32,7 +32,7 @@ class MulticallWrite:
             {
                 "chainId": 43113,
                 "gas": 8000000,
-                # "maxFeePerGas": int(20e11),
+                "maxFeePerGas": int(20e11),
                 # "maxPriorityFeePerGas": int(20e11),
                 "nonce": self.w3.eth.getTransactionCount(addresses["user_1"]),
             }
