@@ -11,7 +11,7 @@ w3 = get_provider()
 multicall = MulticallWrite(w3, "fuji")
 # fund = Fund.objects.first()
 vault_proxy: Contract = w3.eth.contract(  # type: ignore
-    "0xfc2Db9172C5ff957CB3c342daeE9E2D193287817", abi=VaultLib  # type: ignore
+    "0x315D89E0f727bd1605480eC0F65BA10fe83c7739", abi=VaultLib  # type: ignore
 )
 
 

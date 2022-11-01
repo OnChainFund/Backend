@@ -39,11 +39,24 @@ use railway
 3. run `railway up`
 
 how to run django_q and web server in same app
+### django
 ```
-railway run python manage.py qcluster
+// django build
+python manage.py makemigrations && python manage.py migrate
+// django deploy
+gunicorn core.wsgi
+```
+### djnago_q
+```
+// django_q build
+python manage.py makemigrations && python manage.py migrate --fake
+// django_q deploy
+python manage.py qcluster
 ```
 than kills the teminal, it will run in the same app
 
+## 使用 multicall 控制 fund:
+1. 把multicall 合約加入 fund 管理者
 
 
 

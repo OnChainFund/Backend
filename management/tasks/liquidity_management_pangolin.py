@@ -68,6 +68,11 @@ def liquidity_management_pangolin():
         pangolin_price = denominated_asset_reserve / target_asset_reserve
         ftx_price = ftx_prices[i]
 
+        # usdtdown
+        if target.target_asset.address == "0x7f5BE805EFdbc5b42A3cfBC41B2961A0A9d9e3B2":
+            ftx_price = 1
+            print("ji")
+
         if pangolin_price < ftx_price:
             # print("buy target")
             # print(sqrt(target_asset_reserve * denominated_asset_reserve * ftx_price))
@@ -88,6 +93,7 @@ def liquidity_management_pangolin():
         send_asset = w3.eth.contract(
             address=to_canonical_address(path[0]), abi=ERC20_ABI
         )
+
         pangolin_liquidity_management_calls.extend(
             [
                 multicall.create_call(
@@ -113,7 +119,6 @@ def liquidity_management_pangolin():
             ]
         )
     result = multicall_write.call(pangolin_liquidity_management_calls)
-    
 
 
-# liquidity_management_pangolin()
+liquidity_management_pangolin()
